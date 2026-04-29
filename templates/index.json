@@ -8,92 +8,44 @@
  * ------------------------------------------------------------
  */{
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
-      "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-secondary",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
+    "rb_hero": {
+      "type": "runitback-hero",
+      "name": "Hero",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "eyebrow": "EST. 2024 · VINTAGE STREETWEAR",
+        "title_line_1": "RUNITBACK",
+        "title_line_2": "CLASSICS",
+        "subtitle": "Premium thrifted fits curated from the culture. One-of-a-kind pieces, always.",
+        "cta_1_label": "SHOP NEW DROPS",
+        "cta_1_link": "/collections/all",
+        "cta_2_label": "BROWSE ALL",
+        "cta_2_link": "/collections/all",
+        "show_rainbow": true,
+        "show_stats": true,
+        "stat_1_value": "500+",
+        "stat_1_label": "Unique Items",
+        "stat_2_value": "100%",
+        "stat_2_label": "Authentic",
+        "stat_3_value": "5★",
+        "stat_3_label": "Rated"
       }
     },
-    "product_list_fa6P9H": {
+    "rb_ticker": {
+      "type": "runitback-ticker",
+      "name": "Ticker Strip",
+      "settings": {
+        "style": "lime",
+        "ticker_text": "FREE SHIPPING ON ORDERS $75+|VINTAGE STREETWEAR|AUTHENTIC THRIFTED FITS|NEW DROPS EVERY WEEK|CURATED FROM THE CULTURE|DJ CULTURE · STREET STYLE",
+        "speed": 24
+      }
+    },
+    "rb_new_drops": {
       "type": "product-list",
+      "name": "New Drops",
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
-          "name": "t:names.header",
+          "name": "Header",
           "static": true,
           "settings": {
             "content_direction": "row",
@@ -125,11 +77,11 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "product_list_text_YFtzcL": {
+            "drops_text": {
               "type": "_product-list-text",
-              "name": "t:names.collection_title",
+              "name": "Title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "text": "<h3>New Drops</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -138,7 +90,7 @@
                 "font_size": "",
                 "line_height": "normal",
                 "letter_spacing": "normal",
-                "case": "none",
+                "case": "uppercase",
                 "wrap": "pretty",
                 "color": "var(--color-foreground)",
                 "background": false,
@@ -151,9 +103,9 @@
               },
               "blocks": {}
             },
-            "product_list_button_MWeP9V": {
+            "drops_button": {
               "type": "_product-list-button",
-              "name": "t:names.product_list_button",
+              "name": "View all button",
               "settings": {
                 "label": "View all",
                 "open_in_new_tab": false,
@@ -166,14 +118,11 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+          "block_order": ["drops_text", "drops_button"]
         },
         "static-product-card": {
           "type": "_product-card",
-          "name": "t:names.product_card",
+          "name": "Product card",
           "static": true,
           "settings": {
             "product_card_gap": 4,
@@ -189,9 +138,9 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "product_card_gallery_677WP3": {
+            "drops_gallery": {
               "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
+              "name": "Media",
               "settings": {
                 "image_ratio": "adapt",
                 "border": "none",
@@ -205,9 +154,9 @@
               },
               "blocks": {}
             },
-            "product_title_YXxMTj": {
+            "drops_title": {
               "type": "product-title",
-              "name": "t:names.product_title",
+              "name": "Product title",
               "settings": {
                 "width": "100%",
                 "max_width": "normal",
@@ -230,9 +179,9 @@
               },
               "blocks": {}
             },
-            "price_JQzVV4": {
+            "drops_price": {
               "type": "price",
-              "name": "t:names.product_price",
+              "name": "Price",
               "settings": {
                 "show_sale_price_first": true,
                 "show_installments": false,
@@ -254,14 +203,9 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+          "block_order": ["drops_gallery", "drops_title", "drops_price"]
         }
       },
-      "name": "Featured collection",
       "settings": {
         "collection": "all",
         "layout_type": "grid",
@@ -277,14 +221,84 @@
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
         "gap": 28,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "color_scheme": "scheme-5",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "rb_brands": {
+      "type": "runitback-brands",
+      "name": "Brand Grid",
+      "blocks": {
+        "brand_nike":    { "type": "brand", "settings": { "name": "NIKE",           "link": "/collections/all" } },
+        "brand_adidas":  { "type": "brand", "settings": { "name": "ADIDAS",         "link": "/collections/all" } },
+        "brand_champ":   { "type": "brand", "settings": { "name": "CHAMPION",       "link": "/collections/all" } },
+        "brand_carh":    { "type": "brand", "settings": { "name": "CARHARTT",       "link": "/collections/all" } },
+        "brand_tnf":     { "type": "brand", "settings": { "name": "THE NORTH FACE", "link": "/collections/all" } },
+        "brand_rl":      { "type": "brand", "settings": { "name": "RALPH LAUREN",   "link": "/collections/all" } },
+        "brand_tommy":   { "type": "brand", "settings": { "name": "TOMMY HILFIGER", "link": "/collections/all" } },
+        "brand_pata":    { "type": "brand", "settings": { "name": "PATAGONIA",      "link": "/collections/all" } },
+        "brand_arc":     { "type": "brand", "settings": { "name": "ARC'TERYX",      "link": "/collections/all" } },
+        "brand_dick":    { "type": "brand", "settings": { "name": "DICKIES",        "link": "/collections/all" } },
+        "brand_stussy":  { "type": "brand", "settings": { "name": "STÜSSY",         "link": "/collections/all" } },
+        "brand_nb":      { "type": "brand", "settings": { "name": "NEW BALANCE",    "link": "/collections/all" } }
+      },
+      "block_order": [
+        "brand_nike", "brand_adidas", "brand_champ", "brand_carh",
+        "brand_tnf", "brand_rl", "brand_tommy", "brand_pata",
+        "brand_arc", "brand_dick", "brand_stussy", "brand_nb"
+      ],
+      "settings": {
+        "view_all_link": "/collections/all",
+        "view_all_label": "View all brands",
+        "show_cta": true,
+        "cta_label": "SHOP ALL BRANDS",
+        "cta_link": "/collections/all"
+      }
+    },
+    "rb_ticker_2": {
+      "type": "runitback-ticker",
+      "name": "Mid-page Ticker",
+      "settings": {
+        "style": "dark",
+        "ticker_text": "ONE OF A KIND PIECES|HAND-PICKED VINTAGE|NO FAST FASHION|AUTHENTIC STREETWEAR|SHOP SUSTAINABLY|DJ CULTURE · STREETWEAR · CLASSICS",
+        "speed": 28
+      }
+    },
+    "rb_features": {
+      "type": "runitback-features",
+      "name": "Features",
+      "blocks": {
+        "feat_auth":  { "type": "feature", "settings": { "icon": "🛡️", "title": "100% Authenticated",  "text": "Every piece hand-checked & verified vintage." } },
+        "feat_ship":  { "type": "feature", "settings": { "icon": "📦", "title": "Free Shipping $75+",  "text": "Fast dispatch on all domestic orders."         } },
+        "feat_ret":   { "type": "feature", "settings": { "icon": "🔄", "title": "Easy Returns",        "text": "30-day hassle-free return policy."             } },
+        "feat_sust":  { "type": "feature", "settings": { "icon": "♻️", "title": "Sustainable Fashion", "text": "Shop secondhand. Save the planet."             } }
+      },
+      "block_order": ["feat_auth", "feat_ship", "feat_ret", "feat_sust"]
+    },
+    "rb_vip": {
+      "type": "runitback-vip",
+      "name": "VIP Signup",
+      "settings": {
+        "badge": "VIP CLUB — EXCLUSIVE ACCESS",
+        "title_line_1": "JOIN THE",
+        "title_line_2": "CREW",
+        "subtitle": "Get 15% off your first order, early access to new drops, and exclusive member-only deals.",
+        "input_placeholder": "Your email address",
+        "button_label": "JOIN THE CREW",
+        "fine_print": "Unsubscribe anytime. No spam, ever.",
+        "show_social_proof": true,
+        "social_proof_text": "10,000+ members already in"
       }
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "rb_hero",
+    "rb_ticker",
+    "rb_new_drops",
+    "rb_brands",
+    "rb_ticker_2",
+    "rb_features",
+    "rb_vip"
   ]
 }

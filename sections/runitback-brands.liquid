@@ -1,0 +1,152 @@
+<section class="rb-brands" id="rb-brands-{{ section.id }}">
+  <div class="rb-container">
+
+    <div class="rb-brands__header rb-reveal">
+      <div>
+        <p class="rb-section-label">Browse</p>
+        <h2 class="rb-brands__title">
+          Shop By<br>
+          <em>Brand</em>
+        </h2>
+      </div>
+      {%- if section.settings.view_all_link != blank -%}
+        <a href="{{ section.settings.view_all_link }}" class="rb-brands__view-all">
+          {{- section.settings.view_all_label | default: 'View all' -}}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="rb-brands__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'brand' -%}
+          <a
+            href="{{ block.settings.link | default: '/collections/all' }}"
+            class="rb-brand-card rb-reveal rb-reveal-d{{ forloop.index | modulo: 6 | plus: 1 }}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.logo != blank -%}
+              <img
+                src="{{ block.settings.logo | image_url: width: 280 }}"
+                alt="{{ block.settings.name }}"
+                width="140"
+                height="70"
+                loading="lazy"
+                style="max-width:140px; max-height:70px; width:auto; height:auto; filter:brightness(0) invert(1); position:relative; z-index:1; transition:filter 0.25s ease;"
+                class="rb-brand-card__img"
+              >
+              <style>
+                .rb-brand-card:hover .rb-brand-card__img { filter: brightness(0) !important; }
+              </style>
+            {%- else -%}
+              <span class="rb-brand-card__name">{{ block.settings.name }}</span>
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.show_cta -%}
+      <div class="rb-brands__footer rb-reveal">
+        <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="rb-btn rb-btn--ghost-lime">
+          {{- section.settings.cta_label | default: 'SHOP ALL BRANDS' -}}
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "RB — Brand Grid",
+  "tag": "section",
+  "max_blocks": 18,
+  "settings": [
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "\"View all\" link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "\"View all\" label",
+      "default": "View all brands"
+    },
+    {
+      "type": "header",
+      "content": "Bottom CTA"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "SHOP ALL BRANDS"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link",
+      "default": "/collections/all"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Brand name",
+          "default": "BRAND"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Collection link",
+          "default": "/collections/all"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Brand logo (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RB — Brand Grid",
+      "settings": {
+        "view_all_link": "/collections/all",
+        "view_all_label": "View all brands",
+        "show_cta": true,
+        "cta_label": "SHOP ALL BRANDS",
+        "cta_link": "/collections/all"
+      },
+      "blocks": [
+        { "type": "brand", "settings": { "name": "NIKE",           "link": "/collections/all" } },
+        { "type": "brand", "settings": { "name": "ADIDAS",         "link": "/collections/all" } },
+        { "type": "brand", "settings": { "name": "CHAMPION",       "link": "/collections/all" } },
+        { "type": "brand", "settings": { "name": "CARHARTT",       "link": "/collections/all" } },
+        { "type": "brand", "settings": { "name": "THE NORTH FACE", "link": "/collections/all" } },
+        { "type": "brand", "settings": { "name": "RALPH LAUREN",   "link": "/collections/all" } },
+        { "type": "brand", "settings": { "name": "TOMMY HILFIGER", "link": "/collections/all" } },
+        { "type": "brand", "settings": { "name": "PATAGONIA",      "link": "/collections/all" } },
+        { "type": "brand", "settings": { "name": "ARC'TERYX",      "link": "/collections/all" } },
+        { "type": "brand", "settings": { "name": "DICKIES",        "link": "/collections/all" } },
+        { "type": "brand", "settings": { "name": "STÜSSY",         "link": "/collections/all" } },
+        { "type": "brand", "settings": { "name": "NEW BALANCE",    "link": "/collections/all" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

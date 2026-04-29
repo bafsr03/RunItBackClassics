@@ -1,0 +1,66 @@
+{%- assign items = section.settings.ticker_text | split: '|' -%}
+
+<div
+  class="rb-ticker rb-ticker--{{ section.settings.style }}"
+  id="rb-ticker-{{ section.id }}"
+  aria-hidden="true"
+>
+  <div
+    class="rb-ticker__track"
+    style="animation-duration: {{ section.settings.speed }}s;"
+  >
+    {%- comment -%} Duplicate the item set 4× to ensure seamless infinite loop {%- endcomment -%}
+    {%- for _pass in (1..4) -%}
+      {%- for item in items -%}
+        <span class="rb-ticker__item">
+          {{- item | strip -}}
+          <span class="rb-ticker__sep" aria-hidden="true">✦</span>
+        </span>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "RB — Ticker Strip",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Color style",
+      "options": [
+        { "value": "lime", "label": "Lime (yellow-green)" },
+        { "value": "dark", "label": "Dark" }
+      ],
+      "default": "lime"
+    },
+    {
+      "type": "textarea",
+      "id": "ticker_text",
+      "label": "Ticker items (separate with |)",
+      "default": "FREE SHIPPING ON ORDERS $75+|RUNITBACK CLASSICS|VINTAGE STREETWEAR|AUTHENTIC THRIFTED FITS|NEW DROPS EVERY WEEK|CURATED FROM THE CULTURE|DJ CULTURE · STREET STYLE"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll speed (seconds)",
+      "min": 12,
+      "max": 60,
+      "step": 4,
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "RB — Ticker Strip",
+      "settings": {
+        "style": "lime",
+        "ticker_text": "FREE SHIPPING ON ORDERS $75+|RUNITBACK CLASSICS|VINTAGE STREETWEAR|AUTHENTIC THRIFTED FITS|NEW DROPS EVERY WEEK|CURATED FROM THE CULTURE|DJ CULTURE · STREET STYLE",
+        "speed": 24
+      }
+    }
+  ]
+}
+{% endschema %}

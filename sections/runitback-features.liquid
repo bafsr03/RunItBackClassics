@@ -1,0 +1,94 @@
+<section class="rb-features" id="rb-features-{{ section.id }}">
+  <div class="rb-container">
+    <div class="rb-features__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature' -%}
+          <div
+            class="rb-feature rb-reveal rb-reveal-d{{ forloop.index }}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="rb-feature__icon" aria-hidden="true">{{ block.settings.icon }}</div>
+            <p class="rb-feature__title">{{ block.settings.title }}</p>
+            {%- if block.settings.text != blank -%}
+              <p class="rb-feature__text">{{ block.settings.text }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "RB — Features Strip",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "✦"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description",
+          "default": "Short description here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RB — Features Strip",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🛡️",
+            "title": "100% Authenticated",
+            "text": "Every piece hand-checked & verified vintage."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "📦",
+            "title": "Free Shipping $75+",
+            "text": "Fast dispatch on all domestic orders."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🔄",
+            "title": "Easy Returns",
+            "text": "30-day hassle-free return policy."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "♻️",
+            "title": "Sustainable Fashion",
+            "text": "Shop secondhand. Save the planet."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

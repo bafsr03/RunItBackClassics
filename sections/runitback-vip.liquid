@@ -1,0 +1,137 @@
+<section class="rb-vip" id="rb-vip-{{ section.id }}">
+
+  <div class="rb-vip__glow" aria-hidden="true"></div>
+
+  <div class="rb-vip__inner">
+
+    {%- if section.settings.badge != blank -%}
+      <span class="rb-vip__badge rb-reveal">{{ section.settings.badge }}</span>
+    {%- endif -%}
+
+    <h2 class="rb-vip__title rb-reveal rb-reveal-d1">
+      {{- section.settings.title_line_1 -}}
+      <span class="rb-vip__title-outline">{{- section.settings.title_line_2 -}}</span>
+    </h2>
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="rb-vip__subtitle rb-reveal rb-reveal-d2">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    <div class="rb-reveal rb-reveal-d3">
+      {%- form 'customer', id: 'rb-vip-form-{{ section.id }}' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter,vip-club">
+        <div class="rb-vip__form">
+          <input
+            type="email"
+            name="contact[email]"
+            class="rb-vip__input"
+            placeholder="{{ section.settings.input_placeholder | default: 'Enter your email' }}"
+            autocomplete="email"
+            required
+            aria-label="{{ section.settings.input_placeholder | default: 'Enter your email' }}"
+          >
+          <button type="submit" class="rb-vip__submit">
+            {{- section.settings.button_label | default: 'JOIN' -}}
+          </button>
+        </div>
+        <p class="rb-vip__fine">{{ section.settings.fine_print | default: 'Unsubscribe anytime. No spam, ever.' }}</p>
+      {%- endform -%}
+    </div>
+
+    {%- if section.settings.show_social_proof -%}
+      <div class="rb-vip__social-proof rb-reveal rb-reveal-d4">
+        <div class="rb-vip__avatars" aria-hidden="true">
+          <span class="rb-vip__avatar">😎</span>
+          <span class="rb-vip__avatar">🤙</span>
+          <span class="rb-vip__avatar">🔥</span>
+          <span class="rb-vip__avatar">+</span>
+        </div>
+        <span>{{ section.settings.social_proof_text | default: '10,000+ members already in' }}</span>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "RB — VIP Signup",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge label",
+      "default": "VIP CLUB — EXCLUSIVE ACCESS"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title line 1",
+      "default": "JOIN THE"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title line 2 (outline)",
+      "default": "CREW"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Get 15% off your first order, early access to new drops, and exclusive member-only deals."
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Email input placeholder",
+      "default": "Your email address"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "JOIN THE CREW"
+    },
+    {
+      "type": "text",
+      "id": "fine_print",
+      "label": "Fine print",
+      "default": "Unsubscribe anytime. No spam, ever."
+    },
+    {
+      "type": "header",
+      "content": "Social Proof"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_proof",
+      "label": "Show member count",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "social_proof_text",
+      "label": "Social proof text",
+      "default": "10,000+ members already in"
+    }
+  ],
+  "presets": [
+    {
+      "name": "RB — VIP Signup",
+      "settings": {
+        "badge": "VIP CLUB — EXCLUSIVE ACCESS",
+        "title_line_1": "JOIN THE",
+        "title_line_2": "CREW",
+        "subtitle": "Get 15% off your first order, early access to new drops, and exclusive member-only deals.",
+        "input_placeholder": "Your email address",
+        "button_label": "JOIN THE CREW",
+        "fine_print": "Unsubscribe anytime. No spam, ever.",
+        "show_social_proof": true,
+        "social_proof_text": "10,000+ members already in"
+      }
+    }
+  ]
+}
+{% endschema %}

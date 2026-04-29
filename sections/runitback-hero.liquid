@@ -1,0 +1,306 @@
+<section class="rb-hero" id="rb-hero-{{ section.id }}">
+
+  {%- comment -%} Background layers {%- endcomment -%}
+  <div class="rb-hero__bg" aria-hidden="true">
+    <div class="rb-hero__bg-grid"></div>
+    <div class="rb-hero__bg-glow"></div>
+    {%- if section.settings.show_rainbow -%}
+      <div class="rb-hero__bg-rainbow"></div>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Main content {%- endcomment -%}
+  <div class="rb-hero__inner">
+    <div class="rb-hero__content">
+
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="rb-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      <h1 class="rb-hero__title">
+        <span class="rb-hero__title-line rb-hero__title-line--solid">{{ section.settings.title_line_1 }}</span>
+        <span class="rb-hero__title-line rb-hero__title-line--outline">{{ section.settings.title_line_2 }}</span>
+      </h1>
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="rb-hero__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+
+      <div class="rb-hero__actions">
+        {%- if section.settings.cta_1_label != blank -%}
+          <a href="{{ section.settings.cta_1_link }}" class="rb-btn rb-btn--lime">
+            {{- section.settings.cta_1_label -}}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.cta_2_label != blank -%}
+          <a href="{{ section.settings.cta_2_link }}" class="rb-btn rb-btn--ghost">
+            {{- section.settings.cta_2_label -}}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_stats -%}
+        <div class="rb-hero__stats">
+          <div>
+            <span class="rb-hero__stat-value">{{ section.settings.stat_1_value }}</span>
+            <span class="rb-hero__stat-label">{{ section.settings.stat_1_label }}</span>
+          </div>
+          <div>
+            <span class="rb-hero__stat-value">{{ section.settings.stat_2_value }}</span>
+            <span class="rb-hero__stat-label">{{ section.settings.stat_2_label }}</span>
+          </div>
+          <div>
+            <span class="rb-hero__stat-value">{{ section.settings.stat_3_value }}</span>
+            <span class="rb-hero__stat-label">{{ section.settings.stat_3_label }}</span>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Rotating badge {%- endcomment -%}
+    <div class="rb-hero__badge-wrap" aria-hidden="true">
+      <svg class="rb-hero__badge" viewBox="0 0 200 200" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="rb-badge-circle-{{ section.id }}" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"/>
+        </defs>
+        <text font-size="13" font-weight="700" letter-spacing="3.5" text-anchor="start">
+          <textPath href="#rb-badge-circle-{{ section.id }}" startOffset="0%">
+            VINTAGE &bull; STREETWEAR &bull; RUNITBACK &bull; CLASSICS &bull;&nbsp;
+          </textPath>
+        </text>
+        <circle cx="100" cy="100" r="8" fill="currentColor"/>
+      </svg>
+    </div>
+  </div>
+
+  {%- comment -%} Scroll indicator {%- endcomment -%}
+  <div class="rb-hero__scroll" aria-hidden="true">
+    <span class="rb-hero__scroll-label">Scroll</span>
+    <div class="rb-hero__scroll-line"></div>
+  </div>
+
+</section>
+
+<style>
+  /* ── Slot Text 3D ───────────────────────────────────────────── */
+
+  /* ── Title line spacing ───────────────────────────────────────
+     Keep both lines tightly stacked with a consistent gap         */
+  .rb-hero__title-line--solid {
+    display: block;
+    line-height: 0.88;
+    white-space: nowrap;
+  }
+
+  /* Outline line: flex so drums stay on ONE line, never wrap */
+  .rb-hero__title-line--outline {
+    display: flex;             /* ← key fix: keeps all drums in a row */
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    perspective: 600px;
+    perspective-origin: 50% 50%;
+    margin-top: -0.06em;
+    /* letter-spacing on the title flows to text nodes but not
+       to inline-block drums, so we use gap instead               */
+    gap: 0;
+  }
+
+  /* One "drum window" per letter */
+  .rb-slot__drum {
+    display: inline-block;
+    flex-shrink: 0;            /* ← never compress a drum         */
+    height: var(--sh, 0.88em);
+    overflow: hidden;
+    vertical-align: top;
+    position: relative;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent  0%,
+      black       11%,
+      black       89%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent  0%,
+      black       11%,
+      black       89%,
+      transparent 100%
+    );
+  }
+
+  /* The scrolling column inside each drum */
+  .rb-slot__reel {
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+    animation: rb-slot-roll
+      var(--sdur, 720ms)
+      var(--sd,   200ms)
+      cubic-bezier(0.16, 1, 0.3, 1)
+      both;
+  }
+
+  /* Each character tile in the drum */
+  .rb-slot__item {
+    display: block;
+    height: var(--sh, 0.88em);
+    line-height: var(--sh, 0.88em);
+    flex-shrink: 0;
+  }
+
+  @keyframes rb-slot-roll {
+    0% {
+      transform: translateY(0) rotateX(-30deg);
+      filter: blur(3px);
+      opacity: 0;
+    }
+    8% { opacity: 1; }
+    35% {
+      transform: translateY(calc(var(--sto, -9em) * 0.45)) rotateX(-8deg);
+      filter: blur(1px);
+    }
+    70% { filter: blur(0); }
+    92% {
+      transform: translateY(calc(var(--sto, -9em) - 0.03em)) rotateX(1.5deg);
+    }
+    100% {
+      transform: translateY(var(--sto, -9em)) rotateX(0deg);
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+</style>
+
+<script src="{{ 'runitback-classics-fx.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "RB — Hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow tag",
+      "default": "EST. 2024 · VINTAGE STREETWEAR"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title line 1 (solid)",
+      "default": "RUNITBACK"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title line 2 (outline)",
+      "default": "CLASSICS"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Premium thrifted fits curated from the culture. One-of-a-kind pieces, always."
+    },
+    {
+      "type": "text",
+      "id": "cta_1_label",
+      "label": "Primary button label",
+      "default": "SHOP NEW DROPS"
+    },
+    {
+      "type": "url",
+      "id": "cta_1_link",
+      "label": "Primary button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "cta_2_label",
+      "label": "Secondary button label",
+      "default": "BROWSE ALL"
+    },
+    {
+      "type": "url",
+      "id": "cta_2_link",
+      "label": "Secondary button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rainbow",
+      "label": "Show rainbow glow stripe",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Stats Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show stats",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "stat_1_value",
+      "label": "Stat 1 value",
+      "default": "500+"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Stat 1 label",
+      "default": "Unique Items"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_value",
+      "label": "Stat 2 value",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Stat 2 label",
+      "default": "Authentic"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_value",
+      "label": "Stat 3 value",
+      "default": "5★"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_label",
+      "label": "Stat 3 label",
+      "default": "Rated"
+    }
+  ],
+  "presets": [
+    {
+      "name": "RB — Hero",
+      "settings": {
+        "eyebrow": "EST. 2024 · VINTAGE STREETWEAR",
+        "title_line_1": "RUNITBACK",
+        "title_line_2": "CLASSICS",
+        "subtitle": "Premium thrifted fits curated from the culture. One-of-a-kind pieces, always.",
+        "cta_1_label": "SHOP NEW DROPS",
+        "cta_2_label": "BROWSE ALL",
+        "show_rainbow": true,
+        "show_stats": true,
+        "stat_1_value": "500+",
+        "stat_1_label": "Unique Items",
+        "stat_2_value": "100%",
+        "stat_2_label": "Authentic",
+        "stat_3_value": "5★",
+        "stat_3_label": "Rated"
+      }
+    }
+  ]
+}
+{% endschema %}

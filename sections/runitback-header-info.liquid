@@ -1,0 +1,58 @@
+<a
+  href="{{ routes.root_url }}"
+  class="rb-logobar"
+  id="rb-logobar-{{ section.id }}"
+  aria-label="{{ shop.name }} home"
+>
+  {%- if settings.logo != blank -%}
+    {{- settings.logo
+      | image_url: height: 48
+      | image_tag:
+          alt: shop.name,
+          loading: 'eager',
+          class: 'rb-logobar__img'
+    -}}
+  {%- else -%}
+    <span class="rb-logobar__wordmark">{{ shop.name | upcase }}</span>
+  {%- endif -%}
+</a>
+
+{% stylesheet %}
+.rb-logobar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--rb-dark, #101010);
+  border-bottom: 1px solid var(--rb-border, #2a2a2a);
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.rb-logobar:hover { opacity: 0.8; }
+
+.rb-logobar__img {
+  display: block;
+  max-height: 44px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.rb-logobar__wordmark {
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "RB — Logo Bar",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    { "name": "RB — Logo Bar" }
+  ]
+}
+{% endschema %}
