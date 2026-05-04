@@ -6,9 +6,27 @@
 -%}
 
 <style>
+  #header-group {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2147483647 !important;
+    background: #000000 !important;
+    width: 100%;
+  }
+
+  #shopify-section-header_section {
+    position: relative !important;
+    top: 0 !important;
+    z-index: 10001 !important;
+  }
+
   #shopify-section-{{ section.id }} {
     position: relative !important;
-    z-index: 2147483647 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    z-index: 10000 !important;
   }
 </style>
 
@@ -111,12 +129,11 @@
    ================================================================ */
 
 .rb-navb {
-  display: none;
-  background: var(--color-background, #0f0f0f);
-  /* border-bottom removed as requested */
+  display: block;
+  background: transparent !important; /* Let #header-group handle the background */
   border-bottom: none;
   position: relative;
-  --rb-logo-top-size: 140px;
+  --rb-logo-top-size: 112px;
   --rb-logo-scrolled-size: 48px;
   --rb-logo-current-size: var(--rb-logo-top-size);
   z-index: 9999;
@@ -126,8 +143,7 @@
 @media (min-width: 990px) {
   .rb-navb { 
     display: block; 
-    position: sticky;
-    top: var(--top-row-height, 60px); /* Sticks below the header top row */
+    position: relative; /* Now handled by #header-group stickiness */
   }
   
   /* Hide default header logo on desktop to avoid overlap */
@@ -158,12 +174,16 @@ html.rb-navb-scrolled .rb-navb__spacer {
 
 /* ---- nav lists ---- */
 .rb-navb__list {
-  display: flex;
+  display: none;
   align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
   height: 100%;
+}
+
+@media (min-width: 990px) {
+  .rb-navb__list { display: flex; }
 }
 
 .rb-navb__list--left  { justify-content: flex-end; }
@@ -292,7 +312,7 @@ html.rb-navb-scrolled .rb-navb__spacer {
   width: auto;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 0; /* Center it on the boundary between header and navbar */
   transform: translate(-50%, -50%);
   z-index: 10000;
   text-decoration: none;
@@ -300,6 +320,10 @@ html.rb-navb-scrolled .rb-navb__spacer {
   transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
               transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.rb-navb-scrolled .rb-navb__logo {
+  top: 50%; /* Center it back in the navbar when small */
 }
 
 .rb-navb__logo-img {
@@ -345,14 +369,30 @@ html:not(.rb-navb-scrolled) .rb-navb {
 }
 
 @media (max-width: 989px) {
+  .rb-navb {
+    background: transparent;
+    z-index: 10001; /* Ensure it stays above header on mobile */
+  }
+  
+  .rb-navb__inner {
+    height: 60px;
+  }
+
+  .rb-navb__spacer {
+    display: none;
+  }
+
   .rb-navb__logo {
-    position: static;
-    transform: none;
-    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 64px;
   }
 
   .rb-navb__logo-img {
-    max-height: 40px;
+    max-height: 64px;
+    filter: invert(1);
   }
 }
 {% endstylesheet %}
