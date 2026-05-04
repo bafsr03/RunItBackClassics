@@ -1,0 +1,317 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<section class="rb-about-strip" id="rb-about-strip-{{ section.id }}">
+
+  <div class="rb-about-strip__bg" aria-hidden="true">
+    <div class="rb-about-strip__bg-grid"></div>
+    <div class="rb-about-strip__bg-glow"></div>
+  </div>
+
+  <div class="rb-container rb-about-strip__inner">
+
+    <!-- Left: text -->
+    <div class="rb-about-strip__text">
+      <p class="rb-about-strip__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="rb-about-strip__title">{{ section.settings.title }}</h2>
+      <p class="rb-about-strip__body">{{ section.settings.body }}</p>
+      <div class="rb-about-strip__ctas">
+        <a href="{{ section.settings.cta_1_url }}" class="rb-btn rb-btn--lime">{{ section.settings.cta_1_label }}</a>
+        <a href="{{ section.settings.cta_2_url }}" class="rb-btn rb-btn--ghost">{{ section.settings.cta_2_label }}</a>
+      </div>
+    </div>
+
+    <!-- Right: photo mosaic -->
+    <div class="rb-about-strip__mosaic">
+      {%- if section.settings.photo_1 != blank -%}
+        <div class="rb-about-strip__photo rb-about-strip__photo--1">
+          <img src="{{ section.settings.photo_1 | image_url: width: 600 }}"
+               alt="{{ section.settings.photo_1_alt | default: 'Runitback Classics' }}"
+               loading="lazy" width="600" height="800">
+        </div>
+      {%- else -%}
+        <div class="rb-about-strip__photo rb-about-strip__photo--1 rb-about-strip__photo--placeholder">
+          <div class="rb-about-strip__placeholder-inner">
+            <span>YOUR PHOTO</span>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.photo_2 != blank -%}
+        <div class="rb-about-strip__photo rb-about-strip__photo--2">
+          <img src="{{ section.settings.photo_2 | image_url: width: 600 }}"
+               alt="{{ section.settings.photo_2_alt | default: 'Runitback Classics' }}"
+               loading="lazy" width="600" height="800">
+        </div>
+      {%- else -%}
+        <div class="rb-about-strip__photo rb-about-strip__photo--2 rb-about-strip__photo--placeholder">
+          <div class="rb-about-strip__placeholder-inner">
+            <span>YOUR PHOTO</span>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.photo_3 != blank -%}
+        <div class="rb-about-strip__photo rb-about-strip__photo--3">
+          <img src="{{ section.settings.photo_3 | image_url: width: 600 }}"
+               alt="{{ section.settings.photo_3_alt | default: 'Runitback Classics' }}"
+               loading="lazy" width="600" height="800">
+        </div>
+      {%- else -%}
+        <div class="rb-about-strip__photo rb-about-strip__photo--3 rb-about-strip__photo--placeholder">
+          <div class="rb-about-strip__placeholder-inner">
+            <span>YOUR PHOTO</span>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="rb-about-strip__mosaic-badge">
+        <span>EST.</span>
+        <strong>2024</strong>
+        <span>ABILENE TX</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .rb-about-strip {
+    position: relative;
+    background: var(--rb-black, #080808);
+    padding-block: 100px 110px;
+    overflow: hidden;
+  }
+
+  .rb-about-strip__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .rb-about-strip__bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,241,53,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,241,53,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .rb-about-strip__bg-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,241,53,0.07) 0%, transparent 70%);
+    top: -100px;
+    right: 10%;
+    pointer-events: none;
+  }
+
+  .rb-about-strip__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 1024px) {
+    .rb-about-strip__inner {
+      flex-direction: row;
+      align-items: center;
+      gap: 80px;
+    }
+  }
+
+  /* ---- Text side ---- */
+  .rb-about-strip__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 520px;
+  }
+
+  .rb-about-strip__eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--rb-lime, #c8f135);
+    border: 1px solid rgba(200,241,53,0.3);
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin: 0;
+    width: fit-content;
+  }
+
+  .rb-about-strip__title {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 400;
+    line-height: 0.95;
+    color: #fff;
+    margin: 0;
+  }
+
+  .rb-about-strip__body {
+    color: rgba(255,255,255,0.6);
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .rb-about-strip__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 8px;
+  }
+
+  /* ---- Mosaic side ---- */
+  .rb-about-strip__mosaic {
+    flex: 1;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px;
+    max-width: 560px;
+    width: 100%;
+  }
+
+  .rb-about-strip__photo {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .rb-about-strip__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .rb-about-strip__photo:hover img {
+    transform: scale(1.04);
+  }
+
+  /* Photo 1: tall left column spanning 2 rows */
+  .rb-about-strip__photo--1 {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    aspect-ratio: 3/4;
+  }
+
+  /* Photo 2: top right */
+  .rb-about-strip__photo--2 {
+    grid-column: 2;
+    grid-row: 1;
+    aspect-ratio: 4/3;
+  }
+
+  /* Photo 3: bottom right */
+  .rb-about-strip__photo--3 {
+    grid-column: 2;
+    grid-row: 2;
+    aspect-ratio: 4/3;
+  }
+
+  /* Placeholder state */
+  .rb-about-strip__photo--placeholder {
+    background: var(--rb-surface, #181818);
+    border: 1px dashed rgba(200,241,53,0.2);
+  }
+
+  .rb-about-strip__placeholder-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rb-about-strip__placeholder-inner span {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: rgba(200,241,53,0.3);
+  }
+
+  /* Floating badge */
+  .rb-about-strip__mosaic-badge {
+    position: absolute;
+    bottom: -18px;
+    left: -18px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--rb-lime, #c8f135);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    z-index: 2;
+    box-shadow: 0 0 0 4px #080808, 0 0 0 6px rgba(200,241,53,0.3);
+  }
+
+  .rb-about-strip__mosaic-badge span {
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #080808;
+    text-transform: uppercase;
+  }
+
+  .rb-about-strip__mosaic-badge strong {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #080808;
+    line-height: 1;
+  }
+
+  @media (max-width: 640px) {
+    .rb-about-strip__mosaic {
+      gap: 8px;
+    }
+    .rb-about-strip__mosaic-badge {
+      width: 70px;
+      height: 70px;
+      bottom: -12px;
+      left: -8px;
+    }
+    .rb-about-strip__mosaic-badge strong { font-size: 18px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RB — About Strip",
+  "tag": "section",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",      "label": "Eyebrow",     "default": "OUR STORY" },
+    { "type": "textarea", "id": "title",        "label": "Title",       "default": "BORN FROM THE CULTURE" },
+    { "type": "textarea", "id": "body",         "label": "Body text",   "default": "Runitback Classics started in Abilene, TX with one mission: bring premium vintage streetwear, rare sneakers, and collectibles to the people. Every piece is hand-picked, authenticated, and one of a kind." },
+    { "type": "text",     "id": "cta_1_label",  "label": "Button 1 label", "default": "OUR STORY" },
+    { "type": "url",      "id": "cta_1_url",    "label": "Button 1 URL" },
+    { "type": "text",     "id": "cta_2_label",  "label": "Button 2 label", "default": "CONTACT US" },
+    { "type": "url",      "id": "cta_2_url",    "label": "Button 2 URL" },
+    { "type": "header",   "label": "Photos" },
+    { "type": "image_picker", "id": "photo_1", "label": "Photo 1 (tall left)" },
+    { "type": "text",     "id": "photo_1_alt",  "label": "Photo 1 alt text" },
+    { "type": "image_picker", "id": "photo_2", "label": "Photo 2 (top right)" },
+    { "type": "text",     "id": "photo_2_alt",  "label": "Photo 2 alt text" },
+    { "type": "image_picker", "id": "photo_3", "label": "Photo 3 (bottom right)" },
+    { "type": "text",     "id": "photo_3_alt",  "label": "Photo 3 alt text" }
+  ],
+  "presets": [{ "name": "RB — About Strip" }]
+}
+{% endschema %}

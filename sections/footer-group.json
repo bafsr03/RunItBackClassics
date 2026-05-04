@@ -69,14 +69,14 @@
             "link_1_url": "/pages/faq",
             "link_2_label": "Contact Us",
             "link_2_url": "/pages/contact",
-            "link_3_label": "Returns & Exchanges",
-            "link_3_url": "/policies/refund-policy",
-            "link_4_label": "Shipping Info",
-            "link_4_url": "/policies/shipping-policy",
+            "link_3_label": "About Us",
+            "link_3_url": "/pages/about",
+            "link_4_label": "",
+            "link_4_url": "",
             "link_5_label": "",
-            "link_5_url": "/pages/size-guide",
+            "link_5_url": "",
             "link_6_label": "",
-            "link_6_url": "/pages/contact"
+            "link_6_url": ""
           }
         },
         "col_company": {
@@ -84,18 +84,18 @@
           "settings": {
             "title": "COMPANY",
             "menu": "",
-            "link_1_label": "",
-            "link_1_url": "/pages/about",
-            "link_2_label": "Terms of Service",
-            "link_2_url": "/policies/terms-of-service",
-            "link_3_label": "Privacy Policy",
-            "link_3_url": "/policies/privacy-policy",
-            "link_4_label": "Refund Policy",
-            "link_4_url": "/policies/refund-policy",
-            "link_5_label": "Shipping Policy",
-            "link_5_url": "/policies/shipping-policy",
-            "link_6_label": "",
-            "link_6_url": ""
+            "link_1_label": "Returns & Exchanges",
+            "link_1_url": "/policies/refund-policy",
+            "link_2_label": "Shipping Info",
+            "link_2_url": "/policies/shipping-policy",
+            "link_3_label": "Terms of Service",
+            "link_3_url": "/policies/terms-of-service",
+            "link_4_label": "Privacy Policy",
+            "link_4_url": "/policies/privacy-policy",
+            "link_5_label": "Refund Policy",
+            "link_5_url": "/policies/refund-policy",
+            "link_6_label": "Shipping Policy",
+            "link_6_url": "/policies/shipping-policy"
           }
         }
       },

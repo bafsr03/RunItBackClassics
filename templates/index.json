@@ -55,6 +55,19 @@
         "instagram_handle": "runitbackclassicsllc"
       }
     },
+    "rb_about_strip": {
+      "type": "runitback-about-strip",
+      "name": "About Strip",
+      "settings": {
+        "eyebrow": "OUR STORY",
+        "title": "BORN FROM\nTHE CULTURE",
+        "body": "Runitback Classics started in Abilene, TX with one mission: bring premium vintage streetwear, rare sneakers, and collectibles to the people. Every piece is hand-picked, authenticated, and one of a kind.",
+        "cta_1_label": "OUR STORY",
+        "cta_1_url": "/pages/about",
+        "cta_2_label": "CONTACT US",
+        "cta_2_url": "/pages/contact"
+      }
+    },
     "rb_brands": {
       "type": "runitback-brands",
       "blocks": {
@@ -240,6 +253,7 @@
     "rb_hero",
     "rb_ticker",
     "rb_new_drops",
+    "rb_about_strip",
     "rb_brands",
     "rb_ticker_2",
     "rb_features",
