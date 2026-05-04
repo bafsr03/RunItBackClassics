@@ -1,0 +1,435 @@
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/media-with-content.liquid                                          │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'disable-section-top-offset' may be defined outside the scope of  │
+│   this file.                                                                 │
+│                                                                              │
+│  17  class="section section--{{ section.settings.section_width }}            │
+│  disable-section-top-offset media-with-content color-{{                      │
+│  section.settings.color_scheme }} spacing-style {{ media_class_modifier }}"  │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/predictive-search.liquid                                           │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-dropdown' may be defined outside the scope of  │
+│   this file.                                                                 │
+│                                                                              │
+│  6  class="predictive-search-dropdown"                                       │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__list' may be defined outside the      │
+│  scope of this file.                                                         │
+│                                                                              │
+│  42  class="predictive-search-results__list                                  │
+│  predictive-search-results__wrapper                                          │
+│  predictive-search-results__wrapper-queries list-unstyled"                   │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__wrapper' may be defined outside the   │
+│  scope of this file.                                                         │
+│                                                                              │
+│  42  class="predictive-search-results__list                                  │
+│  predictive-search-results__wrapper                                          │
+│  predictive-search-results__wrapper-queries list-unstyled"                   │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__wrapper-queries' may be defined       │
+│  outside the scope of this file.                                             │
+│                                                                              │
+│  42  class="predictive-search-results__list                                  │
+│  predictive-search-results__wrapper                                          │
+│  predictive-search-results__wrapper-queries list-unstyled"                   │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__card--query' may be defined outside   │
+│  the scope of this file.                                                     │
+│                                                                              │
+│  46  class="predictive-search-results__card--query"                          │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__pill' may be defined outside the      │
+│  scope of this file.                                                         │
+│                                                                              │
+│  51  class="pills__pill predictive-search-results__pill"                     │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__no-results' may be defined outside    │
+│  the scope of this file.                                                     │
+│                                                                              │
+│  103  <p class="predictive-search-results__no-results">                      │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/product-information.liquid                                         │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'add-to-cart-icon' may be defined outside the scope of this       │
+│  file.                                                                       │
+│                                                                              │
+│  132  <span class="svg-wrapper add-to-cart-icon">                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/runitback-404.liquid                                               │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  1  <link rel="preconnect" href="https://fonts.googleapis.com">              │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  2  <link                                                                    │
+│  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"     │
+│  rel="stylesheet">                                                           │
+│                                                                              │
+│                                                                              │
+│  [warning]: HardcodedRoutes                                                  │
+│  Use routes object {{ routes.root_url }} instead of hardcoding /             │
+│                                                                              │
+│  27  <a href="/" class="rb-btn rb-btn--ghost">GO HOME</a>                    │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/runitback-about-strip.liquid                                       │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  1  <link rel="preconnect" href="https://fonts.googleapis.com">              │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  2  <link                                                                    │
+│  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"     │
+│  rel="stylesheet">                                                           │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/runitback-about.liquid                                             │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  1  <link rel="preconnect" href="https://fonts.googleapis.com">              │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  2  <link                                                                    │
+│  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"     │
+│  rel="stylesheet">                                                           │
+│                                                                              │
+│                                                                              │
+│  [warning]: HardcodedRoutes                                                  │
+│  Use routes object {{ routes.all_products_collection_url }} instead of       │
+│  hardcoding /collections/all                                                 │
+│                                                                              │
+│  135  <a href="/collections/all" class="rb-btn rb-btn--lime">SHOP ALL        │
+│  DROPS</a>                                                                   │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/runitback-contact.liquid                                           │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  1  <link rel="preconnect" href="https://fonts.googleapis.com">              │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  2  <link                                                                    │
+│  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"     │
+│  rel="stylesheet">                                                           │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/runitback-faq.liquid                                               │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  1  <link rel="preconnect" href="https://fonts.googleapis.com">              │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  2  <link                                                                    │
+│  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"     │
+│  rel="stylesheet">                                                           │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedAssign                                                     │
+│  The variable 'q_keys' is assigned but not used                              │
+│                                                                              │
+│  25  {%- assign q_keys = 'q1,q2,q3,q4,q5,q6' | split: ',' -%}                │
+│                                                                              │
+│                                                                              │
+│  [warning]: UnusedAssign                                                     │
+│  The variable 'a_keys' is assigned but not used                              │
+│                                                                              │
+│  26  {%- assign a_keys = 'a1,a2,a3,a4,a5,a6' | split: ',' -%}                │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/runitback-footer.liquid                                            │
+│                                                                              │
+│                                                                              │
+│  [warning]: HardcodedRoutes                                                  │
+│  Use routes object {{ routes.root_url }} instead of hardcoding /             │
+│                                                                              │
+│  15  <a href="/" class="rb-foot__logo-link">                                 │
+│                                                                              │
+│                                                                              │
+│  [warning]: HardcodedRoutes                                                  │
+│  Use routes object {{ routes.root_url }} instead of hardcoding /             │
+│                                                                              │
+│  24  <a href="/" class="rb-foot__wordmark">{{ shop.name | upcase }}</a>      │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/runitback-hero.liquid                                              │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  1  <link rel="preconnect" href="https://fonts.googleapis.com">              │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  2  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>     │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  3  <link                                                                    │
+│  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"     │
+│  rel="stylesheet">                                                           │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  350  <script type="module" src="https://ajax.googleapis.com/ajax/libs/mode  │
+│  l-viewer/3.5.0/model-viewer.min.js"></script>                               │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/runitback-policy.liquid                                            │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  1  <link rel="preconnect" href="https://fonts.googleapis.com">              │
+│                                                                              │
+│                                                                              │
+│  [warning]: RemoteAsset                                                      │
+│  Asset should be served by the Shopify CDN for better performance.           │
+│                                                                              │
+│  2  <link                                                                    │
+│  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"     │
+│  rel="stylesheet">                                                           │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  sections/slideshow.liquid                                                   │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'disable-section-top-offset' may be defined outside the scope of  │
+│   this file.                                                                 │
+│                                                                              │
+│  66  class="slideshow-section spacing-style section {{ section_width_class   │
+│  }} color-{{ section.settings.color_scheme }} disable-section-top-offset"    │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  snippets/cart-summary.liquid                                                │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'details' may be defined outside the scope of this file.          │
+│                                                                              │
+│  52  class="details"                                                         │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'details' may be defined outside the scope of this file.          │
+│                                                                              │
+│  118  class="details"                                                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  snippets/predictive-search-products-list.liquid                             │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__products' may be defined outside the  │
+│   scope of this file.                                                        │
+│                                                                              │
+│  15  class="predictive-search-results__products"                             │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'recently-viewed-wrapper' may be defined outside the scope of     │
+│  this file.                                                                  │
+│                                                                              │
+│  22  class="recently-viewed-wrapper"                                         │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__title' may be defined outside the     │
+│  scope of this file.                                                         │
+│                                                                              │
+│  26  class="predictive-search-results__title"                                │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__clear' may be defined outside the     │
+│  scope of this file.                                                         │
+│                                                                              │
+│  31  class="predictive-search-results__clear button button-unstyled"         │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__list' may be defined outside the      │
+│  scope of this file.                                                         │
+│                                                                              │
+│  39  class="predictive-search-results__list                                  │
+│  predictive-search-results__wrapper-products list-unstyled"                  │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__wrapper-products' may be defined      │
+│  outside the scope of this file.                                             │
+│                                                                              │
+│  39  class="predictive-search-results__list                                  │
+│  predictive-search-results__wrapper-products list-unstyled"                  │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__title' may be defined outside the     │
+│  scope of this file.                                                         │
+│                                                                              │
+│  84  <h4 class="predictive-search-results__title">                           │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__list' may be defined outside the      │
+│  scope of this file.                                                         │
+│                                                                              │
+│  88  class="predictive-search-results__list                                  │
+│  predictive-search-results__wrapper-products list-unstyled"                  │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__wrapper-products' may be defined      │
+│  outside the scope of this file.                                             │
+│                                                                              │
+│  88  class="predictive-search-results__list                                  │
+│  predictive-search-results__wrapper-products list-unstyled"                  │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  snippets/predictive-search-resource-carousel.liquid                         │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__resource-header' may be defined       │
+│  outside the scope of this file.                                             │
+│                                                                              │
+│  21  <div class="predictive-search-results__resource-header">                │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search-results__title' may be defined outside the     │
+│  scope of this file.                                                         │
+│                                                                              │
+│  24  class="predictive-search-results__title"                                │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  snippets/search-modal.liquid                                                │
+│                                                                              │
+│                                                                              │
+│  [warning]: ValidScopedCSSClass                                              │
+│  CSS class 'predictive-search' may be defined outside the scope of this      │
+│  file.                                                                       │
+│                                                                              │
+│  39  class="predictive-search color-{{ settings.popover_color_scheme }}{%    │
+│  if class != blank %} {{ class | strip }}{% endif %}"                        │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭─ info ───────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│  Theme Check Summary.                                                        │
+│                                                                              │
+│  327 files inspected with 46 total offenses found across 16 files.           │
+│  46 warnings.                                                                │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
