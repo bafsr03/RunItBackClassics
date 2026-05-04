@@ -1010,12 +1010,22 @@
   .rb-header-info__center { display: block; }
 }
 
-/* Dark header shell */
+/* Header shell: transparent until scrolled, then dark */
 #header-group header,
 #header-group .header-section,
 #header-group .color-scheme-5,
 #header-group [class*="color-scheme-5"] {
+  background: transparent !important;
+  transition: background 0.35s ease, box-shadow 0.35s ease !important;
+}
+
+/* Once Horizon adds header--sticky (on scroll), lock in dark bg */
+#header-group header.header--sticky,
+#header-group .header--sticky,
+#header-group .header-section.header--sticky {
   background: var(--rb-dark) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5) !important;
+  border-bottom: 1px solid var(--rb-border) !important;
 }
 /* Nav links */
 #header-group nav a,
@@ -1061,26 +1071,31 @@
   }
 }
 
-/* Sticky header: keep dark */
-header.header--sticky,
-.header--sticky {
-  background: var(--rb-dark) !important;
-  border-bottom: 1px solid var(--rb-border) !important;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.4) !important;
+/* Logo: hidden on page load, fades in when header becomes sticky */
+#header-group .header-logo {
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
 }
+
+#header-group .header--sticky .header-logo,
+header.header--sticky #header-group .header-logo {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* Logo wordmark on dark bg */
 #header-group .header__logo-text {
   color: var(--rb-white) !important;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
-/* Logo on dark header:
-   mix-blend-mode: screen on the ANCHOR (parent) composites against the dark
-   header background. filter: invert(1) on the IMG flips black art → white.
-   Splitting them avoids the compositing-context conflict that caused the
-   white-box artefact when both were on the same element. */
-#header-group .header-logo {
-  mix-blend-mode: screen;
+#header-group .header--sticky .header__logo-text {
+  opacity: 1;
 }
+
 #header-group .header-logo__image {
   filter: invert(1);
   height: 52px !important;
