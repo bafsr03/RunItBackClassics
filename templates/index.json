@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "rb_hero": {
       "type": "runitback-hero",
@@ -21,6 +22,10 @@
         "cta_2_label": "BROWSE ALL",
         "cta_2_link": "/collections/all",
         "show_rainbow": true,
+        "model_url": "https://cdn.jsdelivr.net/gh/bafsr/runitback-assets@main/nike_jordan_4_retro_black_cat.glb",
+        "model_alt": "Nike Jordan 4 Retro Black Cat – interactive 3D view",
+        "model_rotation_speed": 20,
+        "model_camera_orbit": "0deg 78deg 105%",
         "show_stats": true,
         "stat_1_value": "500+",
         "stat_1_label": "Unique Items",
@@ -41,7 +46,6 @@
     },
     "rb_new_drops": {
       "type": "product-list",
-      "name": "New Drops",
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
@@ -118,7 +122,10 @@
               "blocks": {}
             }
           },
-          "block_order": ["drops_text", "drops_button"]
+          "block_order": [
+            "drops_text",
+            "drops_button"
+          ]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -203,9 +210,14 @@
               "blocks": {}
             }
           },
-          "block_order": ["drops_gallery", "drops_title", "drops_price"]
+          "block_order": [
+            "drops_gallery",
+            "drops_title",
+            "drops_price"
+          ]
         }
       },
+      "name": "New Drops",
       "settings": {
         "collection": "all",
         "layout_type": "grid",
@@ -228,26 +240,107 @@
     },
     "rb_brands": {
       "type": "runitback-brands",
-      "name": "Brand Grid",
       "blocks": {
-        "brand_nike":    { "type": "brand", "settings": { "name": "NIKE",           "link": "/collections/all" } },
-        "brand_adidas":  { "type": "brand", "settings": { "name": "ADIDAS",         "link": "/collections/all" } },
-        "brand_champ":   { "type": "brand", "settings": { "name": "CHAMPION",       "link": "/collections/all" } },
-        "brand_carh":    { "type": "brand", "settings": { "name": "CARHARTT",       "link": "/collections/all" } },
-        "brand_tnf":     { "type": "brand", "settings": { "name": "THE NORTH FACE", "link": "/collections/all" } },
-        "brand_rl":      { "type": "brand", "settings": { "name": "RALPH LAUREN",   "link": "/collections/all" } },
-        "brand_tommy":   { "type": "brand", "settings": { "name": "TOMMY HILFIGER", "link": "/collections/all" } },
-        "brand_pata":    { "type": "brand", "settings": { "name": "PATAGONIA",      "link": "/collections/all" } },
-        "brand_arc":     { "type": "brand", "settings": { "name": "ARC'TERYX",      "link": "/collections/all" } },
-        "brand_dick":    { "type": "brand", "settings": { "name": "DICKIES",        "link": "/collections/all" } },
-        "brand_stussy":  { "type": "brand", "settings": { "name": "STÜSSY",         "link": "/collections/all" } },
-        "brand_nb":      { "type": "brand", "settings": { "name": "NEW BALANCE",    "link": "/collections/all" } }
+        "brand_nike": {
+          "type": "brand",
+          "settings": {
+            "name": "NIKE",
+            "link": "/collections/all"
+          }
+        },
+        "brand_adidas": {
+          "type": "brand",
+          "settings": {
+            "name": "ADIDAS",
+            "link": "/collections/all"
+          }
+        },
+        "brand_champ": {
+          "type": "brand",
+          "settings": {
+            "name": "CHAMPION",
+            "link": "/collections/all"
+          }
+        },
+        "brand_carh": {
+          "type": "brand",
+          "settings": {
+            "name": "CARHARTT",
+            "link": "/collections/all"
+          }
+        },
+        "brand_tnf": {
+          "type": "brand",
+          "settings": {
+            "name": "THE NORTH FACE",
+            "link": "/collections/all"
+          }
+        },
+        "brand_rl": {
+          "type": "brand",
+          "settings": {
+            "name": "RALPH LAUREN",
+            "link": "/collections/all"
+          }
+        },
+        "brand_tommy": {
+          "type": "brand",
+          "settings": {
+            "name": "TOMMY HILFIGER",
+            "link": "/collections/all"
+          }
+        },
+        "brand_pata": {
+          "type": "brand",
+          "settings": {
+            "name": "PATAGONIA",
+            "link": "/collections/all"
+          }
+        },
+        "brand_arc": {
+          "type": "brand",
+          "settings": {
+            "name": "ARC'TERYX",
+            "link": "/collections/all"
+          }
+        },
+        "brand_dick": {
+          "type": "brand",
+          "settings": {
+            "name": "DICKIES",
+            "link": "/collections/all"
+          }
+        },
+        "brand_stussy": {
+          "type": "brand",
+          "settings": {
+            "name": "STÜSSY",
+            "link": "/collections/all"
+          }
+        },
+        "brand_nb": {
+          "type": "brand",
+          "settings": {
+            "name": "NEW BALANCE",
+            "link": "/collections/all"
+          }
+        }
       },
       "block_order": [
-        "brand_nike", "brand_adidas", "brand_champ", "brand_carh",
-        "brand_tnf", "brand_rl", "brand_tommy", "brand_pata",
-        "brand_arc", "brand_dick", "brand_stussy", "brand_nb"
+        "brand_nike",
+        "brand_adidas",
+        "brand_champ",
+        "brand_carh",
+        "brand_tnf",
+        "brand_rl",
+        "brand_tommy",
+        "brand_pata",
+        "brand_arc",
+        "brand_dick",
+        "brand_stussy",
+        "brand_nb"
       ],
+      "name": "Brand Grid",
       "settings": {
         "view_all_link": "/collections/all",
         "view_all_label": "View all brands",
@@ -267,14 +360,48 @@
     },
     "rb_features": {
       "type": "runitback-features",
-      "name": "Features",
       "blocks": {
-        "feat_auth":  { "type": "feature", "settings": { "icon": "🛡️", "title": "100% Authenticated",  "text": "Every piece hand-checked & verified vintage." } },
-        "feat_ship":  { "type": "feature", "settings": { "icon": "📦", "title": "Free Shipping $75+",  "text": "Fast dispatch on all domestic orders."         } },
-        "feat_ret":   { "type": "feature", "settings": { "icon": "🔄", "title": "Easy Returns",        "text": "30-day hassle-free return policy."             } },
-        "feat_sust":  { "type": "feature", "settings": { "icon": "♻️", "title": "Sustainable Fashion", "text": "Shop secondhand. Save the planet."             } }
+        "feat_auth": {
+          "type": "feature",
+          "settings": {
+            "icon": "🛡️",
+            "title": "100% Authenticated",
+            "text": "Every piece hand-checked & verified vintage."
+          }
+        },
+        "feat_ship": {
+          "type": "feature",
+          "settings": {
+            "icon": "📦",
+            "title": "Free Shipping $75+",
+            "text": "Fast dispatch on all domestic orders."
+          }
+        },
+        "feat_ret": {
+          "type": "feature",
+          "settings": {
+            "icon": "🔄",
+            "title": "Easy Returns",
+            "text": "30-day hassle-free return policy."
+          }
+        },
+        "feat_sust": {
+          "type": "feature",
+          "settings": {
+            "icon": "♻️",
+            "title": "Sustainable Fashion",
+            "text": "Shop secondhand. Save the planet."
+          }
+        }
       },
-      "block_order": ["feat_auth", "feat_ship", "feat_ret", "feat_sust"]
+      "block_order": [
+        "feat_auth",
+        "feat_ship",
+        "feat_ret",
+        "feat_sust"
+      ],
+      "name": "Features",
+      "settings": {}
     },
     "rb_vip": {
       "type": "runitback-vip",
