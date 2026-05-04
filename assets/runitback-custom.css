@@ -1010,16 +1010,15 @@
   .rb-header-info__center { display: block; }
 }
 
-/* Header shell: transparent until scrolled, then dark */
+/* Header shell: always dark */
 #header-group header,
 #header-group .header-section,
 #header-group .color-scheme-5,
 #header-group [class*="color-scheme-5"] {
-  background: transparent !important;
-  transition: background 0.35s ease, box-shadow 0.35s ease !important;
+  background: var(--rb-dark) !important;
 }
 
-/* Once Horizon adds header--sticky (on scroll), lock in dark bg */
+/* Sticky header: add border + shadow */
 #header-group header.header--sticky,
 #header-group .header--sticky,
 #header-group .header-section.header--sticky {
