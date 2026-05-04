@@ -61,20 +61,61 @@
       {%- endif -%}
     </div>
 
-    {%- comment -%} Rotating badge {%- endcomment -%}
-    <div class="rb-hero__badge-wrap" aria-hidden="true">
-      <svg class="rb-hero__badge" viewBox="0 0 200 200" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <path id="rb-badge-circle-{{ section.id }}" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"/>
-        </defs>
-        <text font-size="13" font-weight="700" letter-spacing="3.5" text-anchor="start">
-          <textPath href="#rb-badge-circle-{{ section.id }}" startOffset="0%">
-            VINTAGE &bull; STREETWEAR &bull; RUNITBACK &bull; CLASSICS &bull;&nbsp;
-          </textPath>
-        </text>
-        <circle cx="100" cy="100" r="8" fill="currentColor"/>
-      </svg>
-    </div>
+    {%- comment -%} 3D Model Viewer {%- endcomment -%}
+    {%- if section.settings.model_url != blank -%}
+      <div class="rb-hero__model">
+        <div class="rb-hero__model-glow" aria-hidden="true"></div>
+        <model-viewer
+          class="rb-hero__model-viewer"
+          src="{{ section.settings.model_url }}"
+          alt="{{ section.settings.model_alt | default: 'Nike Jordan 4 Retro – 3D view' }}"
+          auto-rotate
+          auto-rotate-delay="500"
+          rotation-per-second="{{ section.settings.model_rotation_speed | default: 18 }}deg"
+          camera-controls
+          disable-zoom
+          shadow-intensity="1.6"
+          shadow-softness="0.9"
+          environment-image="neutral"
+          exposure="0.9"
+          camera-orbit="{{ section.settings.model_camera_orbit | default: '0deg 78deg 105%' }}"
+          interaction-prompt="auto"
+          interaction-prompt-threshold="2000"
+          loading="lazy"
+          reveal="auto"
+        ></model-viewer>
+        <p class="rb-hero__model-hint" aria-hidden="true">DRAG TO ROTATE</p>
+        {%- comment -%} Badge floats in corner of model panel on desktop {%- endcomment -%}
+        <div class="rb-hero__badge-wrap rb-hero__badge-wrap--inmodel" aria-hidden="true">
+          <svg class="rb-hero__badge" viewBox="0 0 200 200" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="rb-badge-circle-{{ section.id }}" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"/>
+            </defs>
+            <text font-size="13" font-weight="700" letter-spacing="3.5" text-anchor="start">
+              <textPath href="#rb-badge-circle-{{ section.id }}" startOffset="0%">
+                VINTAGE &bull; STREETWEAR &bull; RUNITBACK &bull; CLASSICS &bull;&nbsp;
+              </textPath>
+            </text>
+            <circle cx="100" cy="100" r="8" fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+    {%- else -%}
+      {%- comment -%} Fallback spinning badge when no model is set {%- endcomment -%}
+      <div class="rb-hero__badge-wrap" aria-hidden="true">
+        <svg class="rb-hero__badge" viewBox="0 0 200 200" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="rb-badge-circle-{{ section.id }}" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0"/>
+          </defs>
+          <text font-size="13" font-weight="700" letter-spacing="3.5" text-anchor="start">
+            <textPath href="#rb-badge-circle-{{ section.id }}" startOffset="0%">
+              VINTAGE &bull; STREETWEAR &bull; RUNITBACK &bull; CLASSICS &bull;&nbsp;
+            </textPath>
+          </text>
+          <circle cx="100" cy="100" r="8" fill="currentColor"/>
+        </svg>
+      </div>
+    {%- endif -%}
   </div>
 
   {%- comment -%} Scroll indicator {%- endcomment -%}
@@ -181,8 +222,91 @@
       text-shadow: none !important;
     }
   }
+
+  /* ── 3D Model Viewer Panel ───────────────────────────────────── */
+
+  .rb-hero__model {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    height: 300px;
+    order: -1; /* appears above text on mobile */
+    animation: rb-fade-in 1.1s 0.3s var(--rb-ease-out) both;
+  }
+
+  @media (min-width: 600px) {
+    .rb-hero__model { height: 380px; }
+  }
+
+  @media (min-width: 1280px) {
+    .rb-hero__model {
+      width: 540px;
+      height: 540px;
+      order: 0;
+      flex-shrink: 0;
+    }
+  }
+
+  /* Lime atmospheric glow behind shoe */
+  .rb-hero__model-glow {
+    position: absolute;
+    inset: -60px;
+    background: radial-gradient(ellipse at 50% 55%, rgba(200,241,53,0.11) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* model-viewer element */
+  .rb-hero__model-viewer {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: relative;
+    z-index: 1;
+    --poster-color: transparent;
+  }
+
+  /* "DRAG TO ROTATE" micro-label */
+  .rb-hero__model-hint {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.22);
+    pointer-events: none;
+    z-index: 2;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  /* Badge in model panel — bottom-right corner, smaller */
+  .rb-hero__badge-wrap--inmodel {
+    display: none;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    z-index: 3;
+  }
+
+  @media (min-width: 1280px) {
+    .rb-hero__badge-wrap--inmodel {
+      display: block;
+      animation: rb-fade-in 1.4s 0.8s var(--rb-ease-out) both;
+    }
+    .rb-hero__badge-wrap--inmodel .rb-hero__badge {
+      width: 110px;
+      height: 110px;
+    }
+  }
 </style>
 
+{%- if section.settings.model_url != blank -%}
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+{%- endif -%}
 <script src="{{ 'runitback-hero-letters.js' | asset_url }}" defer></script>
 
 {% schema %}
@@ -243,6 +367,38 @@
       "id": "show_rainbow",
       "label": "Show rainbow glow stripe",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "3D Shoe Model"
+    },
+    {
+      "type": "text",
+      "id": "model_url",
+      "label": "GLB model URL",
+      "info": "Paste the full URL of your hosted .glb file. See theme docs for GitHub + jsDelivr hosting instructions."
+    },
+    {
+      "type": "text",
+      "id": "model_alt",
+      "label": "Model accessibility label",
+      "default": "Nike Jordan 4 Retro Black Cat – interactive 3D view"
+    },
+    {
+      "type": "range",
+      "id": "model_rotation_speed",
+      "label": "Auto-rotation speed (°/sec)",
+      "min": 5,
+      "max": 60,
+      "step": 5,
+      "default": 18
+    },
+    {
+      "type": "text",
+      "id": "model_camera_orbit",
+      "label": "Camera orbit",
+      "default": "0deg 78deg 105%",
+      "info": "Format: azimuthal elevation zoom — e.g. '0deg 78deg 105%'. Adjust to frame the shoe."
     },
     {
       "type": "header",
