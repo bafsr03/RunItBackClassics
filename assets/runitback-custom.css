@@ -955,7 +955,7 @@
    HEADER — DARK ANNOUNCEMENT BAR + DARK NAV
    ================================================================ */
 
-/* Announcement bar: dark background, white text */
+/* Announcement bar: dark background, white text, centered */
 #header-group .announcement-bar,
 #header-group .section-background:has(+ .announcement-bar) {
   background: var(--rb-dark) !important;
@@ -967,6 +967,22 @@
   letter-spacing: 0.12em !important;
   font-size: 11px !important;
   text-transform: uppercase !important;
+}
+/* Center announcement bar text */
+#header-group .announcement-bar__message,
+#header-group .announcement-bar .announcement-bar__text,
+#header-group .announcement-bar p,
+#header-group .announcement-bar span:not([class*="icon"]) {
+  text-align: center !important;
+  width: 100% !important;
+  justify-content: center !important;
+  display: flex !important;
+  align-items: center !important;
+}
+#header-group .announcement-bar .slideshow__slide,
+#header-group .announcement-bar .announcement-bar__slide {
+  justify-content: center !important;
+  text-align: center !important;
 }
 /* Close / arrow buttons */
 #header-group .announcement-bar button,

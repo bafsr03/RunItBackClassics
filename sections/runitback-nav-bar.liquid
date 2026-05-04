@@ -260,16 +260,15 @@
   background: rgba(255, 255, 255, 0.06);
 }
 
-/* ---- logo badge — overflows the bar downward only ---- */
+/* ---- logo badge — overflows downward only, never upward ---- */
 .rb-navb__logo {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 36px;
-  /* overflow downward into the hero, not upward into announcement bar */
-  height: calc(100% + 48px);
-  margin-top: -8px;
-  margin-bottom: -40px;
+  height: calc(100% + 56px);
+  margin-top: 0;
+  margin-bottom: -56px;
   position: relative;
   z-index: 350;
   text-decoration: none;
