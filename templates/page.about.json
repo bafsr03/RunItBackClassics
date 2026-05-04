@@ -19,7 +19,13 @@
         "story_heading": "THE STORY",
         "story_body": "Runitback Classics was born in Abilene, TX in 2024 with a simple idea: great vintage streetwear and rare sneakers shouldn't be hard to find. We dug through the racks so you don't have to.\n\nEvery piece we carry is hand-inspected, verified authentic, and one of a kind. Whether you're chasing a grail pair of Jordans or searching for that perfect vintage Champion hoodie, we've got you.",
         "mission_heading": "OUR MISSION",
-        "mission_body": "We believe style shouldn't break the bank. Pre-owned doesn't mean second rate — vintage pieces carry history, character, and culture that new releases simply can't replicate.\n\nBeyond the product, we're a community. Come through the shop, bring your pieces for trade, or catch us every Thursday at 6:35PM on Instagram Live for Thirsty Thursday auctions."
+        "mission_body": "We believe style shouldn't break the bank. Pre-owned doesn't mean second rate — vintage pieces carry history, character, and culture that new releases simply can't replicate.\n\nBeyond the product, we're a community. Come through the shop, bring your pieces for trade, or catch us every Thursday at 6:35PM on Instagram Live for Thirsty Thursday auctions.",
+        "photo_1": "shopify://shop_images/DSC_0129_Original.heic",
+        "photo_1_alt": "",
+        "photo_2": "shopify://shop_images/IMG_3115.heic",
+        "photo_2_alt": "",
+        "photo_3": "shopify://shop_images/IMG_2859.heic",
+        "photo_3_alt": ""
       }
     },
     "rb_ticker": {
@@ -32,5 +38,8 @@
       }
     }
   },
-  "order": ["rb_about", "rb_ticker"]
+  "order": [
+    "rb_about",
+    "rb_ticker"
+  ]
 }
