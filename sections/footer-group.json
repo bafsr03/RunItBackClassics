@@ -6,72 +6,107 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "type": "footer",
   "name": "Footer",
   "sections": {
     "rb_footer": {
       "type": "runitback-footer",
-      "name": "RB Footer",
       "blocks": {
         "social_block": {
           "type": "social",
           "settings": {
             "instagram": "https://www.instagram.com/",
-            "facebook":  "https://www.facebook.com/",
-            "youtube":   "https://www.youtube.com/",
-            "tiktok":    "https://www.tiktok.com/",
-            "twitter":   "https://x.com/"
+            "facebook": "https://www.facebook.com/",
+            "tiktok": "https://www.tiktok.com/"
           }
         },
         "col_follow": {
           "type": "nav_column",
           "settings": {
             "title": "FOLLOW US",
-            "link_1_label": "Instagram",   "link_1_url": "https://www.instagram.com/",
-            "link_2_label": "Facebook",    "link_2_url": "https://www.facebook.com/",
-            "link_3_label": "YouTube",     "link_3_url": "https://www.youtube.com/",
-            "link_4_label": "TikTok",      "link_4_url": "https://www.tiktok.com/",
-            "link_5_label": "X / Twitter", "link_5_url": "https://x.com/"
+            "menu": "",
+            "link_1_label": "Instagram",
+            "link_1_url": "https://www.instagram.com/",
+            "link_2_label": "Facebook",
+            "link_2_url": "https://www.facebook.com/",
+            "link_3_label": "YouTube",
+            "link_3_url": "https://www.youtube.com/",
+            "link_4_label": "TikTok",
+            "link_4_url": "https://www.tiktok.com/",
+            "link_5_label": "X / Twitter",
+            "link_5_url": "https://x.com/",
+            "link_6_label": "",
+            "link_6_url": ""
           }
         },
         "col_shop": {
           "type": "nav_column",
           "settings": {
             "title": "SHOP",
-            "link_1_label": "New Arrivals",  "link_1_url": "/collections/all",
-            "link_2_label": "Shop All",       "link_2_url": "/collections/all",
-            "link_3_label": "Tops",           "link_3_url": "/collections/all",
-            "link_4_label": "Outerwear",      "link_4_url": "/collections/all",
-            "link_5_label": "Vintage Denim",  "link_5_url": "/collections/all",
-            "link_6_label": "Accessories",    "link_6_url": "/collections/all"
+            "menu": "",
+            "link_1_label": "New Arrivals",
+            "link_1_url": "/collections/all",
+            "link_2_label": "Shop All",
+            "link_2_url": "/collections/all",
+            "link_3_label": "Tops",
+            "link_3_url": "/collections/all",
+            "link_4_label": "Outerwear",
+            "link_4_url": "/collections/all",
+            "link_5_label": "Vintage Denim",
+            "link_5_url": "/collections/all",
+            "link_6_label": "Accessories",
+            "link_6_url": "/collections/all"
           }
         },
         "col_support": {
           "type": "nav_column",
           "settings": {
             "title": "SUPPORT",
-            "link_1_label": "FAQ",                "link_1_url": "/pages/faq",
-            "link_2_label": "Contact Us",          "link_2_url": "/pages/contact",
-            "link_3_label": "Returns & Exchanges", "link_3_url": "/policies/refund-policy",
-            "link_4_label": "Shipping Info",       "link_4_url": "/policies/shipping-policy",
-            "link_5_label": "Size Guide",          "link_5_url": "/pages/size-guide",
-            "link_6_label": "Track My Order",      "link_6_url": "/pages/contact"
+            "menu": "",
+            "link_1_label": "FAQ",
+            "link_1_url": "/pages/faq",
+            "link_2_label": "Contact Us",
+            "link_2_url": "/pages/contact",
+            "link_3_label": "Returns & Exchanges",
+            "link_3_url": "/policies/refund-policy",
+            "link_4_label": "Shipping Info",
+            "link_4_url": "/policies/shipping-policy",
+            "link_5_label": "",
+            "link_5_url": "/pages/size-guide",
+            "link_6_label": "",
+            "link_6_url": "/pages/contact"
           }
         },
         "col_company": {
           "type": "nav_column",
           "settings": {
             "title": "COMPANY",
-            "link_1_label": "About Us",         "link_1_url": "/pages/about",
-            "link_2_label": "Terms of Service", "link_2_url": "/policies/terms-of-service",
-            "link_3_label": "Privacy Policy",   "link_3_url": "/policies/privacy-policy",
-            "link_4_label": "Refund Policy",    "link_4_url": "/policies/refund-policy",
-            "link_5_label": "Shipping Policy",  "link_5_url": "/policies/shipping-policy"
+            "menu": "",
+            "link_1_label": "",
+            "link_1_url": "/pages/about",
+            "link_2_label": "Terms of Service",
+            "link_2_url": "/policies/terms-of-service",
+            "link_3_label": "Privacy Policy",
+            "link_3_url": "/policies/privacy-policy",
+            "link_4_label": "Refund Policy",
+            "link_4_url": "/policies/refund-policy",
+            "link_5_label": "Shipping Policy",
+            "link_5_url": "/policies/shipping-policy",
+            "link_6_label": "",
+            "link_6_url": ""
           }
         }
       },
-      "block_order": ["social_block", "col_follow", "col_shop", "col_support", "col_company"],
+      "block_order": [
+        "social_block",
+        "col_follow",
+        "col_shop",
+        "col_support",
+        "col_company"
+      ],
+      "name": "RB Footer",
       "settings": {
         "tagline": "Vintage Streetwear · DJ Culture · Premium Thrift",
         "copyright_text": "Runitback Classics. All rights reserved.",
@@ -79,5 +114,7 @@
       }
     }
   },
-  "order": ["rb_footer"]
+  "order": [
+    "rb_footer"
+  ]
 }
