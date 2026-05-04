@@ -1087,36 +1087,17 @@
 }
 
 /* ── HEADER LOGO STRATEGY ──────────────────────────────────────────
-   Desktop uses same-size logos in header + RB navbar.
-   Shared sizing follows scroll state class set by RB nav script.
+   Desktop: hide Horizon logo and use only RB navbar logo.
    ──────────────────────────────────────────────────────────────── */
 @media (min-width: 990px) {
-  html {
-    --rb-shared-logo-size: 64px;
-  }
-
-  html.rb-navb-scrolled {
-    --rb-shared-logo-size: 40px;
-  }
-
   #header-group .header-logo,
   #header-group .header__logo-text {
-    display: flex !important;
-    align-items: center;
+    display: none !important;
   }
 
-  #header-group .header-logo__image {
-    filter: invert(1);
-    width: auto !important;
-    height: auto !important;
-    max-height: var(--rb-shared-logo-size) !important;
-    transition: max-height 0.3s ease !important;
+  #header-group .header[transparent] {
+    position: relative !important;
   }
-}
-
-/* Prevent transparent header from overlaying hero content */
-#header-group .header[transparent] {
-  position: relative !important;
 }
 
 /* ================================================================

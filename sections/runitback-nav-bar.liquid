@@ -53,10 +53,11 @@
     </ul>
 
     {%- comment -%} CENTER LOGO {%- endcomment -%}
+    <div class="rb-navb__spacer" aria-hidden="true"></div>
     <a href="{{ routes.root_url }}" class="rb-navb__logo" aria-label="{{ shop.name }} home">
       {%- if settings.logo != blank -%}
         {{- settings.logo
-          | image_url: height: 80
+          | image_url: height: 160
           | image_tag:
             alt: shop.name,
             loading: 'eager',
@@ -115,13 +116,24 @@
   /* border-bottom removed as requested */
   border-bottom: none;
   position: relative;
-  --rb-shared-logo-size: 64px;
+  --rb-logo-top-size: 140px;
+  --rb-logo-scrolled-size: 48px;
+  --rb-logo-current-size: var(--rb-logo-top-size);
   z-index: 9999;
-  overflow: hidden;
+  overflow: visible;
 }
 
 @media (min-width: 990px) {
-  .rb-navb { display: block; }
+  .rb-navb { 
+    display: block; 
+    position: sticky;
+    top: var(--top-row-height, 60px); /* Sticks below the header top row */
+  }
+  
+  /* Hide default header logo on desktop to avoid overlap */
+  .header-logo {
+    display: none !important;
+  }
 }
 
 /* ---- inner grid ---- */
@@ -130,7 +142,18 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   height: 60px;
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
+}
+
+.rb-navb__spacer {
+  width: 180px; /* Space for the logo to prevent menu overlap */
+  height: 1px;
+  transition: width 0.4s ease;
+}
+
+html.rb-navb-scrolled .rb-navb__spacer {
+  width: 100px; /* Smaller spacer when logo is small */
 }
 
 /* ---- nav lists ---- */
@@ -264,20 +287,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 20px;
-  height: 100%;
-  margin-top: 0;
-  margin-bottom: 0;
-  position: relative;
-  z-index: 350;
+  padding: 0;
+  height: var(--rb-logo-current-size);
+  width: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
   text-decoration: none;
   mix-blend-mode: screen;
-  transition: padding 0.3s ease;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .rb-navb__logo-img {
   display: block;
-  max-height: var(--rb-shared-logo-size);
+  max-height: var(--rb-logo-current-size);
   width: auto;
   transition: opacity 0.2s ease, max-height 0.3s ease;
   filter: invert(1);
@@ -302,23 +329,38 @@
 
 /* Keep logo large at page top, then shrink when scrolling */
 html.rb-navb-scrolled .rb-navb__logo {
-  --rb-shared-logo-size: 40px;
-  padding: 0 14px;
+  height: var(--rb-logo-scrolled-size);
+}
+
+html:not(.rb-navb-scrolled) .rb-navb__logo {
+  height: var(--rb-logo-top-size);
 }
 
 html.rb-navb-scrolled .rb-navb__logo-img {
-  max-height: var(--rb-shared-logo-size);
+  max-height: var(--rb-logo-scrolled-size);
 }
 
 html:not(.rb-navb-scrolled) .rb-navb {
-  --rb-shared-logo-size: 64px;
+  --rb-logo-current-size: var(--rb-logo-top-size);
+}
+
+@media (max-width: 989px) {
+  .rb-navb__logo {
+    position: static;
+    transform: none;
+    height: 40px;
+  }
+
+  .rb-navb__logo-img {
+    max-height: 40px;
+  }
 }
 {% endstylesheet %}
 
 <script>
   (() => {
     const scrolledClass = 'rb-navb-scrolled';
-    const threshold = 24;
+    const threshold = 60; // Increased threshold for a smoother feel
 
     const syncRbNavbarState = () => {
       if (window.scrollY > threshold) {
