@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "type": "header",
   "name": "Header",
   "sections": {
@@ -53,7 +54,11 @@
           "blocks": {}
         }
       },
-      "block_order": ["announcement_1", "announcement_2", "announcement_3"],
+      "block_order": [
+        "announcement_1",
+        "announcement_2",
+        "announcement_3"
+      ],
       "name": "Announcement Bar",
       "settings": {
         "speed": 4,
@@ -71,11 +76,9 @@
           "type": "_header-logo",
           "static": true,
           "settings": {
-            "hide_logo_on_home_page": false,
+            "hide_logo_on_home_page": true,
             "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-block-end": 0
           },
           "blocks": {}
         },
@@ -106,6 +109,7 @@
         "logo_position": "center",
         "menu_position": "left",
         "menu_row": "top",
+        "customer_account_menu": "customer-account-main-menu",
         "show_search": true,
         "search_position": "right",
         "search_row": "top",
@@ -116,13 +120,16 @@
         "localization_font_size": "0.875rem",
         "localization_position": "right",
         "localization_row": "top",
-        "actions_display_style": "icon",
         "section_width": "page-width",
         "section_height": "compact",
         "enable_sticky_header": "always",
         "divider_width": 0,
         "divider_size": "page-width",
         "border_width": 0,
+        "actions_display_style": "icon",
+        "actions_font_size": "0.875rem",
+        "actions_font": "body",
+        "actions_text_case": "none",
         "color_scheme_top": "scheme-5",
         "color_scheme_bottom": "",
         "color_scheme_transparent": "scheme-6",
