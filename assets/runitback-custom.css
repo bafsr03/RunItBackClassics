@@ -318,12 +318,16 @@
   .rb-hero__inner {
     flex-direction: row;
     align-items: center;
-    gap: 64px;
-    padding: 140px 64px 100px;
+    gap: 48px;
+    padding: 140px 24px 100px 64px; /* tighter right edge pushes model toward right */
   }
 }
 
-.rb-hero__content { flex: 1; }
+.rb-hero__content {
+  flex: 1;
+  min-width: 0;        /* prevent flex blowout on narrow viewports */
+  contain: layout;     /* title animation reflows stay inside — model never shifts */
+}
 
 /* Eyebrow */
 .rb-hero__eyebrow {
