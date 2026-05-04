@@ -4,6 +4,13 @@
   assign half      = total | divided_by: 2
 -%}
 
+<style>
+  #shopify-section-{{ section.id }} {
+    position: relative !important;
+    z-index: 2147483647 !important;
+  }
+</style>
+
 <nav
   class="rb-navb color-scheme-5"
   id="rb-navb-{{ section.id }}"
@@ -98,17 +105,18 @@
 {% stylesheet %}
 /* ================================================================
    RB NAV BAR — Rokit-style: items | LOGO badge | items
-   Dark streetwear colourway
+   Light / white colourway — logo overflows below like Rokit
    ================================================================ */
 
 .rb-navb {
   display: none;
-  background: #0f0f0f;
-  border-top: 1px solid #222222;
-  border-bottom: 1px solid #222222;
+  background: var(--color-background, #0f0f0f);
+  /* border-bottom removed as requested */
+  border-bottom: none;
   position: relative;
-  z-index: 90;
-  /* allow the logo to overflow the bar vertically */
+  /* High z-index so the overflowing logo badge sits above
+     whatever section comes directly below the nav AND above it */
+  z-index: 9999;
   overflow: visible;
 }
 
@@ -190,7 +198,7 @@
 
 /* sale */
 .rb-navb__link--sale            { color: #ff2d2d !important; }
-.rb-navb__link--sale:hover      { color: #ff5555 !important; }
+.rb-navb__link--sale:hover      { color: #cc0000 !important; }
 .rb-navb__link--sale::after     { background: #ff2d2d; }
 
 /* ---- caret ---- */
@@ -220,7 +228,7 @@
   visibility: hidden;
   transform: translateY(-6px);
   transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-  z-index: 200;
+  z-index: 400;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
@@ -257,27 +265,26 @@
   align-items: center;
   justify-content: center;
   padding: 0 36px;
-  /* the logo is taller than the bar — let it escape */
-  height: calc(100% + 36px);
-  margin-block: -18px;
+  /* the logo is taller than the bar — let it escape mostly upward */
+  height: calc(100% + 70px);
+  margin-top: -60px;
+  margin-bottom: -10px;
   position: relative;
-  z-index: 2;
+  /* z-index above the nav bar itself AND above the next section */
+  z-index: 350;
   text-decoration: none;
-  /* mix-blend-mode lives here so it composites against the navb dark bg,
-     not against the isolated context created by filter on the img */
   mix-blend-mode: screen;
 }
 
 .rb-navb__logo-img {
   display: block;
-  max-height: 96px;   /* bigger */
+  max-height: 124px;
   width: auto;
   transition: opacity 0.2s ease;
-  /* filter only — no mix-blend-mode here; parent handles the blend */
   filter: invert(1);
 }
 .rb-navb__logo:hover .rb-navb__logo-img {
-  opacity: 0.75;
+  opacity: 0.72;
 }
 
 /* wordmark fallback when no logo image is set */
