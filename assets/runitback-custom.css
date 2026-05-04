@@ -1071,42 +1071,43 @@
   }
 }
 
-/* Logo: hidden on page load, fades in when header becomes sticky */
-#header-group .header-logo {
-  mix-blend-mode: screen;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
-}
+/* ── HEADER LOGO STRATEGY ──────────────────────────────────────────
+   The runitback-nav-bar has the centered badge logo (always visible).
+   The Horizon header logo is ONLY shown inside the sticky header so
+   there is never two logos visible at once.
+   ──────────────────────────────────────────────────────────────── */
 
-#header-group .header--sticky .header-logo,
-header.header--sticky #header-group .header-logo {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Logo wordmark on dark bg */
+/* Hide completely while at top of page */
+#header-group .header-logo,
 #header-group .header__logo-text {
-  color: var(--rb-white) !important;
-  opacity: 0;
-  transition: opacity 0.35s ease;
+  display: none !important;
+}
+
+/* Reveal small logo only once header is sticky (dark bg present) */
+#header-group .header--sticky .header-logo {
+  display: flex !important;
+  align-items: center;
+  mix-blend-mode: screen;
+  transition: opacity 0.3s ease;
 }
 
 #header-group .header--sticky .header__logo-text {
-  opacity: 1;
+  display: block !important;
+  color: var(--rb-white) !important;
 }
 
-#header-group .header-logo__image {
+/* Small size in sticky bar */
+#header-group .header--sticky .header-logo__image {
   filter: invert(1);
-  height: 52px !important;
+  height: 36px !important;
   width: auto !important;
-  max-height: 52px !important;
+  max-height: 36px !important;
 }
 
 @media screen and (max-width: 749px) {
-  #header-group .header-logo__image {
-    height: 40px !important;
-    max-height: 40px !important;
+  #header-group .header--sticky .header-logo__image {
+    height: 28px !important;
+    max-height: 28px !important;
   }
 }
 
