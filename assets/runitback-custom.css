@@ -1661,6 +1661,34 @@ main[data-template^='product'] .section-resource-list h3 {
 }
 
 /* ================================================================
+   DARK PAGE OVERRIDES — force dark bg on policy/page templates
+   ================================================================ */
+
+/* Force full dark background on policy, page, faq, contact templates */
+main[data-template='policy'],
+main[data-template^='page'] {
+  background: var(--rb-dark, #101010);
+}
+
+/* Nuke any white/light color-scheme backgrounds injected by Horizon */
+main[data-template='policy'] .color-scheme-1,
+main[data-template='policy'] .color-scheme-2,
+main[data-template='policy'] [class*='color-scheme'],
+main[data-template^='page'] .color-scheme-1,
+main[data-template^='page'] .color-scheme-2,
+main[data-template^='page'] [class*='color-scheme'] {
+  --color-background: 16 16 16;
+  --color-foreground: 255 255 255;
+  background: transparent !important;
+}
+
+/* Footer color-scheme fix so it doesn't go white under policy pages */
+footer .color-scheme-1,
+footer .color-scheme-2 {
+  --color-background: 16 16 16;
+}
+
+/* ================================================================
    RESPONSIVE HELPERS
    ================================================================ */
 
