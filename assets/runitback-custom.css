@@ -1082,21 +1082,35 @@
   display: none !important;
 }
 
-/* Reveal small logo only once header is sticky (dark bg present) */
-#header-group .header--sticky .header-logo {
+/* Reveal small logo when Horizon marks header as actively sticky.
+   Horizon sets data-sticky-state="active" on header-component,
+   not a CSS class — target it here. */
+#header-group header-component[data-sticky-state="active"] .header-logo {
   display: flex !important;
   align-items: center;
   mix-blend-mode: screen;
-  transition: opacity 0.3s ease;
 }
 
-#header-group .header--sticky .header__logo-text {
+#header-group header-component[data-sticky-state="active"] .header__logo-text {
   display: block !important;
   color: var(--rb-white) !important;
 }
 
 /* Small size in sticky bar */
-#header-group .header--sticky .header-logo__image {
+#header-group header-component[data-sticky-state="active"] .header-logo__image {
+  filter: invert(1);
+  height: 36px !important;
+  width: auto !important;
+  max-height: 36px !important;
+}
+
+/* Also handle sticky="always" mode (header always mounted as sticky) */
+#header-group header-component[sticky="always"] .header-logo {
+  display: flex !important;
+  align-items: center;
+  mix-blend-mode: screen;
+}
+#header-group header-component[sticky="always"] .header-logo__image {
   filter: invert(1);
   height: 36px !important;
   width: auto !important;
@@ -1104,7 +1118,8 @@
 }
 
 @media screen and (max-width: 749px) {
-  #header-group .header--sticky .header-logo__image {
+  #header-group header-component[data-sticky-state="active"] .header-logo__image,
+  #header-group header-component[sticky="always"] .header-logo__image {
     height: 28px !important;
     max-height: 28px !important;
   }

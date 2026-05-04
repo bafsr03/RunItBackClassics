@@ -260,18 +260,17 @@
   background: rgba(255, 255, 255, 0.06);
 }
 
-/* ---- logo badge — overflows the bar like Rokit ---- */
+/* ---- logo badge — overflows the bar downward only ---- */
 .rb-navb__logo {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 36px;
-  /* the logo is taller than the bar — let it escape mostly upward */
-  height: calc(100% + 100px);
-  margin-top: -80px;
-  margin-bottom: -20px;
+  /* overflow downward into the hero, not upward into announcement bar */
+  height: calc(100% + 48px);
+  margin-top: -8px;
+  margin-bottom: -40px;
   position: relative;
-  /* z-index above the nav bar itself AND above the next section */
   z-index: 350;
   text-decoration: none;
   mix-blend-mode: screen;
