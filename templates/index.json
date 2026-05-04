@@ -48,6 +48,7 @@
       "type": "runitback-new-drops",
       "name": "New Drops",
       "settings": {
+        "collection": "",
         "eyebrow": "FRESHLY POSTED · ONE OF A KIND",
         "heading": "NEW DROPS",
         "view_all_label": "VIEW ALL",
@@ -65,7 +66,13 @@
         "cta_1_label": "OUR STORY",
         "cta_1_url": "/pages/about",
         "cta_2_label": "CONTACT US",
-        "cta_2_url": "/pages/contact"
+        "cta_2_url": "/pages/contact",
+        "photo_1": "shopify://shop_images/IMG_2859.heic",
+        "photo_1_alt": "",
+        "photo_2": "shopify://shop_images/IMG_3115.heic",
+        "photo_2_alt": "",
+        "photo_3": "shopify://shop_images/DSC_0129_Original.heic",
+        "photo_3_alt": ""
       }
     },
     "rb_brands": {
