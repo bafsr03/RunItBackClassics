@@ -256,24 +256,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* horizontal breathing room between logo and nearest links */
-  padding: 0 32px;
+  padding: 0 36px;
   /* the logo is taller than the bar — let it escape */
-  height: calc(100% + 24px);
-  margin-block: -12px;
+  height: calc(100% + 36px);
+  margin-block: -18px;
   position: relative;
   z-index: 2;
   text-decoration: none;
+  /* mix-blend-mode lives here so it composites against the navb dark bg,
+     not against the isolated context created by filter on the img */
+  mix-blend-mode: screen;
 }
 
 .rb-navb__logo-img {
   display: block;
-  /* tall enough to overflow, respects the logo's aspect ratio */
-  max-height: 76px;
+  max-height: 96px;   /* bigger */
   width: auto;
   transition: opacity 0.2s ease;
-  /* show logo in its natural colours on dark bg */
-  filter: brightness(0) invert(1);
+  /* filter only — no mix-blend-mode here; parent handles the blend */
+  filter: invert(1);
 }
 .rb-navb__logo:hover .rb-navb__logo-img {
   opacity: 0.75;
