@@ -1087,57 +1087,13 @@
 }
 
 /* ── HEADER LOGO STRATEGY ──────────────────────────────────────────
-   The runitback-nav-bar has the centered badge logo (always visible).
-   The Horizon header logo is ONLY shown inside the sticky header so
-   there is never two logos visible at once.
+   Desktop uses only the RB navbar center logo to avoid duplicate
+   overlapping logos with the Horizon sticky header.
    ──────────────────────────────────────────────────────────────── */
-
-/* Hide completely while at top of page */
-#header-group .header-logo,
-#header-group .header__logo-text {
-  display: none !important;
-}
-
-/* Reveal small logo when Horizon marks header as actively sticky.
-   Horizon sets data-sticky-state="active" on header-component,
-   not a CSS class — target it here. */
-#header-group header-component[data-sticky-state="active"] .header-logo {
-  display: flex !important;
-  align-items: center;
-  mix-blend-mode: screen;
-}
-
-#header-group header-component[data-sticky-state="active"] .header__logo-text {
-  display: block !important;
-  color: var(--rb-white) !important;
-}
-
-/* Small size in sticky bar */
-#header-group header-component[data-sticky-state="active"] .header-logo__image {
-  filter: invert(1);
-  height: 36px !important;
-  width: auto !important;
-  max-height: 36px !important;
-}
-
-/* Also handle sticky="always" mode (header always mounted as sticky) */
-#header-group header-component[sticky="always"] .header-logo {
-  display: flex !important;
-  align-items: center;
-  mix-blend-mode: screen;
-}
-#header-group header-component[sticky="always"] .header-logo__image {
-  filter: invert(1);
-  height: 36px !important;
-  width: auto !important;
-  max-height: 36px !important;
-}
-
-@media screen and (max-width: 749px) {
-  #header-group header-component[data-sticky-state="active"] .header-logo__image,
-  #header-group header-component[sticky="always"] .header-logo__image {
-    height: 28px !important;
-    max-height: 28px !important;
+@media (min-width: 990px) {
+  #header-group .header-logo,
+  #header-group .header__logo-text {
+    display: none !important;
   }
 }
 

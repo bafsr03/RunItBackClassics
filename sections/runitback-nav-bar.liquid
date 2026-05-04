@@ -273,13 +273,14 @@
   z-index: 350;
   text-decoration: none;
   mix-blend-mode: screen;
+  transition: height 0.3s ease, margin-bottom 0.3s ease, padding 0.3s ease;
 }
 
 .rb-navb__logo-img {
   display: block;
   max-height: 156px;
   width: auto;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, max-height 0.3s ease;
   filter: invert(1);
 }
 .rb-navb__logo:hover .rb-navb__logo-img {
@@ -299,7 +300,36 @@
 .rb-navb__logo:hover .rb-navb__wordmark {
   color: #c8f135;
 }
+
+/* Keep logo large at page top, then shrink when scrolling */
+html.rb-navb-scrolled .rb-navb__logo {
+  height: 100%;
+  margin-bottom: 0;
+  padding: 0 20px;
+}
+
+html.rb-navb-scrolled .rb-navb__logo-img {
+  max-height: 52px;
+}
 {% endstylesheet %}
+
+<script>
+  (() => {
+    const scrolledClass = 'rb-navb-scrolled';
+    const threshold = 24;
+
+    const syncRbNavbarState = () => {
+      if (window.scrollY > threshold) {
+        document.documentElement.classList.add(scrolledClass);
+      } else {
+        document.documentElement.classList.remove(scrolledClass);
+      }
+    };
+
+    syncRbNavbarState();
+    document.addEventListener('scroll', syncRbNavbarState, { passive: true });
+  })();
+</script>
 
 {% schema %}
 {
