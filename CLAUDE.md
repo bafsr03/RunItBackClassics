@@ -4,19 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-This is the **Horizon theme v3.5.1** (by Shopify) exported from the `runitbackclassics.myshopify.com` store. It is a standard Shopify theme — no build step, no package.json. Files are edited directly and pushed to Shopify via the CLI.
+This is the **Horizon theme v3.5.1** (by Shopify) exported from the `runitbackclassics-2.myshopify.com` store. It is a standard Shopify theme — no build step, no package.json. Files are edited directly and pushed to Shopify via the CLI.
 
 ## Development Commands
 
 ```bash
 # Serve theme locally against the live store (requires Shopify CLI)
-shopify theme dev --store runitbackclassics.myshopify.com
+shopify theme dev --store runitbackclassics-2.myshopify.com
 
 # Push changes to store (default: unpublished theme)
-shopify theme push --store runitbackclassics.myshopify.com
+shopify theme push --store runitbackclassics-2.myshopify.com
 
 # Pull latest theme from store
-shopify theme pull --store runitbackclassics.myshopify.com
+shopify theme pull --store runitbackclassics-2.myshopify.com
 
 # Check Liquid syntax
 shopify theme check
