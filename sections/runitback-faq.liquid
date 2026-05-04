@@ -1,0 +1,363 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<section class="rb-faq" id="rb-faq-{{ section.id }}">
+
+  <div class="rb-faq__bg" aria-hidden="true">
+    <div class="rb-faq__bg-grid"></div>
+  </div>
+
+  <div class="rb-container rb-faq__inner">
+
+    <div class="rb-faq__header">
+      <p class="rb-faq__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="rb-faq__title">{{ section.settings.title }}</h1>
+      <p class="rb-faq__subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="rb-faq__grid">
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'group' -%}
+          <div class="rb-faq__group" {{ block.shopify_attributes }}>
+            <h2 class="rb-faq__group-title">{{ block.settings.group_title }}</h2>
+            <dl class="rb-faq__list">
+              {%- assign q_keys = 'q1,q2,q3,q4,q5,q6' | split: ',' -%}
+              {%- assign a_keys = 'a1,a2,a3,a4,a5,a6' | split: ',' -%}
+              {%- for idx in (0..5) -%}
+                {%- assign q_key = 'q' | append: forloop.index -%}
+                {%- assign a_key = 'a' | append: forloop.index -%}
+                {%- if block.settings[q_key] != blank -%}
+                  <div class="rb-faq__item">
+                    <dt>
+                      <button class="rb-faq__q" aria-expanded="false" aria-controls="faq-{{ block.id }}-{{ forloop.index }}">
+                        <span>{{ block.settings[q_key] }}</span>
+                        <svg class="rb-faq__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                    </dt>
+                    <dd class="rb-faq__a" id="faq-{{ block.id }}-{{ forloop.index }}" hidden>
+                      <div class="rb-faq__a-inner">{{ block.settings[a_key] }}</div>
+                    </dd>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </dl>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+    </div>
+
+    <div class="rb-faq__cta">
+      <p>Still have questions?</p>
+      <a href="/pages/contact" class="rb-btn rb-btn--lime">CONTACT US</a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .rb-faq {
+    position: relative;
+    background: var(--rb-dark, #101010);
+    padding-block: 100px 80px;
+    overflow: hidden;
+  }
+
+  .rb-faq__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .rb-faq__bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,241,53,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,241,53,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .rb-faq__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .rb-faq__header {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .rb-faq__eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--rb-lime, #c8f135);
+    border: 1px solid rgba(200,241,53,0.3);
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin: 0 auto;
+  }
+
+  .rb-faq__title {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: clamp(48px, 7vw, 80px);
+    font-weight: 400;
+    line-height: 1;
+    color: #fff;
+    margin: 0;
+  }
+
+  .rb-faq__subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .rb-faq__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  @media (min-width: 900px) {
+    .rb-faq__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 64px;
+    }
+  }
+
+  .rb-faq__group-title {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rb-lime, #c8f135);
+    margin: 0 0 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(200,241,53,0.2);
+  }
+
+  .rb-faq__list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .rb-faq__item {
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .rb-faq__q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.85);
+    transition: color 0.2s ease;
+  }
+
+  .rb-faq__q:hover { color: #fff; }
+
+  .rb-faq__q[aria-expanded="true"] {
+    color: var(--rb-lime, #c8f135);
+  }
+
+  .rb-faq__icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: currentColor;
+  }
+
+  .rb-faq__q[aria-expanded="true"] .rb-faq__icon {
+    transform: rotate(180deg);
+  }
+
+  .rb-faq__a {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+    margin: 0;
+  }
+
+  .rb-faq__a:not([hidden]) {
+    max-height: 400px;
+  }
+
+  .rb-faq__a[hidden] {
+    display: block !important;
+    max-height: 0;
+  }
+
+  .rb-faq__a-inner {
+    padding: 0 0 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .rb-faq__a-inner a {
+    color: var(--rb-lime, #c8f135);
+    text-decoration: underline;
+  }
+
+  .rb-faq__cta {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .rb-faq__cta p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('#rb-faq-{{ section.id }} .rb-faq__q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      var answer = document.getElementById(this.getAttribute('aria-controls'));
+      this.setAttribute('aria-expanded', String(!expanded));
+      if (expanded) {
+        answer.setAttribute('hidden', '');
+      } else {
+        answer.removeAttribute('hidden');
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "RB — FAQ",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "GOT QUESTIONS?"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "FAQ"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Everything you need to know about shopping, shipping, and selling at Runitback Classics."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "group",
+      "name": "FAQ Group",
+      "settings": [
+        { "type": "text", "id": "group_title", "label": "Group heading", "default": "ORDERS & SHIPPING" },
+        { "type": "text",     "id": "q1", "label": "Q1" },
+        { "type": "textarea", "id": "a1", "label": "A1" },
+        { "type": "text",     "id": "q2", "label": "Q2" },
+        { "type": "textarea", "id": "a2", "label": "A2" },
+        { "type": "text",     "id": "q3", "label": "Q3" },
+        { "type": "textarea", "id": "a3", "label": "A3" },
+        { "type": "text",     "id": "q4", "label": "Q4" },
+        { "type": "textarea", "id": "a4", "label": "A4" },
+        { "type": "text",     "id": "q5", "label": "Q5" },
+        { "type": "textarea", "id": "a5", "label": "A5" },
+        { "type": "text",     "id": "q6", "label": "Q6" },
+        { "type": "textarea", "id": "a6", "label": "A6" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RB — FAQ",
+      "blocks": [
+        {
+          "type": "group",
+          "settings": {
+            "group_title": "ORDERS & SHIPPING",
+            "q1": "Do you ship nationwide?",
+            "a1": "Yes! We ship across the entire USA. Orders are dispatched within 1–2 business days. You'll receive a tracking number via email once your order ships.",
+            "q2": "How much does shipping cost?",
+            "a2": "We offer FREE shipping on all orders over $75. Orders under $75 ship at a flat rate. Check the cart for the exact shipping cost at checkout.",
+            "q3": "How long does delivery take?",
+            "a3": "Most orders arrive within 3–7 business days depending on your location. Expedited options are available at checkout."
+          }
+        },
+        {
+          "type": "group",
+          "settings": {
+            "group_title": "BUYING & AUTHENTICITY",
+            "q1": "Are all items 100% authentic?",
+            "a1": "Absolutely. Every item we sell is hand-inspected and verified authentic before it hits the floor or the website. We don't sell fakes — period.",
+            "q2": "Are items new or used?",
+            "a2": "We specialize in vintage and pre-owned pieces. Each item is graded and described accurately. Condition details are listed on every product page.",
+            "q3": "Can I buy, sell, or trade with you?",
+            "a3": "Yes! We're a full buy/sell/trade shop. Bring your sneakers, vintage tees, streetwear, or trading cards to our store at 3234 S 27th St, Abilene, TX 79605, or DM us on Instagram @runitbackclassicsllc."
+          }
+        },
+        {
+          "type": "group",
+          "settings": {
+            "group_title": "RETURNS & EXCHANGES",
+            "q1": "What is your return policy?",
+            "a1": "We accept returns within 30 days of delivery for items that are in the same condition as shipped. Final sale / clearance items are non-refundable. See our full Returns & Exchanges policy for details.",
+            "q2": "My item arrived damaged — what do I do?",
+            "a2": "Contact us immediately at our Contact page or DM us on Instagram. We'll make it right. Please include your order number and photos of the damage.",
+            "q3": "Can I exchange for a different size?",
+            "a3": "Since most of our pieces are one-of-a-kind vintage, exact size exchanges may not be possible. Contact us and we'll do our best to find a solution."
+          }
+        },
+        {
+          "type": "group",
+          "settings": {
+            "group_title": "THIRSTY THURSDAY AUCTIONS",
+            "q1": "What is Thirsty Thursday?",
+            "a1": "Every Thursday at 6:35 PM we go LIVE on Instagram (@runitbackclassicsllc) for our weekly auction. Rare sneakers, vintage gems, and exclusive pieces drop live — first comment wins.",
+            "q2": "How do I participate in a live auction?",
+            "a2": "Follow us on Instagram and turn on post notifications so you never miss a live. Drop your size in the comments during the auction to secure your pick.",
+            "q3": "Do you have a second Instagram for sneakers?",
+            "a3": "Yes! Follow @runitbackclassicssnkrs for dedicated sneaker content and exclusive SNKRS drops."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

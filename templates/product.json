@@ -17,7 +17,7 @@
           "settings": {
             "media_presentation": "grid",
             "media_columns": "two",
-            "image_gap": 4,
+            "image_gap": 10,
             "large_first_image": false,
             "icons_style": "none",
             "slideshow_controls_style": "counter",
@@ -258,10 +258,20 @@
         "desktop_media_position": "left",
         "equal_columns": false,
         "limit_details_width": false,
-        "gap": 48,
-        "color_scheme": "",
+        "gap": 40,
+        "color_scheme": "scheme-5",
         "padding-block-start": 0,
         "padding-block-end": 0
+      }
+    },
+    "rb_product_categories": {
+      "type": "runitback-product-categories",
+      "name": "RB - Product categories",
+      "settings": {
+        "menu": "main-menu",
+        "heading": "Keep digging",
+        "caption": "Another lane, another piece worth running back.",
+        "color_scheme": "scheme-5"
       }
     },
     "product_recommendations_qggXJq": {
@@ -315,7 +325,7 @@
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
               "settings": {
-                "image_ratio": "adapt",
+                "image_ratio": "portrait",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
@@ -400,7 +410,7 @@
         "icons_shape": "none",
         "section_width": "page-width",
         "gap": 28,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
@@ -408,6 +418,7 @@
   },
   "order": [
     "main",
+    "rb_product_categories",
     "product_recommendations_qggXJq"
   ]
 }

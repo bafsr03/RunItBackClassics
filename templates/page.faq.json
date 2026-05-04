@@ -1,0 +1,91 @@
+{
+  "sections": {
+    "rb_faq": {
+      "type": "runitback-faq",
+      "name": "FAQ",
+      "blocks": {
+        "group_orders": {
+          "type": "group",
+          "settings": {
+            "group_title": "ORDERS & SHIPPING",
+            "q1": "Do you ship nationwide?",
+            "a1": "Yes! We ship across the entire USA. Orders are dispatched within 1–2 business days. You'll receive a tracking number via email once your order ships.",
+            "q2": "How much does shipping cost?",
+            "a2": "We offer FREE shipping on all orders over $75. Orders under $75 ship at a flat rate — the exact cost is shown at checkout.",
+            "q3": "How long does delivery take?",
+            "a3": "Most orders arrive within 3–7 business days depending on your location. Expedited shipping options are available at checkout.",
+            "q4": "Can I track my order?",
+            "a4": "Absolutely. Once your order ships you'll get a confirmation email with your tracking number. You can also reach out via our Contact page if you have questions.",
+            "q5": "Do you ship internationally?",
+            "a5": "At this time we ship within the USA only. Stay tuned — international shipping is something we're working toward!"
+          }
+        },
+        "group_buying": {
+          "type": "group",
+          "settings": {
+            "group_title": "BUYING & AUTHENTICITY",
+            "q1": "Are all items 100% authentic?",
+            "a1": "Absolutely. Every single item is hand-inspected and verified authentic before it hits the floor or the website. We don't sell fakes — period.",
+            "q2": "Are items new or used?",
+            "a2": "We specialize in vintage and pre-owned pieces. Each item is graded and described accurately. Condition details are listed on every product page so you know exactly what you're getting.",
+            "q3": "Can I buy, sell, or trade with you?",
+            "a3": "Yes! We're a full buy/sell/trade shop. Bring your sneakers, vintage tees, streetwear, or trading cards in-store at 3234 S 27th St, Abilene, TX 79605, or DM us on Instagram @runitbackclassicsllc to set something up.",
+            "q4": "What brands do you carry?",
+            "a4": "We carry Nike, Jordan, Adidas, Yeezy, Champion, Carhartt, The North Face, Ralph Lauren, Tommy Hilfiger, Stüssy, New Balance, and much more. Inventory changes weekly so check back often.",
+            "q5": "Do you carry trading cards?",
+            "a5": "Yes! Sports and collectible cards are part of our catalog. Follow us on Instagram for the latest card drops and auction updates."
+          }
+        },
+        "group_returns": {
+          "type": "group",
+          "settings": {
+            "group_title": "RETURNS & EXCHANGES",
+            "q1": "What is your return policy?",
+            "a1": "We accept returns within 30 days of delivery for items in the same condition as shipped. Final sale / clearance items are non-refundable. See our full Refund Policy for complete details.",
+            "q2": "My item arrived damaged — what do I do?",
+            "a2": "Contact us immediately through our Contact page or DM us on Instagram. We'll make it right. Please include your order number and photos of the damage.",
+            "q3": "Can I exchange for a different size?",
+            "a3": "Since most of our pieces are one-of-a-kind vintage, exact size exchanges may not be possible. Contact us and we'll do our best to find a solution.",
+            "q4": "How long does a refund take?",
+            "a4": "Once we receive your return and confirm the condition, refunds are typically processed within 3–5 business days back to your original payment method."
+          }
+        },
+        "group_auctions": {
+          "type": "group",
+          "settings": {
+            "group_title": "THIRSTY THURSDAY AUCTIONS",
+            "q1": "What is Thirsty Thursday?",
+            "a1": "Every Thursday at 6:35 PM we go LIVE on Instagram (@runitbackclassicsllc) for our weekly auction. Rare sneakers, vintage gems, and exclusive pieces drop live — first comment wins.",
+            "q2": "How do I participate in a live auction?",
+            "a2": "Follow us on Instagram and turn on post notifications so you never miss a live. Drop your size in the comments during the auction to secure your pick. We'll DM you with payment instructions.",
+            "q3": "Do you have a second Instagram for sneakers?",
+            "a3": "Yes! Follow @runitbackclassicssnkrs for dedicated sneaker content, SNKRS restocks, and exclusive drops.",
+            "q4": "I won an auction — when do I pay?",
+            "a4": "We'll DM you immediately after the live ends with payment and shipping details. Payment is expected within 24 hours of winning."
+          }
+        }
+      },
+      "block_order": [
+        "group_orders",
+        "group_buying",
+        "group_returns",
+        "group_auctions"
+      ],
+      "settings": {
+        "eyebrow": "GOT QUESTIONS?",
+        "title": "FAQ",
+        "subtitle": "Everything you need to know about shopping, shipping, and selling at Runitback Classics."
+      }
+    },
+    "rb_ticker": {
+      "type": "runitback-ticker",
+      "name": "Ticker",
+      "settings": {
+        "style": "lime",
+        "ticker_text": "FREE SHIPPING ON ORDERS $75+|BUY · SELL · TRADE|THIRSTY THURSDAY LIVE AUCTIONS|NEW DROPS WEEKLY",
+        "speed": 24
+      }
+    }
+  },
+  "order": ["rb_faq", "rb_ticker"]
+}

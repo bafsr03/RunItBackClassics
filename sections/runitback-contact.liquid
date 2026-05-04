@@ -1,0 +1,430 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<section class="rb-contact" id="rb-contact-{{ section.id }}">
+
+  <div class="rb-contact__bg" aria-hidden="true">
+    <div class="rb-contact__bg-grid"></div>
+    <div class="rb-contact__bg-glow"></div>
+  </div>
+
+  <div class="rb-container rb-contact__inner">
+
+    {%- comment -%} Header {%- endcomment -%}
+    <div class="rb-contact__header">
+      <p class="rb-contact__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="rb-contact__title">{{ section.settings.title }}</h1>
+      <p class="rb-contact__subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="rb-contact__body">
+
+      {%- comment -%} Info column {%- endcomment -%}
+      <aside class="rb-contact__info">
+
+        <div class="rb-contact__info-card">
+          <svg class="rb-contact__info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" fill="currentColor"/></svg>
+          <div>
+            <p class="rb-contact__info-label">VISIT US</p>
+            <p class="rb-contact__info-value">3234 S 27th St<br>Abilene, Texas 79605</p>
+            <a href="https://maps.google.com/?q=3234+S+27th+St+Abilene+Texas+79605" target="_blank" rel="noopener" class="rb-contact__map-link">Get directions →</a>
+          </div>
+        </div>
+
+        <div class="rb-contact__info-card">
+          <svg class="rb-contact__info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg>
+          <div>
+            <p class="rb-contact__info-label">STORE HOURS</p>
+            <ul class="rb-contact__hours">
+              <li><span>Mon – Fri</span><span>12:00 PM – 6:00 PM</span></li>
+              <li><span>Saturday</span><span>12:00 PM – 5:00 PM</span></li>
+              <li><span>Sunday</span><span>Closed</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rb-contact__info-card rb-contact__info-card--highlight">
+          <svg class="rb-contact__info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 2H7C5.9 2 5 2.9 5 4v16l7-3 7 3V4c0-1.1-.9-2-2-2z" fill="currentColor"/></svg>
+          <div>
+            <p class="rb-contact__info-label">THIRSTY THURSDAY</p>
+            <p class="rb-contact__info-value">Instagram Live Auctions<br><strong>Every Thursday at 6:35 PM</strong></p>
+            <a href="https://www.instagram.com/runitbackclassicsllc/" target="_blank" rel="noopener" class="rb-contact__ig-link">
+              @runitbackclassicsllc →
+            </a>
+          </div>
+        </div>
+
+        <div class="rb-contact__info-card">
+          <svg class="rb-contact__info-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+          <div>
+            <p class="rb-contact__info-label">WE SHIP EVERYWHERE</p>
+            <p class="rb-contact__info-value">Orders dispatched within 1–2 business days.<br>Free shipping on orders $75+</p>
+          </div>
+        </div>
+
+        <div class="rb-contact__bst">
+          <p class="rb-contact__bst-label">BUY · SELL · TRADE</p>
+          <p class="rb-contact__bst-text">Bring your sneakers, vintage tees, streetwear, or trading cards in-store or DM us to set up a trade.</p>
+        </div>
+
+      </aside>
+
+      {%- comment -%} Contact form {%- endcomment -%}
+      <div class="rb-contact__form-wrap">
+        <h2 class="rb-contact__form-title">SEND A MESSAGE</h2>
+        {%- form 'contact', id: 'rb-contact-form' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="rb-contact__success">
+              <svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M20 6L9 17l-5-5" stroke="#c8f135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <p>Thanks! We'll get back to you soon.</p>
+            </div>
+          {%- else -%}
+            <div class="rb-contact__fields">
+              <div class="rb-contact__field">
+                <label for="rb-contact-name">Your Name</label>
+                <input type="text" id="rb-contact-name" name="contact[name]" placeholder="Jordan Nike" autocomplete="name" required>
+              </div>
+              <div class="rb-contact__field">
+                <label for="rb-contact-email">Email Address</label>
+                <input type="email" id="rb-contact-email" name="contact[email]" placeholder="you@email.com" autocomplete="email" required>
+              </div>
+              <div class="rb-contact__field rb-contact__field--full">
+                <label for="rb-contact-subject">Subject</label>
+                <select id="rb-contact-subject" name="contact[body][subject]">
+                  <option value="">Select a topic…</option>
+                  <option>Order question</option>
+                  <option>Buy / Sell / Trade inquiry</option>
+                  <option>Thirsty Thursday auction</option>
+                  <option>Returns & exchanges</option>
+                  <option>General question</option>
+                </select>
+              </div>
+              <div class="rb-contact__field rb-contact__field--full">
+                <label for="rb-contact-message">Message</label>
+                <textarea id="rb-contact-message" name="contact[body]" rows="6" placeholder="Tell us what's on your mind…" required></textarea>
+              </div>
+              <div class="rb-contact__field rb-contact__field--full">
+                <button type="submit" class="rb-btn rb-btn--lime rb-contact__submit">SEND MESSAGE</button>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .rb-contact {
+    position: relative;
+    background: var(--rb-dark, #101010);
+    padding-block: 100px 80px;
+    overflow: hidden;
+  }
+
+  .rb-contact__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .rb-contact__bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,241,53,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,241,53,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .rb-contact__bg-glow {
+    position: absolute;
+    top: 0; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse at center, rgba(200,241,53,0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .rb-contact__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .rb-contact__header {
+    max-width: 540px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .rb-contact__eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--rb-lime, #c8f135);
+    border: 1px solid rgba(200,241,53,0.3);
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin: 0;
+    width: fit-content;
+  }
+
+  .rb-contact__title {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 400;
+    line-height: 1;
+    color: #fff;
+    margin: 0;
+  }
+
+  .rb-contact__subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 420px;
+  }
+
+  .rb-contact__body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  @media (min-width: 960px) {
+    .rb-contact__body {
+      grid-template-columns: 380px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+  }
+
+  /* Info cards */
+  .rb-contact__info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .rb-contact__info-card {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+  }
+
+  .rb-contact__info-card--highlight {
+    background: rgba(200,241,53,0.05);
+    border-color: rgba(200,241,53,0.2);
+  }
+
+  .rb-contact__info-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--rb-lime, #c8f135);
+    opacity: 0.8;
+  }
+
+  .rb-contact__info-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rb-lime, #c8f135);
+    margin: 0 0 6px;
+  }
+
+  .rb-contact__info-value {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+    margin: 0 0 8px;
+  }
+
+  .rb-contact__map-link,
+  .rb-contact__ig-link {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--rb-lime, #c8f135);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .rb-contact__map-link:hover,
+  .rb-contact__ig-link:hover { opacity: 0.75; }
+
+  .rb-contact__hours {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .rb-contact__hours li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .rb-contact__hours li span:first-child { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+  .rb-contact__bst {
+    padding: 20px;
+    background: rgba(200,241,53,0.06);
+    border: 1px solid rgba(200,241,53,0.15);
+    border-radius: 8px;
+  }
+
+  .rb-contact__bst-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rb-lime, #c8f135);
+    margin: 0 0 8px;
+  }
+
+  .rb-contact__bst-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Form */
+  .rb-contact__form-wrap {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 40px;
+  }
+
+  .rb-contact__form-title {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: #fff;
+    margin: 0 0 32px;
+  }
+
+  .rb-contact__fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 640px) {
+    .rb-contact__fields { grid-template-columns: 1fr; }
+    .rb-contact__form-wrap { padding: 24px; }
+  }
+
+  .rb-contact__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rb-contact__field--full {
+    grid-column: 1 / -1;
+  }
+
+  .rb-contact__field label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .rb-contact__field input,
+  .rb-contact__field select,
+  .rb-contact__field textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 14px;
+    padding: 13px 16px;
+    outline: none;
+    transition: border-color 0.2s ease;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .rb-contact__field select option { background: #1a1a1a; color: #fff; }
+
+  .rb-contact__field input::placeholder,
+  .rb-contact__field textarea::placeholder {
+    color: rgba(255,255,255,0.25);
+  }
+
+  .rb-contact__field input:focus,
+  .rb-contact__field select:focus,
+  .rb-contact__field textarea:focus {
+    border-color: var(--rb-lime, #c8f135);
+  }
+
+  .rb-contact__field textarea { resize: vertical; min-height: 140px; }
+
+  .rb-contact__submit { width: 100%; justify-content: center; }
+
+  .rb-contact__success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 48px 24px;
+    text-align: center;
+  }
+
+  .rb-contact__success p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RB — Contact",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "GET IN TOUCH"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "CONTACT US"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Questions about an order, a trade, or just want to know what dropped? We've got you."
+    }
+  ],
+  "presets": [{ "name": "RB — Contact" }]
+}
+{% endschema %}

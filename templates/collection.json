@@ -1,100 +1,17 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
-    "section": {
-      "type": "section",
-      "blocks": {
-        "text_tqQTNE": {
-          "type": "text",
-          "name": "Title",
-          "settings": {
-            "text": "<h1>{{ closest.collection.title }}</h1>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_twGGkJ": {
-          "type": "text",
-          "name": "Description",
-          "settings": {
-            "text": "{{ closest.collection.description }}",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_tqQTNE",
-        "text_twGGkJ"
-      ],
-      "name": "Collection heading",
+    "rb_collection_hero": {
+      "type": "runitback-collection-hero",
+      "name": "RB - Collection hero",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-1",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "eyebrow": "RunitBack Classics",
+        "show_product_count": true,
+        "show_description": true,
+        "meta_text": "Vintage pieces, weekly drops, limited runs",
+        "menu": "main-menu",
+        "category_heading": "Shop the categories",
+        "category_caption": "Vintage lanes for the next find.",
+        "color_scheme": "scheme-5"
       }
     },
     "main": {
@@ -127,7 +44,7 @@
           "type": "_product-card",
           "static": true,
           "settings": {
-            "product_card_gap": 4,
+            "product_card_gap": 8,
             "inherit_color_scheme": true,
             "color_scheme": "",
             "border": "none",
@@ -143,7 +60,7 @@
             "card-gallery": {
               "type": "_product-card-gallery",
               "settings": {
-                "image_ratio": "adapt",
+                "image_ratio": "portrait",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
@@ -155,9 +72,9 @@
               },
               "blocks": {}
             },
-            "product_title_4nY4eT": {
+            "product_title": {
               "type": "product-title",
-              "name": "t:names.product_title",
+              "name": "Product Title",
               "settings": {
                 "width": "100%",
                 "max_width": "normal",
@@ -180,7 +97,7 @@
               },
               "blocks": {}
             },
-            "price_EzJzMm": {
+            "price": {
               "type": "price",
               "settings": {
                 "show_sale_price_first": true,
@@ -205,8 +122,8 @@
           },
           "block_order": [
             "card-gallery",
-            "product_title_4nY4eT",
-            "price_EzJzMm"
+            "product_title",
+            "price"
           ]
         }
       },
@@ -220,14 +137,40 @@
         "columns_gap_vertical": 24,
         "padding-inline-start": 0,
         "padding-inline-end": 0,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
         "padding-block-start": 0,
-        "padding-block-end": 32
+        "padding-block-end": 56
+      }
+    },
+    "rb_ticker": {
+      "type": "runitback-ticker",
+      "name": "Ticker",
+      "settings": {
+        "style": "lime",
+        "ticker_text": "FREE SHIPPING ON ORDERS $75+|VINTAGE STREETWEAR|AUTHENTIC THRIFTED FITS|NEW DROPS EVERY WEEK",
+        "speed": 24
+      }
+    },
+    "rb_vip": {
+      "type": "runitback-vip",
+      "name": "VIP Signup",
+      "settings": {
+        "badge": "VIP CLUB — EXCLUSIVE ACCESS",
+        "title_line_1": "JOIN THE",
+        "title_line_2": "CREW",
+        "subtitle": "Get 15% off your first order, early access to new drops, and exclusive member-only deals.",
+        "input_placeholder": "Your email address",
+        "button_label": "JOIN THE CREW",
+        "fine_print": "Unsubscribe anytime. No spam, ever.",
+        "show_social_proof": false,
+        "social_proof_text": ""
       }
     }
   },
   "order": [
-    "section",
-    "main"
+    "rb_collection_hero",
+    "main",
+    "rb_ticker",
+    "rb_vip"
   ]
 }

@@ -1,0 +1,270 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<section class="rb-404" id="rb-404-{{ section.id }}">
+
+  <div class="rb-404__bg" aria-hidden="true">
+    <div class="rb-404__bg-grid"></div>
+    <div class="rb-404__bg-glow"></div>
+  </div>
+
+  <div class="rb-404__inner rb-container">
+
+    <div class="rb-404__content">
+      <p class="rb-404__eyebrow">{{ section.settings.eyebrow }}</p>
+
+      <div class="rb-404__headline">
+        <span class="rb-404__number" aria-hidden="true">404</span>
+        <h1 class="rb-404__title">{{ section.settings.title }}</h1>
+      </div>
+
+      <p class="rb-404__subtitle">{{ section.settings.subtitle }}</p>
+
+      <div class="rb-404__actions">
+        <a href="{{ section.settings.cta_link }}" class="rb-btn rb-btn--lime">
+          {{- section.settings.cta_label -}}
+        </a>
+        <a href="/" class="rb-btn rb-btn--ghost">GO HOME</a>
+      </div>
+    </div>
+
+    {%- comment -%} Category shortcut rail {%- endcomment -%}
+    {%- assign nav_menu = linklists[section.settings.menu] -%}
+    {%- if nav_menu.links.size > 0 -%}
+      <div class="rb-404__categories">
+        <p class="rb-404__cat-label">{{ section.settings.category_label }}</p>
+        <nav class="rb-404__cat-rail" aria-label="Shop categories">
+          {%- for link in nav_menu.links -%}
+            {%- if link.url contains '/collections' -%}
+              <a href="{{ link.url }}" class="rb-404__cat-pill">
+                {{- link.title -}}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </nav>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+  /* ── RB 404 Page ─────────────────────────────────────────────── */
+
+  .rb-404 {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background: var(--rb-dark, #101010);
+    overflow: hidden;
+  }
+
+  /* Background layers */
+  .rb-404__bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .rb-404__bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,241,53,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,241,53,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .rb-404__bg-glow {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(ellipse at center, rgba(200,241,53,0.06) 0%, transparent 65%);
+  }
+
+  /* Inner layout */
+  .rb-404__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-block: 120px 80px;
+    gap: 56px;
+    width: 100%;
+  }
+
+  /* Content block */
+  .rb-404__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 640px;
+  }
+
+  .rb-404__eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--rb-lime, #c8f135);
+    border: 1px solid rgba(200,241,53,0.3);
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin: 0;
+  }
+
+  .rb-404__headline {
+    position: relative;
+  }
+
+  /* Ghost "404" behind the title */
+  .rb-404__number {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: clamp(160px, 26vw, 320px);
+    line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(200,241,53,0.12);
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    margin-bottom: -0.15em;
+  }
+
+  .rb-404__title {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--rb-white, #ffffff);
+    margin: 0;
+    letter-spacing: 0.04em;
+  }
+
+  .rb-404__subtitle {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+    max-width: 420px;
+    margin: 0;
+  }
+
+  .rb-404__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  /* Category pill rail */
+  .rb-404__categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 760px;
+  }
+
+  .rb-404__cat-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin: 0;
+  }
+
+  .rb-404__cat-rail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .rb-404__cat-pill {
+    display: inline-block;
+    padding: 8px 20px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .rb-404__cat-pill:hover {
+    color: #101010;
+    background: var(--rb-lime, #c8f135);
+    border-color: var(--rb-lime, #c8f135);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RB — 404",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow tag",
+      "default": "LOST IN THE ARCHIVES"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Headline",
+      "default": "PAGE NOT FOUND"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "The page you're looking for doesn't exist or the drop already sold out. Head back to the floor."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button label",
+      "default": "SHOP ALL DROPS"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Category menu",
+      "default": "main-menu",
+      "info": "Collection links from this menu appear as shortcut pills"
+    },
+    {
+      "type": "text",
+      "id": "category_label",
+      "label": "Category rail label",
+      "default": "OR BROWSE A CATEGORY"
+    }
+  ],
+  "presets": [
+    {
+      "name": "RB — 404"
+    }
+  ]
+}
+{% endschema %}

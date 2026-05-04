@@ -2,7 +2,7 @@
   "sections": {
     "rb_policy": {
       "type": "runitback-policy",
-      "name": "Page Content",
+      "name": "Policy",
       "settings": {
         "eyebrow": "RUNITBACK CLASSICS"
       }

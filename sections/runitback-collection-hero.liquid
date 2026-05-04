@@ -1,0 +1,129 @@
+{%- liquid
+  assign rb_collection = collection
+  assign rb_count_label = 'pieces'
+  if rb_collection.products_count == 1
+    assign rb_count_label = 'piece'
+  endif
+-%}
+
+<section
+  class="rb-collection-hero color-{{ section.settings.color_scheme }}"
+  id="rb-collection-hero-{{ section.id }}"
+>
+  <div class="rb-collection-hero__background" aria-hidden="true">
+    {%- if rb_collection.image != blank -%}
+      {{
+        rb_collection.image
+        | image_url: width: 1800
+        | image_tag:
+          loading: 'eager',
+          class: 'rb-collection-hero__image',
+          sizes: '100vw',
+          widths: '600, 900, 1200, 1600, 1800',
+          alt: ''
+      }}
+    {%- endif -%}
+    <div class="rb-collection-hero__texture"></div>
+  </div>
+
+  <div class="rb-container rb-collection-hero__inner">
+    <div class="rb-collection-hero__content rb-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="rb-collection-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      <div class="rb-collection-hero__title-row">
+        <h1 class="rb-collection-hero__title">{{ rb_collection.title | escape }}</h1>
+
+        {%- if section.settings.show_product_count -%}
+          <p class="rb-collection-hero__count">
+            {{ rb_collection.products_count }} {{ rb_count_label }}
+          </p>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_description and rb_collection.description != blank -%}
+        <div class="rb-collection-hero__description rte">
+          {{ rb_collection.description }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.meta_text != blank -%}
+        <p class="rb-collection-hero__meta">{{ section.settings.meta_text | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    {% render 'runitback-category-rail',
+      menu_handle: section.settings.menu,
+      heading: section.settings.category_heading,
+      caption: section.settings.category_caption,
+      aria_label: section.settings.category_heading,
+      context: 'collection',
+      collection: rb_collection
+    %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "RB - Collection hero",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "RunitBack Classics"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "label": "Show product count",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "meta_text",
+      "label": "Meta text",
+      "default": "Vintage pieces, weekly drops, limited runs"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Category menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "category_heading",
+      "label": "Category heading",
+      "default": "Shop the categories"
+    },
+    {
+      "type": "text",
+      "id": "category_caption",
+      "label": "Category caption",
+      "default": "Vintage lanes for the next find."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "RB - Collection hero"
+    }
+  ]
+}
+{% endschema %}

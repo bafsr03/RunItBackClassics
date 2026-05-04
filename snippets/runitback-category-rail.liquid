@@ -1,0 +1,118 @@
+{%- liquid
+  assign rb_menu_handle = menu_handle | default: 'main-menu'
+  assign rb_menu = linklists[rb_menu_handle]
+  assign rb_context = context | default: request.page_type
+  assign rb_heading = heading | default: 'Shop categories'
+  assign rb_caption = caption | default: ''
+  assign rb_aria_label = aria_label | default: rb_heading
+-%}
+
+{%- capture rb_category_items -%}
+  {%- for link in rb_menu.links -%}
+    {%- liquid
+      assign rb_link_is_category = false
+      if link.type == 'collection_link' or link.type == 'catalog_link' or link.url contains '/collections'
+        assign rb_link_is_category = true
+      endif
+
+      assign rb_link_active = false
+      if link.current or link.active
+        assign rb_link_active = true
+      endif
+
+      if collection != blank and link.object != blank and link.object.handle == collection.handle
+        assign rb_link_active = true
+      endif
+
+      if product != blank and link.object != blank
+        for rb_product_collection in product.collections
+          if rb_product_collection.handle == link.object.handle
+            assign rb_link_active = true
+            break
+          endif
+        endfor
+      endif
+    -%}
+
+    {%- if rb_link_is_category -%}
+      <a
+        href="{{ link.url }}"
+        class="rb-cat-rail__item{% if rb_link_active %} rb-cat-rail__item--active{% endif %}"
+        role="listitem"
+        {% if rb_link_active %}aria-current="page"{% endif %}
+      >
+        <span class="rb-cat-rail__name">{{ link.title | escape }}</span>
+        {%- if link.object != blank and link.object.products_count != blank -%}
+          <span class="rb-cat-rail__meta">{{ link.object.products_count }} pieces</span>
+        {%- endif -%}
+        <span class="rb-cat-rail__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    {%- endif -%}
+
+    {%- for child_link in link.links -%}
+      {%- liquid
+        assign rb_child_is_category = false
+        if child_link.type == 'collection_link' or child_link.type == 'catalog_link' or child_link.url contains '/collections'
+          assign rb_child_is_category = true
+        endif
+
+        assign rb_child_active = false
+        if child_link.current or child_link.active
+          assign rb_child_active = true
+        endif
+
+        if collection != blank and child_link.object != blank and child_link.object.handle == collection.handle
+          assign rb_child_active = true
+        endif
+
+        if product != blank and child_link.object != blank
+          for rb_product_collection in product.collections
+            if rb_product_collection.handle == child_link.object.handle
+              assign rb_child_active = true
+              break
+            endif
+          endfor
+        endif
+      -%}
+
+      {%- if rb_child_is_category -%}
+        <a
+          href="{{ child_link.url }}"
+          class="rb-cat-rail__item rb-cat-rail__item--child{% if rb_child_active %} rb-cat-rail__item--active{% endif %}"
+          role="listitem"
+          {% if rb_child_active %}aria-current="page"{% endif %}
+        >
+          <span class="rb-cat-rail__parent">{{ link.title | escape }}</span>
+          <span class="rb-cat-rail__name">{{ child_link.title | escape }}</span>
+          {%- if child_link.object != blank and child_link.object.products_count != blank -%}
+            <span class="rb-cat-rail__meta">{{ child_link.object.products_count }} pieces</span>
+          {%- endif -%}
+          <span class="rb-cat-rail__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- assign rb_category_items = rb_category_items | strip -%}
+
+{%- if rb_menu != blank and rb_category_items != blank -%}
+  <div class="rb-cat-rail rb-cat-rail--{{ rb_context }} rb-reveal">
+    {%- if rb_heading != blank or rb_caption != blank -%}
+      <div class="rb-cat-rail__head">
+        {%- if rb_heading != blank -%}
+          <h2 class="rb-cat-rail__title">{{ rb_heading | escape }}</h2>
+        {%- endif -%}
+        {%- if rb_caption != blank -%}
+          <p class="rb-cat-rail__caption">{{ rb_caption | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <nav class="rb-cat-rail__nav" aria-label="{{ rb_aria_label | escape }}">
+      <div class="rb-cat-rail__scroll" role="list">
+        {{ rb_category_items }}
+      </div>
+    </nav>
+  </div>
+{%- endif -%}
