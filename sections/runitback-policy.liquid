@@ -11,14 +11,14 @@
 
     <div class="rb-policy__header">
       <p class="rb-policy__eyebrow">{{ section.settings.eyebrow }}</p>
-      <h1 class="rb-policy__title">{{ page.title }}</h1>
-      {%- if page.published_at -%}
-        <p class="rb-policy__date">Last updated: {{ page.published_at | date: "%B %d, %Y" }}</p>
-      {%- endif -%}
+      <h1 class="rb-policy__title">
+        {%- if policy -%}{{ policy.title }}{%- else -%}{{ page.title }}{%- endif -%}
+      </h1>
+      <p class="rb-policy__date">Last updated: {{ 'now' | date: "%B %d, %Y" }}</p>
     </div>
 
     <div class="rb-policy__body rte">
-      {{ page.content }}
+      {%- if policy -%}{{ policy.body }}{%- else -%}{{ page.content }}{%- endif -%}
     </div>
 
     <div class="rb-policy__nav">
