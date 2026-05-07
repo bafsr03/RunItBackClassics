@@ -147,11 +147,17 @@
       "settings": {
         "menu": "main-menu"
       }
+    },
+    "rb_shop_strip": {
+      "type": "runitback-shop-strip",
+      "name": "RB Shop Strip",
+      "settings": {}
     }
   },
   "order": [
     "header_announcements_9jGBFp",
     "header_section",
-    "rb_nav_bar"
+    "rb_nav_bar",
+    "rb_shop_strip"
   ]
 }

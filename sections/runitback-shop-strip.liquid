@@ -1,0 +1,429 @@
+{%- liquid
+  assign current_handle = collection.handle | default: ''
+-%}
+
+<nav class="rb-strip" id="rb-strip-{{ section.id }}" aria-label="Shop categories">
+  <div class="rb-strip__inner">
+
+    <!-- ── CATEGORY LINKS ── -->
+    <ul class="rb-strip__cats" role="list">
+
+      <li>
+        <a href="/collections/all"
+           class="rb-strip__link{% if current_handle == 'all' or request.path == '/collections/all' %} is-active{% endif %}">
+          All
+        </a>
+      </li>
+
+      <li>
+        <a href="/collections/sneakers"
+           class="rb-strip__link{% if current_handle == 'sneakers' %} is-active{% endif %}">
+          Sneakers
+        </a>
+      </li>
+
+      <li>
+        <a href="/collections/vintage"
+           class="rb-strip__link{% if current_handle == 'vintage' %} is-active{% endif %}">
+          Vintage
+        </a>
+      </li>
+
+      <li>
+        <a href="/collections/streetwear"
+           class="rb-strip__link{% if current_handle == 'streetwear' %} is-active{% endif %}">
+          Streetwear
+        </a>
+      </li>
+
+      <li>
+        <a href="/collections/trading-cards"
+           class="rb-strip__link{% if current_handle == 'trading-cards' %} is-active{% endif %}">
+          Trading Cards
+        </a>
+      </li>
+
+      <li>
+        <a href="/collections/bottoms"
+           class="rb-strip__link{% if current_handle == 'bottoms' %} is-active{% endif %}">
+          Bottoms
+        </a>
+      </li>
+
+      <li>
+        <a href="/collections/accessories"
+           class="rb-strip__link{% if current_handle == 'accessories' %} is-active{% endif %}">
+          Accessories
+        </a>
+      </li>
+
+      <li>
+        <a href="/collections/clearance"
+           class="rb-strip__link rb-strip__link--sale{% if current_handle == 'clearance' %} is-active{% endif %}">
+          Clearance
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- ── SHOP BY BRAND DROPDOWN ── -->
+    <div class="rb-strip__brands" id="rb-strip-brands-{{ section.id }}">
+      <button
+        class="rb-strip__brands-btn"
+        aria-expanded="false"
+        aria-controls="rb-strip-brands-drop-{{ section.id }}"
+        type="button"
+      >
+        Shop by Brand
+        <svg viewBox="0 0 10 6" fill="none" width="8" height="5" aria-hidden="true">
+          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="rb-strip__brands-drop" id="rb-strip-brands-drop-{{ section.id }}" role="menu">
+        <div class="rb-strip__brands-grid">
+
+          <div class="rb-strip__brands-col">
+            <p class="rb-strip__brands-heading">Sneakers</p>
+            <ul role="list">
+              <li><a href="/collections/nike"         role="menuitem">Nike</a></li>
+              <li><a href="/collections/air-jordan"   role="menuitem">Air Jordan</a></li>
+              <li><a href="/collections/adidas"       role="menuitem">Adidas</a></li>
+              <li><a href="/collections/new-balance"  role="menuitem">New Balance</a></li>
+              <li><a href="/collections/reebok"       role="menuitem">Reebok</a></li>
+              <li><a href="/collections/converse"     role="menuitem">Converse</a></li>
+              <li><a href="/collections/vans"         role="menuitem">Vans</a></li>
+            </ul>
+          </div>
+
+          <div class="rb-strip__brands-col">
+            <p class="rb-strip__brands-heading">Clothing</p>
+            <ul role="list">
+              <li><a href="/collections/champion"        role="menuitem">Champion</a></li>
+              <li><a href="/collections/carhartt"        role="menuitem">Carhartt</a></li>
+              <li><a href="/collections/ralph-lauren"    role="menuitem">Ralph Lauren</a></li>
+              <li><a href="/collections/tommy-hilfiger"  role="menuitem">Tommy Hilfiger</a></li>
+              <li><a href="/collections/the-north-face"  role="menuitem">The North Face</a></li>
+              <li><a href="/collections/starter"         role="menuitem">Starter</a></li>
+              <li><a href="/collections/fubu"            role="menuitem">FUBU</a></li>
+            </ul>
+          </div>
+
+          <div class="rb-strip__brands-col">
+            <p class="rb-strip__brands-heading">Hype</p>
+            <ul role="list">
+              <li><a href="/collections/supreme"  role="menuitem">Supreme</a></li>
+              <li><a href="/collections/bape"     role="menuitem">Bape</a></li>
+              <li><a href="/collections/stussy"   role="menuitem">Stüssy</a></li>
+              <li><a href="/collections/new-era"  role="menuitem">New Era</a></li>
+              <li><a href="/collections/wu-wear"  role="menuitem">Wu-Wear</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="rb-strip__brands-footer">
+          <a href="/collections/all" class="rb-strip__brands-all">Browse All Brands →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+{% stylesheet %}
+/* ================================================================
+   RB SHOP STRIP — sticky category bar below the navbar
+   ================================================================ */
+
+.rb-strip {
+  background: #0d0d0d;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  position: relative;
+  z-index: 9997;
+  width: 100%;
+}
+
+.rb-strip__inner {
+  max-width: var(--page-width, 1440px);
+  margin: 0 auto;
+  padding: 0 max(24px, env(safe-area-inset-left));
+  display: flex;
+  align-items: center;
+  height: 38px;
+  gap: 0;
+}
+
+/* ── Category list ── */
+.rb-strip__cats {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  height: 100%;
+}
+
+.rb-strip__cats::-webkit-scrollbar { display: none; }
+
+.rb-strip__link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 13px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.rb-strip__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 13px;
+  right: 13px;
+  height: 2px;
+  background: #c8f135;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.22s ease;
+}
+
+.rb-strip__link:hover,
+.rb-strip__link.is-active {
+  color: #fff;
+}
+
+.rb-strip__link:hover::after,
+.rb-strip__link.is-active::after {
+  transform: scaleX(1);
+}
+
+/* Clearance link — red accent */
+.rb-strip__link--sale {
+  color: rgba(255, 70, 70, 0.6);
+}
+.rb-strip__link--sale:hover,
+.rb-strip__link--sale.is-active {
+  color: #ff4646;
+}
+.rb-strip__link--sale::after {
+  background: #ff4646;
+}
+
+/* ── Brands dropdown ── */
+.rb-strip__brands {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.07);
+  padding-left: 16px;
+  flex-shrink: 0;
+}
+
+.rb-strip__brands-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+  padding: 0;
+  height: 100%;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.rb-strip__brands-btn svg {
+  transition: transform 0.22s ease;
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+
+.rb-strip__brands:hover .rb-strip__brands-btn,
+.rb-strip__brands.is-open .rb-strip__brands-btn {
+  color: #fff;
+}
+
+.rb-strip__brands:hover .rb-strip__brands-btn svg,
+.rb-strip__brands.is-open .rb-strip__brands-btn svg {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Dropdown panel */
+.rb-strip__brands-drop {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #181818;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 2px solid #c8f135;
+  min-width: 540px;
+  z-index: 600;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+  pointer-events: none;
+}
+
+.rb-strip__brands:hover .rb-strip__brands-drop,
+.rb-strip__brands.is-open .rb-strip__brands-drop {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.rb-strip__brands-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.rb-strip__brands-col {
+  padding: 0 16px;
+}
+
+.rb-strip__brands-col + .rb-strip__brands-col {
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rb-strip__brands-heading {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rb-lime, #c8f135);
+  margin: 0 0 10px;
+}
+
+.rb-strip__brands-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.rb-strip__brands-col a {
+  display: block;
+  padding: 7px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.rb-strip__brands-col a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.rb-strip__brands-footer {
+  padding: 12px 24px;
+  text-align: right;
+}
+
+.rb-strip__brands-all {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rb-lime, #c8f135);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.rb-strip__brands-all:hover { opacity: 0.7; }
+
+/* Mobile: collapse brands dropdown to hidden, scroll cats */
+@media (max-width: 768px) {
+  .rb-strip__brands-drop {
+    min-width: calc(100vw - 32px);
+    right: -16px;
+  }
+
+  .rb-strip__brands-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .rb-strip__brands-col:last-child {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .rb-strip__brands {
+    display: none; /* too cramped on very small screens; covered by mobile nav */
+  }
+}
+{% endstylesheet %}
+
+<script>
+(function () {
+  var wrap = document.getElementById('rb-strip-brands-{{ section.id }}');
+  var btn  = wrap && wrap.querySelector('.rb-strip__brands-btn');
+  var drop = wrap && wrap.querySelector('.rb-strip__brands-drop');
+  if (!wrap || !btn || !drop) return;
+
+  /* Touch / click toggle (desktop uses CSS :hover, this catches mobile) */
+  btn.addEventListener('click', function (e) {
+    var isOpen = wrap.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    e.stopPropagation();
+  });
+
+  /* Close on outside click */
+  document.addEventListener('click', function (e) {
+    if (!wrap.contains(e.target)) {
+      wrap.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* Close on Escape */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && wrap.classList.contains('is-open')) {
+      wrap.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.focus();
+    }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "RB — Shop Strip",
+  "tag": "section",
+  "settings": [],
+  "presets": [{ "name": "RB — Shop Strip" }]
+}
+{% endschema %}
