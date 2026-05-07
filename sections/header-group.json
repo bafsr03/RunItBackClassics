@@ -72,6 +72,16 @@
     "header_section": {
       "type": "header",
       "blocks": {
+        "header-logo": {
+          "type": "_header-logo",
+          "static": true,
+          "settings": {
+            "hide_logo_on_home_page": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        },
         "header-menu": {
           "type": "_header-menu",
           "static": true,
