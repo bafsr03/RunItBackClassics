@@ -22,7 +22,7 @@
         "cta_2_label": "BROWSE ALL",
         "cta_2_link": "/collections/all",
         "show_rainbow": true,
-        "model_url": "https://cdn.jsdelivr.net/gh/bafsr03/runitback-assets@main/nike_jordan_4_retro_black_cat.glb",
+        "model_url": "https://cdn.shopify.com/3d/models/b9ceda70e54cae22/nike_jordan_4_retro_black_cat.glb",
         "model_alt": "Nike Jordan 4 Retro Black Cat – interactive 3D view",
         "model_rotation_speed": 20,
         "model_camera_orbit": "0deg 78deg 105%",
@@ -67,11 +67,8 @@
         "cta_1_url": "/pages/about",
         "cta_2_label": "CONTACT US",
         "cta_2_url": "/pages/contact",
-        "photo_1": "shopify://shop_images/IMG_2859.heic",
         "photo_1_alt": "",
-        "photo_2": "shopify://shop_images/IMG_3115.heic",
         "photo_2_alt": "",
-        "photo_3": "shopify://shop_images/DSC_0129_Original.heic",
         "photo_3_alt": ""
       }
     },
