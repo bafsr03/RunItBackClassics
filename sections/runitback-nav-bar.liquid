@@ -400,13 +400,44 @@ html:not(.rb-navb-scrolled) .rb-navb {
 <script>
   (() => {
     const scrolledClass = 'rb-navb-scrolled';
-    const threshold = 60; // Increased threshold for a smoother feel
+    const threshold = 30;
+
+    // The header-group children in order:
+    // [0] announcement bar  [1] main header  [2] rb nav bar  [3] rb shop strip
+    const hg   = document.getElementById('header-group');
+    const ann  = hg && hg.children[0]; // announcement bar
+    const hdr  = hg && hg.children[1]; // main Horizon header
+
+    // Capture natural heights before any manipulation
+    const annH = ann ? ann.scrollHeight : 0;
+    const hdrH = hdr ? hdr.scrollHeight : 0;
+
+    // Prime both elements for smooth height collapse
+    if (ann) {
+      ann.style.maxHeight  = annH + 'px';
+      ann.style.overflow   = 'hidden';
+      ann.style.transition = 'max-height 0.32s ease, opacity 0.22s ease';
+    }
+    if (hdr) {
+      hdr.style.maxHeight  = hdrH + 'px';
+      hdr.style.overflow   = 'hidden';
+      hdr.style.transition = 'max-height 0.32s ease, opacity 0.22s ease';
+    }
 
     const syncRbNavbarState = () => {
-      if (window.scrollY > threshold) {
-        document.documentElement.classList.add(scrolledClass);
-      } else {
-        document.documentElement.classList.remove(scrolledClass);
+      const scrolled = window.scrollY > threshold;
+
+      // Logo shrink class (used by CSS for logo size + spacer width)
+      document.documentElement.classList.toggle(scrolledClass, scrolled);
+
+      // Collapse announcement + main header; leave nav bar + shop strip visible
+      if (ann) {
+        ann.style.maxHeight = scrolled ? '0' : annH + 'px';
+        ann.style.opacity   = scrolled ? '0' : '';
+      }
+      if (hdr) {
+        hdr.style.maxHeight = scrolled ? '0' : hdrH + 'px';
+        hdr.style.opacity   = scrolled ? '0' : '';
       }
     };
 

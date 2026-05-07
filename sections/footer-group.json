@@ -46,18 +46,18 @@
           "settings": {
             "title": "SHOP",
             "menu": "",
-            "link_1_label": "New Drops",
+            "link_1_label": "All Products",
             "link_1_url": "/collections/all",
             "link_2_label": "Sneakers",
-            "link_2_url": "/collections/all",
-            "link_3_label": "Vintage Tees",
-            "link_3_url": "/collections/all",
-            "link_4_label": "Bottoms",
-            "link_4_url": "/collections/all",
+            "link_2_url": "/collections/sneakers",
+            "link_3_label": "Vintage",
+            "link_3_url": "/collections/vintage",
+            "link_4_label": "Streetwear",
+            "link_4_url": "/collections/streetwear",
             "link_5_label": "Trading Cards",
-            "link_5_url": "/collections/all",
-            "link_6_label": "Accessories",
-            "link_6_url": "/collections/all"
+            "link_5_url": "/collections/trading-cards",
+            "link_6_label": "Bottoms",
+            "link_6_url": "/collections/bottoms"
           }
         },
         "col_support": {
@@ -92,10 +92,10 @@
             "link_3_url": "/policies/terms-of-service",
             "link_4_label": "Privacy Policy",
             "link_4_url": "/policies/privacy-policy",
-            "link_5_label": "Refund Policy",
-            "link_5_url": "/policies/refund-policy",
-            "link_6_label": "Shipping Policy",
-            "link_6_url": "/policies/shipping-policy"
+            "link_5_label": "Accessories",
+            "link_5_url": "/collections/accessories",
+            "link_6_label": "Clearance",
+            "link_6_url": "/collections/clearance"
           }
         }
       },
