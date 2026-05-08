@@ -82,7 +82,7 @@
           "type": "brand",
           "settings": {
             "name": "JORDAN",
-            "link": "/collections/all"
+            "link": "shopify://collections/jordan"
           }
         },
         "brand_supreme": {
