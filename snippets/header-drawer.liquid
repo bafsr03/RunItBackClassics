@@ -571,6 +571,21 @@
             {%- endfor -%}
           {% endif %}
         </ul>
+
+        {%- comment -%}
+          RB SHOP STRIP — duplicated into the mobile drawer, since the
+          desktop strip is hidden on small screens.
+        {%- endcomment -%}
+        <ul class="menu-drawer__menu rb-drawer-shop" role="list">
+          <li class="menu-drawer__list-item--flat"><a href="/collections/all" class="menu-drawer__menu-item menu-drawer__menu-item--mainlist focus-inset">All</a></li>
+          <li class="menu-drawer__list-item--flat"><a href="/collections/sneakers" class="menu-drawer__menu-item menu-drawer__menu-item--mainlist focus-inset">Sneakers</a></li>
+          <li class="menu-drawer__list-item--flat"><a href="/collections/vintage" class="menu-drawer__menu-item menu-drawer__menu-item--mainlist focus-inset">Vintage</a></li>
+          <li class="menu-drawer__list-item--flat"><a href="/collections/streetwear" class="menu-drawer__menu-item menu-drawer__menu-item--mainlist focus-inset">Streetwear</a></li>
+          <li class="menu-drawer__list-item--flat"><a href="/collections/trading-cards" class="menu-drawer__menu-item menu-drawer__menu-item--mainlist focus-inset">Trading Cards</a></li>
+          <li class="menu-drawer__list-item--flat"><a href="/collections/bottoms" class="menu-drawer__menu-item menu-drawer__menu-item--mainlist focus-inset">Bottoms</a></li>
+          <li class="menu-drawer__list-item--flat"><a href="/collections/accessories" class="menu-drawer__menu-item menu-drawer__menu-item--mainlist focus-inset">Accessories</a></li>
+          <li class="menu-drawer__list-item--flat"><a href="/collections/clearance" class="menu-drawer__menu-item menu-drawer__menu-item--mainlist focus-inset">Clearance</a></li>
+        </ul>
       </nav>
       <div
         class="menu-drawer__utility-links menu-drawer__animated-element"

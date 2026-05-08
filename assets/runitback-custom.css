@@ -1188,6 +1188,23 @@ dialog.menu-drawer {
   color: var(--rb-lime, #c8f135) !important;
 }
 
+/* Shop-strip categories injected into the drawer */
+.menu-drawer .rb-drawer-shop {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.menu-drawer .rb-drawer-shop > li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Hide the overflowing header logo while the mobile drawer is open so it
+   doesn't sit on top of the menu panel. */
+body:has(header-drawer details[open]) #header-group .header-logo {
+  visibility: hidden;
+}
+
 /* ================================================================
    COLLECTION + PRODUCT SHOP UI
    ================================================================ */
