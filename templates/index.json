@@ -82,28 +82,32 @@
           "type": "brand",
           "settings": {
             "name": "JORDAN",
-            "link": "shopify://collections/jordan"
+            "link": "shopify://collections/jordan",
+            "logo": "shopify://shop_images/jordan.png"
           }
         },
         "brand_supreme": {
           "type": "brand",
           "settings": {
             "name": "SUPREME",
-            "link": "shopify://collections/supreme"
+            "link": "shopify://collections/supreme",
+            "logo": "shopify://shop_images/Supreme.png"
           }
         },
         "brand_bape": {
           "type": "brand",
           "settings": {
             "name": "A BATHING APE",
-            "link": "shopify://collections/a-bathing-ape"
+            "link": "shopify://collections/a-bathing-ape",
+            "logo": "shopify://shop_images/BAPE-Symbol.png"
           }
         },
         "brand_carh": {
           "type": "brand",
           "settings": {
             "name": "CARHARTT",
-            "link": "shopify://collections/carhartt"
+            "link": "shopify://collections/carhartt",
+            "logo": "shopify://shop_images/carhartt-2-logo-png-transparent.png"
           }
         },
         "brand_nike": {
