@@ -1072,31 +1072,30 @@
   background: var(--rb-lime) !important;
   color: var(--rb-black) !important;
 }
-/* ── Desktop: hide Horizon's built-in menu column from the utility row.
-      The custom rb-navb section handles all desktop navigation. ── */
+/* Horizon header — taller row + larger logo at the top of the page. */
 @media (min-width: 990px) {
-  /* Hide the header-menu web component directly — most reliable approach */
-  #header-group header-component header-menu {
-    display: none !important;
-  }
-  /* Compact header on desktop */
   #header-group header-component,
   #header-group .header {
-    --header-height: 68px !important;
-  }
-}
-
-/* ── HEADER LOGO STRATEGY ──────────────────────────────────────────
-   Desktop: hide Horizon logo and use only RB navbar logo.
-   ──────────────────────────────────────────────────────────────── */
-@media (min-width: 990px) {
-  #header-group .header-logo,
-  #header-group .header__logo-text {
-    display: none !important;
+    --header-height: 110px !important;
   }
 
   #header-group .header[transparent] {
     position: relative !important;
+  }
+
+  /* Larger logo image — overrides the inline width/height vars */
+  #header-group .header-logo__image {
+    height: 72px !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
+
+@media (max-width: 989px) {
+  #header-group .header-logo__image {
+    height: 44px !important;
+    width: auto !important;
+    max-width: none !important;
   }
 }
 

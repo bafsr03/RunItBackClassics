@@ -76,7 +76,7 @@
           "type": "_header-logo",
           "static": true,
           "settings": {
-            "hide_logo_on_home_page": true,
+            "hide_logo_on_home_page": false,
             "padding-block-start": 0,
             "padding-block-end": 0
           },
@@ -133,19 +133,12 @@
         "color_scheme_top": "scheme-5",
         "color_scheme_bottom": "",
         "color_scheme_transparent": "scheme-6",
-        "enable_transparent_header_home": true,
+        "enable_transparent_header_home": false,
         "home_color_scheme": "inverse",
         "enable_transparent_header_product": false,
         "product_color_scheme": "default",
         "enable_transparent_header_collection": false,
         "collection_color_scheme": "default"
-      }
-    },
-    "rb_nav_bar": {
-      "type": "runitback-nav-bar",
-      "name": "RB Nav Bar",
-      "settings": {
-        "menu": "main-menu"
       }
     },
     "rb_shop_strip": {
@@ -157,7 +150,6 @@
   "order": [
     "header_announcements_9jGBFp",
     "header_section",
-    "rb_nav_bar",
     "rb_shop_strip"
   ]
 }

@@ -2,74 +2,131 @@
   assign cur = collection.handle | default: ''
 -%}
 
+{%- comment -%}
+  RB SHOP STRIP — the only sticky element in the header group.
+  Sits below the announcement bar and Horizon header. When the user
+  scrolls past the Horizon header, this strip pins to top:0 and its
+  centered logo fades in (replacing the logo that has scrolled away).
+{%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: #0d0d0d;
+  }
+</style>
+
 <nav class="rb-strip" id="rb-strip-{{ section.id }}" aria-label="Shop categories">
   <div class="rb-strip__inner">
 
-    <!-- LEFT: All · Sneakers · Vintage · Streetwear -->
+    {%- comment -%} LEFT — All · Sneakers · Vintage · Streetwear {%- endcomment -%}
     <ul class="rb-strip__list rb-strip__list--left" role="list">
-      <li>
-        <a href="/collections/all"
-           class="rb-strip__link{% if cur == 'all' %} is-active{% endif %}">
-          All
-        </a>
-      </li>
-      <li>
-        <a href="/collections/sneakers"
-           class="rb-strip__link{% if cur == 'sneakers' %} is-active{% endif %}">
-          Sneakers
-        </a>
-      </li>
-      <li>
-        <a href="/collections/vintage"
-           class="rb-strip__link{% if cur == 'vintage' %} is-active{% endif %}">
-          Vintage
-        </a>
-      </li>
-      <li>
-        <a href="/collections/streetwear"
-           class="rb-strip__link{% if cur == 'streetwear' %} is-active{% endif %}">
-          Streetwear
-        </a>
-      </li>
+      <li><a href="/collections/all" class="rb-strip__link{% if cur == 'all' %} is-active{% endif %}">All</a></li>
+      <li><a href="/collections/sneakers" class="rb-strip__link{% if cur == 'sneakers' %} is-active{% endif %}">Sneakers</a></li>
+      <li><a href="/collections/vintage" class="rb-strip__link{% if cur == 'vintage' %} is-active{% endif %}">Vintage</a></li>
+      <li><a href="/collections/streetwear" class="rb-strip__link{% if cur == 'streetwear' %} is-active{% endif %}">Streetwear</a></li>
     </ul>
 
-    <!-- CENTER — spacer aligned with logo above -->
-    <div class="rb-strip__spacer" aria-hidden="true"></div>
+    {%- comment -%} CENTER — logo column (fades in when stuck) {%- endcomment -%}
+    <div class="rb-strip__center">
+      <a href="{{ routes.root_url }}" class="rb-strip__logo" aria-label="{{ shop.name }} home" tabindex="-1">
+        {%- if settings.logo != blank -%}
+          {{- settings.logo
+            | image_url: height: 80
+            | image_tag:
+              alt: shop.name,
+              loading: 'eager',
+              class: 'rb-strip__logo-img'
+          -}}
+        {%- else -%}
+          <span class="rb-strip__wordmark">{{ shop.name | upcase }}</span>
+        {%- endif -%}
+      </a>
+    </div>
 
-    <!-- RIGHT: Trading Cards · Bottoms · Accessories · Clearance -->
+    {%- comment -%} RIGHT — Trading Cards · Bottoms · Accessories · Clearance {%- endcomment -%}
     <ul class="rb-strip__list rb-strip__list--right" role="list">
-      <li>
-        <a href="/collections/trading-cards"
-           class="rb-strip__link{% if cur == 'trading-cards' %} is-active{% endif %}">
-          Trading Cards
-        </a>
-      </li>
-      <li>
-        <a href="/collections/bottoms"
-           class="rb-strip__link{% if cur == 'bottoms' %} is-active{% endif %}">
-          Bottoms
-        </a>
-      </li>
-      <li>
-        <a href="/collections/accessories"
-           class="rb-strip__link{% if cur == 'accessories' %} is-active{% endif %}">
-          Accessories
-        </a>
-      </li>
-      <li>
-        <a href="/collections/clearance"
-           class="rb-strip__link rb-strip__link--sale{% if cur == 'clearance' %} is-active{% endif %}">
-          Clearance
-        </a>
-      </li>
+      <li><a href="/collections/trading-cards" class="rb-strip__link{% if cur == 'trading-cards' %} is-active{% endif %}">Trading Cards</a></li>
+      <li><a href="/collections/bottoms" class="rb-strip__link{% if cur == 'bottoms' %} is-active{% endif %}">Bottoms</a></li>
+      <li><a href="/collections/accessories" class="rb-strip__link{% if cur == 'accessories' %} is-active{% endif %}">Accessories</a></li>
+      <li><a href="/collections/clearance" class="rb-strip__link{% if cur == 'clearance' %} is-active{% endif %}">Clearance</a></li>
     </ul>
 
   </div>
 </nav>
 
+<script>
+  (function () {
+    var wrapper = document.getElementById('shopify-section-{{ section.id }}');
+    var strip   = document.getElementById('rb-strip-{{ section.id }}');
+    if (!wrapper || !strip) return;
+
+    /*
+     * HOIST OUT OF #header-group
+     * ──────────────────────────
+     * position:sticky is bounded by the element's PARENT box. The strip is
+     * normally rendered inside #header-group (short, ~200px), so once the
+     * group scrolls past, the sticky child scrolls with it. By moving the
+     * wrapper to be a sibling of #header-group (i.e. a direct child of body),
+     * its parent becomes the document body — sticky then persists across
+     * the entire page scroll.
+     *
+     * We wait for DOMContentLoaded so #header-group has its full child list
+     * AND its nextSibling is the start of the page content (not null).
+     */
+    function hoist() {
+      var headerGroup = document.getElementById('header-group');
+      if (!headerGroup || wrapper.parentNode !== headerGroup) return;
+
+      headerGroup.parentNode.insertBefore(wrapper, headerGroup.nextSibling);
+
+      // Re-sum --header-group-height now that the strip is no longer inside.
+      var groupHeight = 0;
+      for (var i = 0; i < headerGroup.children.length; i++) {
+        var child = headerGroup.children[i];
+        if (child instanceof HTMLElement) groupHeight += child.offsetHeight;
+      }
+      document.body.style.setProperty('--header-group-height', groupHeight + 'px');
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', hoist, { once: true });
+    } else {
+      hoist();
+    }
+
+    var logoLink = strip.querySelector('.rb-strip__logo');
+    var ticking = false;
+
+    function update() {
+      ticking = false;
+      var stuck = wrapper.getBoundingClientRect().top <= 0;
+      if (stuck) {
+        strip.setAttribute('data-stuck', '');
+        if (logoLink) logoLink.setAttribute('tabindex', '0');
+      } else {
+        strip.removeAttribute('data-stuck');
+        if (logoLink) logoLink.setAttribute('tabindex', '-1');
+      }
+    }
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+
+    document.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  })();
+</script>
+
 {% stylesheet %}
 /* ================================================================
-   RB SHOP STRIP — mirrors navbar: left list | spacer | right list
+   RB SHOP STRIP — left list | center logo | right list
+   Single sticky element; logo fades in once pinned to top.
    ================================================================ */
 
 .rb-strip {
@@ -90,10 +147,52 @@
   padding: 0 max(24px, env(safe-area-inset-left));
 }
 
-/* Center spacer — matches the fixed navbar logo column */
-.rb-strip__spacer {
+/* Center column — fixed width keeps left/right lists from jumping when logo fades in */
+.rb-strip__center {
   width: 160px;
-  height: 1px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rb-strip__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.rb-strip[data-stuck] .rb-strip__logo {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.rb-strip__logo-img {
+  display: block;
+  height: 30px;
+  width: auto;
+  filter: invert(1);
+  mix-blend-mode: screen;
+}
+
+.rb-strip__logo:hover .rb-strip__logo-img {
+  opacity: 0.75;
+}
+
+.rb-strip__wordmark {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
 }
 
 /* ── Lists ── */
@@ -140,30 +239,12 @@
 }
 
 .rb-strip__link:hover,
-.rb-strip__link.is-active {
-  color: #fff;
-}
+.rb-strip__link.is-active { color: #fff; }
 
 .rb-strip__link:hover::after,
-.rb-strip__link.is-active::after {
-  transform: scaleX(1);
-}
+.rb-strip__link.is-active::after { transform: scaleX(1); }
 
-/* Clearance — red accent */
-.rb-strip__link--sale {
-  color: rgba(255, 70, 70, 0.55);
-}
-
-.rb-strip__link--sale:hover,
-.rb-strip__link--sale.is-active {
-  color: #ff4646;
-}
-
-.rb-strip__link--sale::after {
-  background: #ff4646;
-}
-
-/* Mobile: hide strip on small screens (handled by hamburger menu) */
+/* Mobile: strip hidden — Horizon header's hamburger drawer handles mobile nav */
 @media (max-width: 989px) {
   .rb-strip { display: none; }
 }
