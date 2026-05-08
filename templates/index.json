@@ -89,49 +89,49 @@
           "type": "brand",
           "settings": {
             "name": "SUPREME",
-            "link": "/collections/all"
+            "link": "shopify://collections/supreme"
           }
         },
         "brand_bape": {
           "type": "brand",
           "settings": {
             "name": "A BATHING APE",
-            "link": "/collections/all"
+            "link": "shopify://collections/a-bathing-ape"
           }
         },
         "brand_carh": {
           "type": "brand",
           "settings": {
             "name": "CARHARTT",
-            "link": "/collections/all"
+            "link": "shopify://collections/carhartt"
           }
         },
         "brand_nike": {
           "type": "brand",
           "settings": {
             "name": "NIKE",
-            "link": "/collections/all"
+            "link": "shopify://collections/nike"
           }
         },
         "brand_tommy": {
           "type": "brand",
           "settings": {
             "name": "TOMMY HILFIGER",
-            "link": "/collections/all"
+            "link": "shopify://collections/tommy-hilfiger"
           }
         },
         "brand_harley": {
           "type": "brand",
           "settings": {
             "name": "HARLEY DAVIDSON",
-            "link": "/collections/all"
+            "link": "shopify://collections/harley-davidson"
           }
         },
         "brand_pokemon": {
           "type": "brand",
           "settings": {
             "name": "POKEMON",
-            "link": "/collections/all"
+            "link": "shopify://collections/pokemon"
           }
         }
       },
