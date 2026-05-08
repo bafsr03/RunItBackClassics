@@ -1026,19 +1026,19 @@
   .rb-header-info__center { display: block; }
 }
 
-/* Header shell: always dark */
+/* Header shell: matches the shop-strip background so the two blend together. */
 #header-group header,
 #header-group .header-section,
 #header-group .color-scheme-5,
 #header-group [class*="color-scheme-5"] {
-  background: var(--rb-dark) !important;
+  background: #0d0d0d !important;
 }
 
 /* Sticky header: add border + shadow */
 #header-group header.header--sticky,
 #header-group .header--sticky,
 #header-group .header-section.header--sticky {
-  background: var(--rb-dark) !important;
+  background: #0d0d0d !important;
   box-shadow: 0 4px 24px rgba(0,0,0,0.5) !important;
   border-bottom: 1px solid var(--rb-border) !important;
 }
@@ -1072,30 +1072,88 @@
   background: var(--rb-lime) !important;
   color: var(--rb-black) !important;
 }
-/* Horizon header — taller row + larger logo at the top of the page. */
+/* Horizon header — taller row + oversized logo that overlaps both the
+   header and the shop strip below it. The logo image is sized to roughly
+   the combined height of header (110px) + strip (~38px) so it visually
+   spans both rows; the header allows overflow and the logo sits above the
+   strip via z-index. The strip's own logo stays hidden until stuck and
+   then fades in once the page scrolls past the header. */
+/* Header section sits above the shop strip so the overflowing logo isn't
+   clipped by it. Strip wrapper is z-index:9999, so we go higher. */
+#header-group .header-section,
+#header-group header-component,
+#header-group header {
+  position: relative;
+  z-index: 10000 !important;
+}
+
 @media (min-width: 990px) {
   #header-group header-component,
   #header-group .header {
     --header-height: 110px !important;
+    overflow: visible !important;
+  }
+  #header-group .header-section,
+  #header-group header {
+    overflow: visible !important;
   }
 
   #header-group .header[transparent] {
     position: relative !important;
   }
 
-  /* Larger logo image — overrides the inline width/height vars */
+  /* Centered logo block — let it spill out of the header bounds. */
+  #header-group .header-logo {
+    position: relative;
+    z-index: 10001;
+    overflow: visible !important;
+    height: auto !important;
+    align-self: center;
+    pointer-events: auto;
+  }
+  #header-group .header-logo__image-container {
+    overflow: visible !important;
+    line-height: 0;
+  }
+
+  /* Logo image — straddles the header + shop strip. Sized within the
+     theme's available 3x source resolution (logo_height: 36 → 3x ≈ 108)
+     so the image stays sharp. */
   #header-group .header-logo__image {
-    height: 72px !important;
+    height: 84px !important;
     width: auto !important;
     max-width: none !important;
+    filter: invert(1);
+    mix-blend-mode: screen;
+    object-fit: contain;
+    transform: translateY(16px);
   }
 }
 
 @media (max-width: 989px) {
+  #header-group header-component,
+  #header-group .header,
+  #header-group .header-section,
+  #header-group header {
+    overflow: visible !important;
+  }
+  #header-group .header-logo {
+    position: relative;
+    z-index: 10001;
+    overflow: visible !important;
+  }
+  #header-group .header-logo__image-container {
+    overflow: visible !important;
+    line-height: 0;
+  }
   #header-group .header-logo__image {
-    height: 44px !important;
+    height: 54px !important;
     width: auto !important;
     max-width: none !important;
+    filter: invert(1);
+    mix-blend-mode: screen;
+    object-fit: contain;
+    transform: translateY(10px);
   }
 }
 
