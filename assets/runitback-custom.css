@@ -1131,30 +1131,61 @@
 }
 
 @media (max-width: 989px) {
-  #header-group header-component,
-  #header-group .header,
-  #header-group .header-section,
-  #header-group header {
-    overflow: visible !important;
-  }
+  /* Mobile: shop strip is hidden, so don't push the logo below the header.
+     Keep the logo sized to fit cleanly inside the header row. */
   #header-group .header-logo {
     position: relative;
     z-index: 10001;
-    overflow: visible !important;
-  }
-  #header-group .header-logo__image-container {
-    overflow: visible !important;
-    line-height: 0;
   }
   #header-group .header-logo__image {
-    height: 54px !important;
+    height: 44px !important;
     width: auto !important;
     max-width: none !important;
     filter: invert(1);
     mix-blend-mode: screen;
     object-fit: contain;
-    transform: translateY(10px);
+    transform: none;
   }
+}
+
+/* ================================================================
+   MOBILE MENU DRAWER — force dark theme to match the header
+   ================================================================ */
+.menu-drawer,
+.menu-drawer .menu-drawer__navigation,
+.menu-drawer .menu-drawer__menu,
+dialog.menu-drawer {
+  background: #0d0d0d !important;
+  color: var(--rb-white, #ffffff) !important;
+}
+
+.menu-drawer .menu-drawer__menu-item,
+.menu-drawer .menu-drawer__menu-item-text,
+.menu-drawer a,
+.menu-drawer summary,
+.menu-drawer button {
+  color: var(--rb-white, #ffffff) !important;
+}
+
+.menu-drawer .menu-drawer__menu-item--active {
+  color: var(--rb-lime, #c8f135) !important;
+}
+
+.menu-drawer .menu-drawer__list-item--divider,
+.menu-drawer .menu-drawer__menu-item {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.menu-drawer .menu-drawer__close-button,
+.menu-drawer .header-drawer-icon,
+.menu-drawer svg {
+  color: var(--rb-white, #ffffff) !important;
+  fill: currentColor;
+}
+
+.menu-drawer .menu-drawer__menu-item:hover,
+.menu-drawer a:hover {
+  color: var(--rb-lime, #c8f135) !important;
 }
 
 /* ================================================================
