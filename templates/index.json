@@ -114,28 +114,32 @@
           "type": "brand",
           "settings": {
             "name": "NIKE",
-            "link": "shopify://collections/nike"
+            "link": "shopify://collections/nike",
+            "logo": "shopify://shop_images/Nike-Logo.png"
           }
         },
         "brand_tommy": {
           "type": "brand",
           "settings": {
             "name": "TOMMY HILFIGER",
-            "link": "shopify://collections/tommy-hilfiger"
+            "link": "shopify://collections/tommy-hilfiger",
+            "logo": "shopify://shop_images/1fa51e08788d5d079991a6ee1be1fd79-Photoroom.png"
           }
         },
         "brand_harley": {
           "type": "brand",
           "settings": {
             "name": "HARLEY DAVIDSON",
-            "link": "shopify://collections/harley-davidson"
+            "link": "shopify://collections/harley-davidson",
+            "logo": "shopify://shop_images/harley-davidson-logo-png_seeklogo-65369-Photoroom.png"
           }
         },
         "brand_pokemon": {
           "type": "brand",
           "settings": {
             "name": "POKEMON",
-            "link": "shopify://collections/pokemon"
+            "link": "shopify://collections/pokemon",
+            "logo": "shopify://shop_images/pokemonlogo.png"
           }
         }
       },
