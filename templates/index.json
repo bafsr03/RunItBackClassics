@@ -78,24 +78,24 @@
     "rb_brands": {
       "type": "runitback-brands",
       "blocks": {
-        "brand_nike": {
+        "brand_jordan": {
           "type": "brand",
           "settings": {
-            "name": "NIKE",
+            "name": "JORDAN",
             "link": "/collections/all"
           }
         },
-        "brand_adidas": {
+        "brand_supreme": {
           "type": "brand",
           "settings": {
-            "name": "ADIDAS",
+            "name": "SUPREME",
             "link": "/collections/all"
           }
         },
-        "brand_champ": {
+        "brand_bape": {
           "type": "brand",
           "settings": {
-            "name": "CHAMPION",
+            "name": "A BATHING APE",
             "link": "/collections/all"
           }
         },
@@ -106,17 +106,10 @@
             "link": "/collections/all"
           }
         },
-        "brand_tnf": {
+        "brand_nike": {
           "type": "brand",
           "settings": {
-            "name": "THE NORTH FACE",
-            "link": "/collections/all"
-          }
-        },
-        "brand_rl": {
-          "type": "brand",
-          "settings": {
-            "name": "RALPH LAUREN",
+            "name": "NIKE",
             "link": "/collections/all"
           }
         },
@@ -127,55 +120,30 @@
             "link": "/collections/all"
           }
         },
-        "brand_pata": {
+        "brand_harley": {
           "type": "brand",
           "settings": {
-            "name": "PATAGONIA",
+            "name": "HARLEY DAVIDSON",
             "link": "/collections/all"
           }
         },
-        "brand_arc": {
+        "brand_pokemon": {
           "type": "brand",
           "settings": {
-            "name": "ARC'TERYX",
-            "link": "/collections/all"
-          }
-        },
-        "brand_dick": {
-          "type": "brand",
-          "settings": {
-            "name": "DICKIES",
-            "link": "/collections/all"
-          }
-        },
-        "brand_stussy": {
-          "type": "brand",
-          "settings": {
-            "name": "STÜSSY",
-            "link": "/collections/all"
-          }
-        },
-        "brand_nb": {
-          "type": "brand",
-          "settings": {
-            "name": "NEW BALANCE",
+            "name": "POKEMON",
             "link": "/collections/all"
           }
         }
       },
       "block_order": [
-        "brand_nike",
-        "brand_adidas",
-        "brand_champ",
+        "brand_jordan",
+        "brand_supreme",
+        "brand_bape",
         "brand_carh",
-        "brand_tnf",
-        "brand_rl",
+        "brand_nike",
         "brand_tommy",
-        "brand_pata",
-        "brand_arc",
-        "brand_dick",
-        "brand_stussy",
-        "brand_nb"
+        "brand_harley",
+        "brand_pokemon"
       ],
       "name": "Brand Grid",
       "settings": {

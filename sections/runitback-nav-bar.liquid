@@ -6,27 +6,44 @@
 -%}
 
 <style>
+  /*
+   * STICKY STRATEGY
+   * ───────────────
+   * #header-group is NOT sticky — it just wraps everything.
+   * The nav bar section itself is sticky at top:0.
+   * The shop strip section is sticky at top:60px (nav bar height).
+   * The announcement bar and Horizon header scroll away naturally.
+   * No overflow:hidden, no max-height, no JS needed.
+   */
+
   #header-group {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 2147483647 !important;
-    background: #000000 !important;
+    position: relative !important;
+    z-index: 200;
     width: 100%;
   }
 
-  #shopify-section-header_section {
-    position: relative !important;
+  /* Nav bar section: pins to top of viewport when reached */
+  #shopify-section-{{ section.id }} {
+    position: sticky !important;
     top: 0 !important;
-    z-index: 10001 !important;
+    z-index: 9999 !important;
+    background: #000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  #shopify-section-{{ section.id }} {
-    position: relative !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    z-index: 10000 !important;
+  /* Shop strip: pins just below the nav bar (60px = nav bar height) */
+  #shopify-section-rb_shop_strip {
+    position: sticky !important;
+    top: 60px !important;
+    z-index: 9998 !important;
+    background: #0d0d0d !important;
+  }
+
+  /* Hide Horizon's default header logo — our nav bar has the logo */
+  .header__heading-logo,
+  .header-logo {
+    display: none !important;
   }
 </style>
 
@@ -70,8 +87,10 @@
       {%- endfor -%}
     </ul>
 
-    {%- comment -%} CENTER LOGO {%- endcomment -%}
+    {%- comment -%} CENTER — spacer holds logo column width {%- endcomment -%}
     <div class="rb-navb__spacer" aria-hidden="true"></div>
+
+    {%- comment -%} CENTER LOGO — absolute, centered in the nav bar {%- endcomment -%}
     <a href="{{ routes.root_url }}" class="rb-navb__logo" aria-label="{{ shop.name }} home">
       {%- if settings.logo != blank -%}
         {{- settings.logo
@@ -93,7 +112,7 @@
           <li class="rb-navb__item{% if link.links.size > 0 %} rb-navb__item--has-drop{% endif %}">
             <a
               href="{{ link.url }}"
-              class="rb-navb__link{% if link.current %} rb-navb__link--active{% endif %}{% if link.title == 'Sale' or link.title == 'SALE' or link.title == 'Rebajas' or link.title == 'REBAJAS' %} rb-navb__link--sale{% endif %}"
+              class="rb-navb__link{% if link.current %} rb-navb__link--active{% endif %}{% if link.title == 'Sale' or link.title == 'SALE' %} rb-navb__link--sale{% endif %}"
               {% if link.current %}aria-current="page"{% endif %}
             >
               {{- link.title -}}
@@ -124,35 +143,23 @@
 
 {% stylesheet %}
 /* ================================================================
-   RB NAV BAR — Rokit-style: items | LOGO badge | items
-   Light / white colourway — logo overflows below like Rokit
+   RB NAV BAR
    ================================================================ */
 
 .rb-navb {
   display: block;
-  background: transparent !important; /* Let #header-group handle the background */
-  border-bottom: none;
+  background: #000;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   position: relative;
-  --rb-logo-top-size: 112px;
-  --rb-logo-scrolled-size: 48px;
-  --rb-logo-current-size: var(--rb-logo-top-size);
-  z-index: 9999;
+  z-index: 1;
   overflow: visible;
 }
 
 @media (min-width: 990px) {
-  .rb-navb { 
-    display: block; 
-    position: relative; /* Now handled by #header-group stickiness */
-  }
-  
-  /* Hide default header logo on desktop to avoid overlap */
-  .header-logo {
-    display: none !important;
-  }
+  .rb-navb { display: block; }
 }
 
-/* ---- inner grid ---- */
+/* ── Inner grid: left list | logo spacer | right list ── */
 .rb-navb__inner {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -163,16 +170,12 @@
 }
 
 .rb-navb__spacer {
-  width: 180px; /* Space for the logo to prevent menu overlap */
+  width: 160px;
   height: 1px;
-  transition: width 0.4s ease;
+  flex-shrink: 0;
 }
 
-html.rb-navb-scrolled .rb-navb__spacer {
-  width: 100px; /* Smaller spacer when logo is small */
-}
-
-/* ---- nav lists ---- */
+/* ── Nav lists ── */
 .rb-navb__list {
   display: none;
   align-items: center;
@@ -189,7 +192,7 @@ html.rb-navb-scrolled .rb-navb__spacer {
 .rb-navb__list--left  { justify-content: flex-end; }
 .rb-navb__list--right { justify-content: flex-start; }
 
-/* ---- nav items ---- */
+/* ── Nav items ── */
 .rb-navb__item {
   position: relative;
   height: 100%;
@@ -197,56 +200,50 @@ html.rb-navb-scrolled .rb-navb__spacer {
   align-items: center;
 }
 
-/* ---- nav links ---- */
+/* ── Nav links ── */
 .rb-navb__link {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 0 20px;
+  padding: 0 18px;
   height: 100%;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255,255,255,0.6);
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.2s ease;
   position: relative;
 }
 
-/* lime bottom-bar indicator on hover / active */
 .rb-navb__link::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 20px;
-  right: 20px;
+  left: 18px;
+  right: 18px;
   height: 2px;
   background: #c8f135;
   transform: scaleX(0);
   transform-origin: center;
-  transition: transform 0.25s ease;
+  transition: transform 0.22s ease;
 }
 
 .rb-navb__link:hover,
-.rb-navb__link--active {
-  color: #ffffff;
-}
+.rb-navb__link--active { color: #fff; }
 
 .rb-navb__link:hover::after,
-.rb-navb__link--active::after {
-  transform: scaleX(1);
-}
+.rb-navb__link--active::after { transform: scaleX(1); }
 
-/* sale */
-.rb-navb__link--sale            { color: #ff2d2d !important; }
-.rb-navb__link--sale:hover      { color: #cc0000 !important; }
-.rb-navb__link--sale::after     { background: #ff2d2d; }
+.rb-navb__link--sale            { color: #ff3030 !important; }
+.rb-navb__link--sale:hover      { color: #ff0000 !important; }
+.rb-navb__link--sale::after     { background: #ff3030; }
 
-/* ---- caret ---- */
+/* ── Caret ── */
 .rb-navb__caret {
-  opacity: 0.45;
+  opacity: 0.4;
   flex-shrink: 0;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -255,14 +252,14 @@ html.rb-navb-scrolled .rb-navb__spacer {
   opacity: 1;
 }
 
-/* ---- dropdown ---- */
+/* ── Dropdown ── */
 .rb-navb__dropdown {
   position: absolute;
   top: 100%;
   left: 0;
   min-width: 200px;
   background: #181818;
-  border: 1px solid #2a2a2a;
+  border: 1px solid #222;
   border-top: 2px solid #c8f135;
   list-style: none;
   margin: 0;
@@ -271,8 +268,8 @@ html.rb-navb-scrolled .rb-navb__spacer {
   visibility: hidden;
   transform: translateY(-6px);
   transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-  z-index: 400;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  z-index: 500;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
 }
 
 .rb-navb__list--right .rb-navb__dropdown {
@@ -293,158 +290,67 @@ html.rb-navb-scrolled .rb-navb__spacer {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255,255,255,0.6);
   text-decoration: none;
   transition: color 0.15s ease, background 0.15s ease;
 }
 .rb-navb__dropdown-link:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  background: rgba(255,255,255,0.06);
 }
 
-/* ---- center logo ---- */
+/* ── Logo: absolutely centered in the 60px nav bar, same size always ── */
 .rb-navb__logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  height: var(--rb-logo-current-size);
+  height: 80px;
   width: auto;
-  position: absolute;
-  left: 50%;
-  top: 0; /* Center it on the boundary between header and navbar */
-  transform: translate(-50%, -50%);
-  z-index: 10000;
+  z-index: 10;
   text-decoration: none;
   mix-blend-mode: screen;
-  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-html.rb-navb-scrolled .rb-navb__logo {
-  top: 50%; /* Center it back in the navbar when small */
 }
 
 .rb-navb__logo-img {
   display: block;
-  max-height: var(--rb-logo-current-size);
+  height: 80px;
   width: auto;
-  transition: opacity 0.2s ease, max-height 0.3s ease;
   filter: invert(1);
-}
-.rb-navb__logo:hover .rb-navb__logo-img {
-  opacity: 0.72;
+  transition: opacity 0.2s ease;
 }
 
-/* wordmark fallback when no logo image is set */
+.rb-navb__logo:hover .rb-navb__logo-img { opacity: 0.75; }
+
 .rb-navb__wordmark {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 900;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #fff;
   white-space: nowrap;
   transition: color 0.2s ease;
 }
-.rb-navb__logo:hover .rb-navb__wordmark {
-  color: #c8f135;
-}
+.rb-navb__logo:hover .rb-navb__wordmark { color: #c8f135; }
 
-/* Keep logo large at page top, then shrink when scrolling */
-html.rb-navb-scrolled .rb-navb__logo {
-  height: var(--rb-logo-scrolled-size);
-}
-
-html:not(.rb-navb-scrolled) .rb-navb__logo {
-  height: var(--rb-logo-top-size);
-}
-
-html.rb-navb-scrolled .rb-navb__logo-img {
-  max-height: var(--rb-logo-scrolled-size);
-}
-
-html:not(.rb-navb-scrolled) .rb-navb {
-  --rb-logo-current-size: var(--rb-logo-top-size);
-}
-
+/* ── Mobile ── */
 @media (max-width: 989px) {
-  .rb-navb {
-    background: transparent;
-    z-index: 10001; /* Ensure it stays above header on mobile */
-  }
-  
-  .rb-navb__inner {
-    height: 60px;
-  }
-
-  .rb-navb__spacer {
-    display: none;
-  }
+  .rb-navb { background: #000; }
+  .rb-navb__spacer { display: none; }
 
   .rb-navb__logo {
-    position: absolute;
+    height: 52px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 64px;
   }
 
-  .rb-navb__logo-img {
-    max-height: 64px;
-    filter: invert(1);
-  }
+  .rb-navb__logo-img { height: 52px; }
 }
 {% endstylesheet %}
-
-<script>
-  (() => {
-    const scrolledClass = 'rb-navb-scrolled';
-    const threshold = 30;
-
-    // The header-group children in order:
-    // [0] announcement bar  [1] main header  [2] rb nav bar  [3] rb shop strip
-    const hg   = document.getElementById('header-group');
-    const ann  = hg && hg.children[0]; // announcement bar
-    const hdr  = hg && hg.children[1]; // main Horizon header
-
-    // Capture natural heights before any manipulation
-    const annH = ann ? ann.scrollHeight : 0;
-    const hdrH = hdr ? hdr.scrollHeight : 0;
-
-    // Prime both elements for smooth height collapse
-    if (ann) {
-      ann.style.maxHeight  = annH + 'px';
-      ann.style.overflow   = 'hidden';
-      ann.style.transition = 'max-height 0.32s ease, opacity 0.22s ease';
-    }
-    if (hdr) {
-      hdr.style.maxHeight  = hdrH + 'px';
-      hdr.style.overflow   = 'hidden';
-      hdr.style.transition = 'max-height 0.32s ease, opacity 0.22s ease';
-    }
-
-    const syncRbNavbarState = () => {
-      const scrolled = window.scrollY > threshold;
-
-      // Logo shrink class (used by CSS for logo size + spacer width)
-      document.documentElement.classList.toggle(scrolledClass, scrolled);
-
-      // Collapse announcement + main header; leave nav bar + shop strip visible
-      if (ann) {
-        ann.style.maxHeight = scrolled ? '0' : annH + 'px';
-        ann.style.opacity   = scrolled ? '0' : '';
-      }
-      if (hdr) {
-        hdr.style.maxHeight = scrolled ? '0' : hdrH + 'px';
-        hdr.style.opacity   = scrolled ? '0' : '';
-      }
-    };
-
-    syncRbNavbarState();
-    document.addEventListener('scroll', syncRbNavbarState, { passive: true });
-  })();
-</script>
 
 {% schema %}
 {
@@ -456,15 +362,13 @@ html:not(.rb-navb-scrolled) .rb-navb {
       "id": "menu",
       "label": "Navigation menu",
       "default": "main-menu",
-      "info": "Links are split automatically — first half on the left, second half on the right of the logo"
+      "info": "Links split automatically — first half left of logo, second half right"
     }
   ],
   "presets": [
     {
       "name": "RB — Nav Bar",
-      "settings": {
-        "menu": "main-menu"
-      }
+      "settings": { "menu": "main-menu" }
     }
   ]
 }

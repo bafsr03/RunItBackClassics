@@ -607,7 +607,7 @@
 
 @media (min-width: 540px)  { .rb-brands__grid { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 900px)  { .rb-brands__grid { grid-template-columns: repeat(4, 1fr); } }
-@media (min-width: 1200px) { .rb-brands__grid { grid-template-columns: repeat(6, 1fr); } }
+@media (min-width: 1200px) { .rb-brands__grid { grid-template-columns: repeat(4, 1fr); } }
 
 .rb-brand-card {
   background: var(--rb-dark);
