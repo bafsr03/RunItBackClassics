@@ -48,7 +48,7 @@
       "type": "runitback-new-drops",
       "name": "New Drops",
       "settings": {
-        "collection": "",
+        "collection": "new-drops",
         "eyebrow": "FRESHLY POSTED · ONE OF A KIND",
         "heading": "NEW DROPS",
         "view_all_label": "VIEW ALL",
