@@ -48,15 +48,15 @@
         "group_returns": {
           "type": "group",
           "settings": {
-            "group_title": "RETURNS & EXCHANGES",
+            "group_title": "ALL SALES FINAL",
             "q1": "What is your return policy?",
-            "a1": "We accept returns within 30 days of delivery for items in the same condition as shipped. Final sale / clearance items are non-refundable. See our full Refund Policy for complete details.",
+            "a1": "All sales are final. We do not offer refunds or exchanges on any items. Because every piece is one-of-a-kind vintage or pre-owned, condition details and measurements are listed on every product page — please review carefully before purchasing.",
             "q2": "My item arrived damaged — what do I do?",
-            "a2": "Contact us immediately through our Contact page or DM us on Instagram. We'll make it right. Please include your order number and photos of the damage.",
+            "a2": "If your order arrives damaged in transit, contact us within 48 hours of delivery via our Contact page or DM us on Instagram with your order number and clear photos of the damage. We'll review case-by-case.",
             "q3": "Can I exchange for a different size?",
-            "a3": "Since most of our pieces are one-of-a-kind vintage, exact size exchanges may not be possible. Contact us and we'll do our best to find a solution.",
-            "q4": "How long does a refund take?",
-            "a4": "Once we receive your return and confirm the condition, refunds are typically processed within 3–5 business days back to your original payment method."
+            "a3": "No. All sales are final and we do not offer size exchanges. Please double-check the measurements and condition notes on the product page before checking out.",
+            "q4": "Do you ever offer refunds?",
+            "a4": "No. All sales are final — no refunds, no store credit, no exchanges. The only exception is verified shipping damage reported within 48 hours of delivery, which is handled case-by-case."
           }
         },
         "group_auctions": {

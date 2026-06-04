@@ -13,7 +13,7 @@
       "type": "runitback-hero",
       "name": "Hero",
       "settings": {
-        "eyebrow": "EST. 2024 · VINTAGE STREETWEAR",
+        "eyebrow": "EST. 2020 · VINTAGE STREETWEAR",
         "title_line_1": "RUNITBACK",
         "title_line_2": "CLASSICS",
         "subtitle": "Premium thrifted fits curated from the culture. One-of-a-kind pieces, always.",
@@ -193,9 +193,9 @@
         "feat_ret": {
           "type": "feature",
           "settings": {
-            "icon": "🔄",
-            "title": "Easy Returns",
-            "text": "30-day hassle-free return policy."
+            "icon": "🔒",
+            "title": "All Sales Final",
+            "text": "No refunds or exchanges — inspected before ship."
           }
         },
         "feat_sust": {

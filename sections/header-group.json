@@ -43,7 +43,7 @@
         "announcement_3": {
           "type": "_announcement",
           "settings": {
-            "text": "100% Authentic Vintage — Easy 30-Day Returns",
+            "text": "100% Authentic Vintage — All Sales Final",
             "link": "/policies/refund-policy",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
