@@ -17,7 +17,8 @@
 
     {%- if drops_col != blank and drops_col.products_count > 0 -%}
       <div class="rb-new-drops__grid">
-        {%- for product in drops_col.products limit: section.settings.max_products -%}
+        {%- assign sorted_drops = drops_col.products | sort: 'created_at' | reverse -%}
+        {%- for product in sorted_drops limit: section.settings.max_products -%}
           {%- assign is_sold = false -%}
           {%- unless product.available -%}{%- assign is_sold = true -%}{%- endunless -%}
           {%- assign size = product.variants.first.option1 -%}
@@ -336,7 +337,7 @@
       "min": 4,
       "max": 12,
       "step": 4,
-      "default": 8
+      "default": 4
     },
     {
       "type": "text",
@@ -352,7 +353,7 @@
         "eyebrow": "FRESHLY POSTED · ONE OF A KIND",
         "heading": "NEW DROPS",
         "view_all_label": "VIEW ALL",
-        "max_products": 8,
+        "max_products": 4,
         "instagram_handle": "runitbackclassicsllc"
       }
     }
