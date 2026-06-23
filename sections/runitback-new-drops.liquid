@@ -23,6 +23,14 @@
         {%- for product in drops_source limit: section.settings.max_products -%}
           {%- assign is_sold = false -%}
           {%- unless product.available -%}{%- assign is_sold = true -%}{%- endunless -%}
+          {%- comment -%} Only badge as "JUST DROPPED" if added within the last N days {%- endcomment -%}
+          {%- assign badge_days = section.settings.new_badge_days | default: 14 -%}
+          {%- assign new_window = badge_days | times: 86400 -%}
+          {%- assign now_seconds = 'now' | date: '%s' | plus: 0 -%}
+          {%- assign created_seconds = product.created_at | date: '%s' | plus: 0 -%}
+          {%- assign product_age = now_seconds | minus: created_seconds -%}
+          {%- assign is_new = false -%}
+          {%- if product_age <= new_window -%}{%- assign is_new = true -%}{%- endif -%}
           {%- assign size = product.variants.first.option1 -%}
           {%- if size == 'Default Title' -%}{%- assign size = '' -%}{%- endif -%}
 
@@ -43,11 +51,11 @@
                   <div class="rb-drop-card__img-placeholder"></div>
                 {%- endif -%}
 
-                {%- unless is_sold -%}
-                  <div class="rb-drop-card__stamp" aria-hidden="true">JUST<br>DROPPED</div>
-                {%- else -%}
+                {%- if is_sold -%}
                   <div class="rb-drop-card__sold-overlay" aria-hidden="true"><span>SOLD</span></div>
-                {%- endunless -%}
+                {%- elsif is_new -%}
+                  <div class="rb-drop-card__stamp" aria-hidden="true">JUST<br>DROPPED</div>
+                {%- endif -%}
 
                 {%- if size != blank -%}
                   <div class="rb-drop-card__size" aria-label="Size {{ size }}">{{ size }}</div>
@@ -340,6 +348,17 @@
       "max": 12,
       "step": 4,
       "default": 4
+    },
+    {
+      "type": "range",
+      "id": "new_badge_days",
+      "label": "\"Just dropped\" badge window (days)",
+      "info": "Only products added within this many days show the JUST DROPPED stamp.",
+      "min": 3,
+      "max": 30,
+      "step": 1,
+      "unit": "d",
+      "default": 14
     },
     {
       "type": "text",
