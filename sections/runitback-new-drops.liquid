@@ -1,4 +1,7 @@
 {%- assign drops_col = collections[section.settings.collection] -%}
+{%- comment -%} Auto-source: newest products storewide so new uploads appear without manual collection edits {%- endcomment -%}
+{%- assign drops_source = collections.all.products | sort: 'created_at' | reverse -%}
+{%- assign drops_count = drops_source | size -%}
 
 <section class="rb-new-drops" id="rb-new-drops-{{ section.id }}">
   <div class="rb-new-drops__inner">
@@ -15,10 +18,9 @@
       {%- endif -%}
     </div>
 
-    {%- if drops_col != blank and drops_col.products_count > 0 -%}
+    {%- if drops_count > 0 -%}
       <div class="rb-new-drops__grid">
-        {%- assign sorted_drops = drops_col.products | sort: 'created_at' | reverse -%}
-        {%- for product in sorted_drops limit: section.settings.max_products -%}
+        {%- for product in drops_source limit: section.settings.max_products -%}
           {%- assign is_sold = false -%}
           {%- unless product.available -%}{%- assign is_sold = true -%}{%- endunless -%}
           {%- assign size = product.variants.first.option1 -%}
@@ -309,8 +311,8 @@
     {
       "type": "collection",
       "id": "collection",
-      "label": "Drops collection",
-      "info": "Create a smart collection with condition: tag = new-drop, then select it here."
+      "label": "Drops collection ('View all' link only)",
+      "info": "The grid now auto-shows your newest products storewide — new uploads appear automatically. This collection only sets the 'View all' link target."
     },
     {
       "type": "text",
