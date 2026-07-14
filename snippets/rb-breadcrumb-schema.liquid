@@ -1,0 +1,59 @@
+{% doc %}
+  Emits BreadcrumbList JSON-LD on collection and product pages for rich-result breadcrumbs.
+  Rendered from layout/theme.liquid <head>. Uses global `collection` / `product` objects.
+{% enddoc %}
+{%- if request.page_type == 'collection' or request.page_type == 'product' -%}
+  {%- liquid
+    capture list
+      echo '{"@type":"ListItem","position":1,"name":"Home","item":'
+      echo shop.url | json
+      echo '}'
+    endcapture
+    assign pos = 1
+
+    if request.page_type == 'collection' and collection
+      assign pos = pos | plus: 1
+      capture crumb
+        echo ',{"@type":"ListItem","position":'
+        echo pos
+        echo ',"name":'
+        echo collection.title | strip_html | json
+        echo ',"item":'
+        echo shop.url | append: collection.url | json
+        echo '}'
+      endcapture
+      assign list = list | append: crumb
+    endif
+
+    if request.page_type == 'product' and product
+      assign parent_collection = product.collections.first
+      if parent_collection
+        assign pos = pos | plus: 1
+        capture crumb
+          echo ',{"@type":"ListItem","position":'
+          echo pos
+          echo ',"name":'
+          echo parent_collection.title | strip_html | json
+          echo ',"item":'
+          echo shop.url | append: parent_collection.url | json
+          echo '}'
+        endcapture
+        assign list = list | append: crumb
+      endif
+      assign pos = pos | plus: 1
+      capture crumb
+        echo ',{"@type":"ListItem","position":'
+        echo pos
+        echo ',"name":'
+        echo product.title | strip_html | json
+        echo ',"item":'
+        echo shop.url | append: product.url | json
+        echo '}'
+      endcapture
+      assign list = list | append: crumb
+    endif
+  -%}
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{ list }}]}
+  </script>
+{%- endif -%}
