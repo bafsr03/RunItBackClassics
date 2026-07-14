@@ -330,7 +330,8 @@
     class="header__underlay header__underlay-open"
   ></div>
   {%- if request.page_type == 'index' -%}
-    <h1 class="visually-hidden">{{ shop.name }}</h1>
+    {%- comment -%} SEO: hero section provides the homepage H1; keep this as accessible text only to avoid a duplicate H1. {%- endcomment -%}
+    <span class="visually-hidden">{{ shop.name }}</span>
   {%- endif -%}
   {% for row in rows %}
     {% liquid
