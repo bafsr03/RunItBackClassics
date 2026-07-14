@@ -58,6 +58,40 @@
   </div>
 </section>
 
+{%- liquid
+  # SEO: emit FAQPage structured data from the FAQ group blocks for rich results.
+  assign faq_items = ''
+  for block in section.blocks
+    if block.type == 'group'
+      for i in (1..6)
+        assign q_key = 'q' | append: i
+        assign a_key = 'a' | append: i
+        assign q = block.settings[q_key]
+        assign a = block.settings[a_key]
+        if q != blank and a != blank
+          capture faq_item
+            echo '{"@type":"Question","name":'
+            echo q | strip_html | json
+            echo ',"acceptedAnswer":{"@type":"Answer","text":'
+            echo a | strip_html | json
+            echo '}}'
+          endcapture
+          if faq_items == ''
+            assign faq_items = faq_item
+          else
+            assign faq_items = faq_items | append: ',' | append: faq_item
+          endif
+        endif
+      endfor
+    endif
+  endfor
+-%}
+{%- if faq_items != '' -%}
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{{ faq_items }}]}
+  </script>
+{%- endif -%}
+
 <style>
   .rb-faq {
     position: relative;
