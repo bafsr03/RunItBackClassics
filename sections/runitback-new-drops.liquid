@@ -1,4 +1,7 @@
 {%- assign drops_col = collections[section.settings.collection] -%}
+{%- comment -%} Auto-source: newest products storewide so new uploads appear without manual collection edits {%- endcomment -%}
+{%- assign drops_source = collections.all.products | sort: 'created_at' | reverse -%}
+{%- assign drops_count = drops_source | size -%}
 
 <section class="rb-new-drops" id="rb-new-drops-{{ section.id }}">
   <div class="rb-new-drops__inner">
@@ -15,11 +18,19 @@
       {%- endif -%}
     </div>
 
-    {%- if drops_col != blank and drops_col.products_count > 0 -%}
+    {%- if drops_count > 0 -%}
       <div class="rb-new-drops__grid">
-        {%- for product in drops_col.products limit: section.settings.max_products -%}
+        {%- for product in drops_source limit: section.settings.max_products -%}
           {%- assign is_sold = false -%}
           {%- unless product.available -%}{%- assign is_sold = true -%}{%- endunless -%}
+          {%- comment -%} Only badge as "JUST DROPPED" if added within the last N days {%- endcomment -%}
+          {%- assign badge_days = section.settings.new_badge_days | default: 14 -%}
+          {%- assign new_window = badge_days | times: 86400 -%}
+          {%- assign now_seconds = 'now' | date: '%s' | plus: 0 -%}
+          {%- assign created_seconds = product.created_at | date: '%s' | plus: 0 -%}
+          {%- assign product_age = now_seconds | minus: created_seconds -%}
+          {%- assign is_new = false -%}
+          {%- if product_age <= new_window -%}{%- assign is_new = true -%}{%- endif -%}
           {%- assign size = product.variants.first.option1 -%}
           {%- if size == 'Default Title' -%}{%- assign size = '' -%}{%- endif -%}
 
@@ -40,11 +51,11 @@
                   <div class="rb-drop-card__img-placeholder"></div>
                 {%- endif -%}
 
-                {%- unless is_sold -%}
-                  <div class="rb-drop-card__stamp" aria-hidden="true">JUST<br>DROPPED</div>
-                {%- else -%}
+                {%- if is_sold -%}
                   <div class="rb-drop-card__sold-overlay" aria-hidden="true"><span>SOLD</span></div>
-                {%- endunless -%}
+                {%- elsif is_new -%}
+                  <div class="rb-drop-card__stamp" aria-hidden="true">JUST<br>DROPPED</div>
+                {%- endif -%}
 
                 {%- if size != blank -%}
                   <div class="rb-drop-card__size" aria-label="Size {{ size }}">{{ size }}</div>
@@ -308,8 +319,8 @@
     {
       "type": "collection",
       "id": "collection",
-      "label": "Drops collection",
-      "info": "Create a smart collection with condition: tag = new-drop, then select it here."
+      "label": "Drops collection ('View all' link only)",
+      "info": "The grid now auto-shows your newest products storewide — new uploads appear automatically. This collection only sets the 'View all' link target."
     },
     {
       "type": "text",
@@ -336,7 +347,18 @@
       "min": 4,
       "max": 12,
       "step": 4,
-      "default": 8
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "new_badge_days",
+      "label": "\"Just dropped\" badge window (days)",
+      "info": "Only products added within this many days show the JUST DROPPED stamp.",
+      "min": 3,
+      "max": 30,
+      "step": 1,
+      "unit": "d",
+      "default": 14
     },
     {
       "type": "text",
@@ -352,7 +374,7 @@
         "eyebrow": "FRESHLY POSTED · ONE OF A KIND",
         "heading": "NEW DROPS",
         "view_all_label": "VIEW ALL",
-        "max_products": 8,
+        "max_products": 4,
         "instagram_handle": "runitbackclassicsllc"
       }
     }
