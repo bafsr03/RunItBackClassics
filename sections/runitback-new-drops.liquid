@@ -20,7 +20,27 @@
 
     {%- if drops_count > 0 -%}
       <div class="rb-new-drops__grid">
-        {%- for product in drops_source limit: section.settings.max_products -%}
+        {%- comment -%}
+          Dedupe before rendering: the drops app can ingest the same physical item twice
+          (same SKU, second handle suffixed -1), which would otherwise show it as two cards.
+          Key on SKU, falling back to title + size for items with no SKU yet.
+        {%- endcomment -%}
+        {%- assign seen_keys = '' -%}
+        {%- assign drops_shown = 0 -%}
+        {%- for product in drops_source -%}
+          {%- if drops_shown >= section.settings.max_products -%}{%- break -%}{%- endif -%}
+
+          {%- assign drop_sku = product.variants.first.sku | strip -%}
+          {%- if drop_sku != blank -%}
+            {%- assign dedupe_key = drop_sku | downcase -%}
+          {%- else -%}
+            {%- assign dedupe_key = product.title | append: '::' | append: product.variants.first.option1 | downcase | strip -%}
+          {%- endif -%}
+          {%- assign dedupe_probe = '|' | append: dedupe_key | append: '|' -%}
+          {%- if seen_keys contains dedupe_probe -%}{%- continue -%}{%- endif -%}
+          {%- assign seen_keys = seen_keys | append: dedupe_probe -%}
+          {%- assign drops_shown = drops_shown | plus: 1 -%}
+
           {%- assign is_sold = false -%}
           {%- unless product.available -%}{%- assign is_sold = true -%}{%- endunless -%}
           {%- comment -%} Only badge as "JUST DROPPED" if added within the last N days {%- endcomment -%}
