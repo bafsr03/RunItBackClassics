@@ -30,6 +30,12 @@ export default class PaginatedList extends Component {
   /** @type {((value: void) => void) | null} */
   #resolvePreviousPagePromise = null;
 
+  /** @type {boolean} Guards against overlapping next-page renders appending the same page twice */
+  #isRenderingNext = false;
+
+  /** @type {boolean} Guards against overlapping previous-page renders prepending the same page twice */
+  #isRenderingPrevious = false;
+
   /** @type {PaginatedListAspectRatioHelper} */
   #aspectRatioHelper;
 
@@ -167,31 +173,41 @@ export default class PaginatedList extends Component {
   async #renderNextPage() {
     const { grid } = this.refs;
 
-    if (!grid) return;
+    if (!grid || this.#isRenderingNext) return;
 
     const nextPage = this.#getPage('next');
 
-    if (!nextPage || !this.#shouldUsePage(nextPage)) return;
-    let nextPageItemElements = this.#getGridForPage(nextPage.page);
+    if (!nextPage || !this.#shouldUsePage(nextPage) || this.#isPageRendered(nextPage.page)) return;
 
-    if (!nextPageItemElements) {
-      const promise = new Promise((res) => {
-        this.#resolveNextPagePromise = res;
-      });
+    this.#isRenderingNext = true;
 
-      // Trigger the fetch for this page
-      this.#fetchPage('next');
+    try {
+      let nextPageItemElements = this.#getGridForPage(nextPage.page);
 
-      await promise;
-      nextPageItemElements = this.#getGridForPage(nextPage.page);
-      if (!nextPageItemElements) return;
+      if (!nextPageItemElements) {
+        const promise = new Promise((res) => {
+          this.#resolveNextPagePromise = res;
+        });
+
+        // Trigger the fetch for this page
+        this.#fetchPage('next');
+
+        await promise;
+        nextPageItemElements = this.#getGridForPage(nextPage.page);
+        if (!nextPageItemElements) return;
+      }
+
+      // The grid may have changed while awaiting the fetch (filter update, another render)
+      if (this.#isPageRendered(nextPage.page)) return;
+
+      grid.append(...nextPageItemElements);
+
+      this.#aspectRatioHelper.processNewElements();
+
+      history.pushState('', '', nextPage.url.toString());
+    } finally {
+      this.#isRenderingNext = false;
     }
-
-    grid.append(...nextPageItemElements);
-
-    this.#aspectRatioHelper.processNewElements();
-
-    history.pushState('', '', nextPage.url.toString());
 
     requestIdleCallback(() => {
       this.#fetchPage('next');
@@ -203,43 +219,54 @@ export default class PaginatedList extends Component {
 
     if (!grid) return;
 
+    if (this.#isRenderingPrevious) return;
+
     const previousPage = this.#getPage('previous');
-    if (!previousPage || !this.#shouldUsePage(previousPage)) return;
+    if (!previousPage || !this.#shouldUsePage(previousPage) || this.#isPageRendered(previousPage.page)) return;
 
-    let previousPageItemElements = this.#getGridForPage(previousPage.page);
-    if (!previousPageItemElements) {
-      const promise = new Promise((res) => {
-        this.#resolvePreviousPagePromise = res;
-      });
+    this.#isRenderingPrevious = true;
 
-      // Trigger the fetch for this page
-      this.#fetchPage('previous');
+    try {
+      let previousPageItemElements = this.#getGridForPage(previousPage.page);
+      if (!previousPageItemElements) {
+        const promise = new Promise((res) => {
+          this.#resolvePreviousPagePromise = res;
+        });
 
-      await promise;
-      previousPageItemElements = this.#getGridForPage(previousPage.page);
-      if (!previousPageItemElements) return;
-    }
+        // Trigger the fetch for this page
+        this.#fetchPage('previous');
 
-    // Store the current scroll position and height of the first element
-    const scrollTop = window.scrollY;
-    const firstElement = grid.firstElementChild;
-    const oldHeight = firstElement ? firstElement.getBoundingClientRect().top + window.scrollY : 0;
+        await promise;
+        previousPageItemElements = this.#getGridForPage(previousPage.page);
+        if (!previousPageItemElements) return;
+      }
 
-    // Prepend the new elements
-    grid.prepend(...previousPageItemElements);
+      // The grid may have changed while awaiting the fetch (filter update, another render)
+      if (this.#isPageRendered(previousPage.page)) return;
 
-    this.#aspectRatioHelper.processNewElements();
+      // Store the current scroll position and height of the first element
+      const scrollTop = window.scrollY;
+      const firstElement = grid.firstElementChild;
+      const oldHeight = firstElement ? firstElement.getBoundingClientRect().top + window.scrollY : 0;
 
-    history.pushState('', '', previousPage.url.toString());
+      // Prepend the new elements
+      grid.prepend(...previousPageItemElements);
 
-    // Calculate and adjust scroll position to maintain the same view
-    if (firstElement) {
-      const newHeight = firstElement.getBoundingClientRect().top + window.scrollY;
-      const heightDiff = newHeight - oldHeight;
-      window.scrollTo({
-        top: scrollTop + heightDiff,
-        behavior: 'instant',
-      });
+      this.#aspectRatioHelper.processNewElements();
+
+      history.pushState('', '', previousPage.url.toString());
+
+      // Calculate and adjust scroll position to maintain the same view
+      if (firstElement) {
+        const newHeight = firstElement.getBoundingClientRect().top + window.scrollY;
+        const heightDiff = newHeight - oldHeight;
+        window.scrollTo({
+          top: scrollTop + heightDiff,
+          behavior: 'instant',
+        });
+      }
+    } finally {
+      this.#isRenderingPrevious = false;
     }
 
     requestIdleCallback(() => {
@@ -252,10 +279,14 @@ export default class PaginatedList extends Component {
    * @returns {{ page: number, url: URL } | undefined}
    */
   #getPage(type) {
-    const { cards } = this.refs;
     const isPrevious = type === 'previous';
 
-    if (!Array.isArray(cards)) return;
+    // Read the grid directly rather than the `cards` ref: the ref is updated by a mutation
+    // observer, so right after an append it can still describe the pre-append grid, which
+    // would make us resolve — and append — the same page a second time.
+    const cards = this.#renderedCards;
+
+    if (!cards.length) return;
 
     const targetCard = cards[isPrevious ? 0 : cards.length - 1];
 
@@ -272,6 +303,28 @@ export default class PaginatedList extends Component {
       page,
       url,
     };
+  }
+
+  /**
+   * The cards currently in the grid, in DOM order.
+   * @returns {HTMLElement[]}
+   */
+  get #renderedCards() {
+    const { grid } = this.refs;
+
+    if (!grid) return [];
+
+    return /** @type {HTMLElement[]} */ ([...grid.querySelectorAll(':scope > [ref="cards[]"]')]);
+  }
+
+  /**
+   * Whether a page's cards are already in the grid. Appending a page twice is what makes
+   * products show up more than once while infinite-scrolling.
+   * @param {number} page
+   * @returns {boolean}
+   */
+  #isPageRendered(page) {
+    return this.#renderedCards.some((card) => Number(card.dataset.page) === page);
   }
 
   /**
