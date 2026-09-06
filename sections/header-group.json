@@ -59,6 +59,7 @@
         "announcement_2",
         "announcement_3"
       ],
+      "disabled": true,
       "name": "Announcement Bar",
       "settings": {
         "speed": 4,
