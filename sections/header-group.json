@@ -14,19 +14,6 @@
     "header_announcements_9jGBFp": {
       "type": "header-announcements",
       "blocks": {
-        "announcement_1": {
-          "type": "_announcement",
-          "settings": {
-            "text": "Free Shipping on All Orders $75+ — Shop Now",
-            "link": "/collections/all",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "weight": "700",
-            "letter_spacing": "normal",
-            "case": "uppercase"
-          },
-          "blocks": {}
-        },
         "announcement_2": {
           "type": "_announcement",
           "settings": {
@@ -55,11 +42,9 @@
         }
       },
       "block_order": [
-        "announcement_1",
         "announcement_2",
         "announcement_3"
       ],
-      "disabled": true,
       "name": "Announcement Bar",
       "settings": {
         "speed": 4,
