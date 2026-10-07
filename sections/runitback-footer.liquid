@@ -95,16 +95,37 @@
   {%- comment -%} ── SEO TAGS ROW ── {%- endcomment -%}
   {%- if section.settings.seo_links != blank -%}
     {%- assign seo_items = section.settings.seo_links | split: '|' -%}
-    <div class="rb-foot__seo">
-      <div class="rb-container rb-foot__seo-inner">
-        {%- for item in seo_items -%}
-          {%- assign parts = item | split: '::' -%}
-          {%- assign seo_label = parts[0] | strip -%}
-          {%- assign seo_url   = parts[1] | strip | default: '/collections/all' -%}
+    {%- capture seo_links_markup -%}
+      {%- for item in seo_items -%}
+        {%- liquid
+          assign parts = item | split: '::'
+          assign seo_label = parts[0] | strip
+          assign seo_url   = parts[1] | strip | default: '/collections/all'
+          # Skip links to a collection that doesn't exist or has no products (thin / soft-404 pages),
+          # same rule as sections/runitback-brands.liquid. Links reappear once the collection is stocked.
+          assign seo_is_empty = false
+          if seo_url contains '/collections/'
+            assign seo_handle = seo_url | split: '/collections/' | last | split: '?' | first | split: '/' | first
+            unless seo_handle == 'all'
+              assign seo_collection = collections[seo_handle]
+              if seo_collection == blank or seo_collection.products_count == 0
+                assign seo_is_empty = true
+              endif
+            endunless
+          endif
+        -%}
+        {%- if seo_label != blank and seo_is_empty == false -%}
           <a href="{{ seo_url }}" class="rb-foot__seo-link">{{ seo_label }}</a>
-        {%- endfor -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if seo_links_markup != blank -%}
+      <div class="rb-foot__seo">
+        <div class="rb-container rb-foot__seo-inner">
+          {{- seo_links_markup -}}
+        </div>
       </div>
-    </div>
+    {%- endif -%}
   {%- endif -%}
 
   {%- comment -%} ── BOTTOM BAR ── {%- endcomment -%}
@@ -403,7 +424,7 @@
       "id": "seo_links",
       "label": "SEO links (Label::URL separated by |)",
       "info": "Format: Vintage Nike::/collections/nike | Vintage Adidas::/collections/adidas",
-      "default": "Vintage Nike::/collections/all|Vintage Adidas::/collections/all|Vintage Champion::/collections/all|Vintage Carhartt::/collections/all|Vintage Ralph Lauren::/collections/all|Vintage Tommy Hilfiger::/collections/all|Vintage The North Face::/collections/all"
+      "default": "Vintage Nike::/collections/nike|Vintage Adidas::/collections/adidas|Vintage Champion::/collections/champion|Vintage Carhartt::/collections/carhartt|Vintage Ralph Lauren::/collections/ralph-lauren|Vintage Tommy Hilfiger::/collections/tommy-hilfiger|Vintage The North Face::/collections/the-north-face"
     }
   ],
   "blocks": [
@@ -456,7 +477,7 @@
       "settings": {
         "tagline": "Vintage Streetwear · DJ Culture · Premium Thrift",
         "copyright_text": "Runitback Classics. All rights reserved.",
-        "seo_links": "Vintage Nike::/collections/all|Vintage Adidas::/collections/all|Vintage Champion::/collections/all|Vintage Carhartt::/collections/all|Vintage Ralph Lauren::/collections/all|Vintage Tommy Hilfiger::/collections/all|Vintage The North Face::/collections/all"
+        "seo_links": "Vintage Nike::/collections/nike|Vintage Adidas::/collections/adidas|Vintage Champion::/collections/champion|Vintage Carhartt::/collections/carhartt|Vintage Ralph Lauren::/collections/ralph-lauren|Vintage Tommy Hilfiger::/collections/tommy-hilfiger|Vintage The North Face::/collections/the-north-face"
       },
       "blocks": [
         {
