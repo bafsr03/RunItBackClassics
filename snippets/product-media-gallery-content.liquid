@@ -541,6 +541,7 @@
                       if media.presentation.focal_point != blank
                         assign focal_point_style = 'object-position: ' | append: media.presentation.focal_point | append: ';'
                       endif
+                      assign thumbnail_alt = media.alt | default: selected_product.title | escape
                     %}
                     {{
                       media.preview_image
@@ -549,7 +550,7 @@
                         loading: 'lazy',
                         sizes: 'auto, 110, (min-width: 750px) 160',
                         widths: '240, 352, 832, 1200',
-                        alt: media.alt,
+                        alt: thumbnail_alt,
                         style: focal_point_style
                       | escape
                     }}
