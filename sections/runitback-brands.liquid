@@ -18,9 +18,22 @@
 
     <div class="rb-brands__grid">
       {%- for block in section.blocks -%}
-        {%- if block.type == 'brand' -%}
+        {%- liquid
+          # Skip tiles that link to a collection that doesn't exist or has no products,
+          # so the homepage never links to empty (thin / soft-404) collection pages.
+          assign brand_link = block.settings.link | default: '/collections/all'
+          assign brand_is_empty = false
+          if brand_link contains '/collections/'
+            assign brand_handle = brand_link | split: '/collections/' | last | split: '?' | first | split: '/' | first
+            assign brand_collection = collections[brand_handle]
+            if brand_collection == blank or brand_collection.products_count == 0
+              assign brand_is_empty = true
+            endif
+          endif
+        -%}
+        {%- if block.type == 'brand' and brand_is_empty == false -%}
           <a
-            href="{{ block.settings.link | default: '/collections/all' }}"
+            href="{{ brand_link }}"
             class="rb-brand-card rb-reveal rb-reveal-d{{ forloop.index | modulo: 6 | plus: 1 }}"
             {{ block.shopify_attributes }}
           >
