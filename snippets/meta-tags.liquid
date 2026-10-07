@@ -115,6 +115,23 @@
   href="{{ canonical_url }}"
 >
 
+{%- liquid
+  # Single robots emission: keep internal search results and empty collections out of the index
+  # while still letting crawlers follow their links. all_products_count ignores active filters.
+  assign robots_noindex = false
+  if request.page_type == 'search'
+    assign robots_noindex = true
+  elsif request.page_type == 'collection' and collection.all_products_count == 0
+    assign robots_noindex = true
+  endif
+-%}
+{%- if robots_noindex -%}
+  <meta
+    name="robots"
+    content="noindex,follow"
+  >
+{%- endif -%}
+
 {% if page_description %}
   <meta
     name="description"
